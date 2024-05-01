@@ -1,0 +1,14 @@
+@import '../../../styles.scss';
+
+#home-page{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+
+    .vault-boy{
+        fill: $pipboy;
+        width: 15rem;
+        height: 15rem;
+    }
+}

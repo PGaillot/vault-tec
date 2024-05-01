@@ -1,1 +1,193 @@
-/* You can add global styles to this file, and also import other style files */
+$pipboy: #2dc92d;
+$pipboy-light: #2dc92d52;
+$background: #1a1a1a;
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  font-family: 'Space Mono', monospace;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+  background: $background;
+  color: $pipboy;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Arial';
+  font-weight: 800;
+  font-stretch: 50%;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  font-size: 2rem;
+}
+
+.page {
+  padding: 2rem;
+  animation: blur 5s ease-in-out infinite;
+}
+
+.box {
+  padding: 1rem;
+  border: $pipboy 3px solid;
+}
+
+body{
+    animation: blur 5s ease-in-out infinite;
+    height: 100vmax;
+}
+
+@media only screen and (min-width: 1824px) {
+    .page{
+        $size:30%;
+        width: $size;
+        padding-left: calc((100% - $size) / 2);
+    }
+}
+
+@keyframes blur {
+    0% {
+        filter: drop-shadow(0 0 1rem $pipboy-light);
+      }
+    
+      25% {
+        filter: drop-shadow(0 0 0.25rem  $pipboy-light);
+      }
+    
+      50% {
+        filter: drop-shadow(0 0 2rem  $pipboy-light);
+      }
+    
+      75% {
+        filter: drop-shadow(0 0 0.5rem  $pipboy-light);
+      }
+      100% {
+        filter: drop-shadow(0 0 1rem  $pipboy-light);
+      }
+}
+
+
