@@ -1,5 +1,5 @@
 $pipboy: #2dc92d;
-$pipboy-light: #2dc92d52;
+$pipboy-light: #2dc92d49;
 $background: #1a1a1a;
 
 html,
@@ -90,7 +90,6 @@ video {
   vertical-align: baseline;
   font-family: 'Space Mono', monospace;
 }
-/* HTML5 display-role reset for older browsers */
 article,
 aside,
 details,
@@ -146,6 +145,81 @@ h2 {
   font-size: 2rem;
 }
 
+button {
+  background: $pipboy;
+  color: $background;
+  padding: 0.4rem 0.8rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 1.1rem;
+  font-family: 'Space Mono', monospace;
+  border: $pipboy 3px solid;
+
+&:hover {
+    background: none;
+    color: $pipboy;
+  }
+}
+
+textarea, input {
+  background: none;
+  border: $pipboy 3px solid;
+  resize: none;
+  color: $pipboy;
+  padding: 0.5rem;
+  font-size: 1.05rem;
+  font-family: 'Space Mono', monospace;
+
+  &:focus {
+    outline: none;
+    border: $pipboy 3px solid;
+  }
+}
+
+@mixin hint-text-box($text) {
+  @extend .box;
+  position: relative;
+  margin-top: 2rem;
+  &::before {
+    content: $text;
+    display: block;
+    position: absolute;
+    color: $background;
+    background: $pipboy;
+    padding: 0.4rem 0.8rem;
+    font-weight: 700;
+    top: -2rem;
+    left: 1rem;
+  }
+}
+
+@mixin hint-img-box($url, $text) {
+  border: $pipboy 3px solid;
+  position: relative;
+  padding: 2rem 2rem 2rem 10rem;
+  &::after {
+    content: $url;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    color: $background;
+    background: $pipboy;
+    padding: 0.4rem 0.8rem;
+    inset: 0;
+    width: 6rem;
+  }
+  &::before {
+    content: $text;
+    display: block;
+    font-family: 'Arial';
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
 .page {
   padding: 2rem;
   animation: blur 5s ease-in-out infinite;
@@ -156,38 +230,93 @@ h2 {
   border: $pipboy 3px solid;
 }
 
-body{
-    animation: blur 5s ease-in-out infinite;
-    height: 100vmax;
+.hint-box {
+  @include hint-text-box('HINT');
+}
+
+.vaultboy-box {
+  @include hint-img-box(url('/assets/vaultboy.svg'), 'super !');
+}
+
+.cta {
+    user-select: none;
+  text-transform: uppercase;
+  padding: 0.4rem 0.8rem;
+  background: $pipboy;
+  color: $background;
+  font-weight: 800;
+  width: fit-content;
+  margin: 0.5rem 0;
+  border: $pipboy 3px solid;
+  cursor: pointer;
+
+  &:hover {
+    &::before {
+      content: '->';
+      margin-right: 0.5rem;
+    }
+  }
+
+  &:active {
+    background: none;
+    color: $pipboy;
+
+    &::before {
+      content: '->';
+      margin-right: 0.5rem;
+    }
+  }
+
+}
+
+body {
+  animation: blur 5s ease-in-out infinite;
+  height: 100vh;
 }
 
 @media only screen and (min-width: 1824px) {
-    .page{
-        $size:30%;
-        width: $size;
-        padding-left: calc((100% - $size) / 2);
-    }
+  .page {
+    $size: 30%;
+    width: $size;
+    padding-left: calc((100% - $size) / 2);
+  }
+}
+
+@keyframes turn {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes blur {
-    0% {
-        filter: drop-shadow(0 0 1rem $pipboy-light);
-      }
-    
-      25% {
-        filter: drop-shadow(0 0 0.25rem  $pipboy-light);
-      }
-    
-      50% {
-        filter: drop-shadow(0 0 2rem  $pipboy-light);
-      }
-    
-      75% {
-        filter: drop-shadow(0 0 0.5rem  $pipboy-light);
-      }
-      100% {
-        filter: drop-shadow(0 0 1rem  $pipboy-light);
-      }
+  0% {
+    filter: drop-shadow(0 0 1rem $pipboy-light);
+  }
+
+  25% {
+    filter: drop-shadow(0 0 0.25rem $pipboy-light);
+  }
+
+  50% {
+    filter: drop-shadow(0 0 2rem $pipboy-light);
+  }
+
+  75% {
+    filter: drop-shadow(0 0 0.5rem $pipboy-light);
+  }
+  100% {
+    filter: drop-shadow(0 0 1rem $pipboy-light);
+  }
 }
-
-
