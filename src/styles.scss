@@ -133,10 +133,11 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Arial';
+  font-family: 'Noto Sans Display', sans-serif;
   font-weight: 800;
-  font-stretch: 50%;
+  font-stretch: ultra-condensed;
 }
+
 
 h1 {
   font-size: 2.5rem;
@@ -155,13 +156,14 @@ button {
   font-family: 'Space Mono', monospace;
   border: $pipboy 3px solid;
 
-&:hover {
+  &:hover {
     background: none;
     color: $pipboy;
   }
 }
 
-textarea, input {
+textarea,
+input {
   background: none;
   border: $pipboy 3px solid;
   resize: none;
@@ -212,7 +214,7 @@ textarea, input {
   &::before {
     content: $text;
     display: block;
-    font-family: 'Arial';
+    font-family: 'Noto Sans Display', sans-serif;
     text-transform: uppercase;
     font-weight: 800;
     font-size: 1.75rem;
@@ -238,8 +240,26 @@ textarea, input {
   @include hint-img-box(url('/assets/vaultboy.svg'), 'super !');
 }
 
+#screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: linear-gradient(transparent, transparent, 3px, #222);
+  background-size: 4px 4px;
+  z-index: 999;
+  pointer-events: none;
+  box-shadow: 0 0 5vmin 1vmin #000000c7 inset;
+  animation: brightness 5s ease-in-out infinite;
+}
+
+.glitch{
+  animation: glitch 8s ease-in infinite;
+}
+
 .cta {
-    user-select: none;
+  user-select: none;
   text-transform: uppercase;
   padding: 0.4rem 0.8rem;
   background: $pipboy;
@@ -266,7 +286,6 @@ textarea, input {
       margin-right: 0.5rem;
     }
   }
-
 }
 
 body {
@@ -275,6 +294,11 @@ body {
 }
 
 @media only screen and (min-width: 1824px) {
+  #header-menu {
+    $size: 50%;
+    width: $size;
+    padding-left: calc((100% - $size) / 2);
+  }
   .page {
     $size: 30%;
     width: $size;
@@ -320,3 +344,42 @@ body {
     filter: drop-shadow(0 0 1rem $pipboy-light);
   }
 }
+
+@keyframes glitch {
+  0%{
+      transform: skewX(15deg);
+  }        
+  0.3%{
+      transform: skewX(0deg);
+      filter: brightness(1);
+  }        
+  0.6%{
+      transform: skewX(20deg);
+      filter: brightness(1.5);
+  }        
+  0.8%{
+      transform: skewX(0deg);
+      filter: brightness(1);
+  }        
+  50%{
+      transform: skewX(0deg);
+      opacity: 1;
+  }        
+  50.1%{
+      transform: skewX(15deg);
+      opacity: 0.5;
+  }        
+  50.4%{
+      transform: skewX(2deg);
+  }        
+  51%{
+      transform: skewX(0deg);
+      opacity: 1;
+  }        
+  55%{
+      transform: skewX(0deg);
+  }        
+  99%{
+      transform: skewX(0deg);
+  }        
+  }

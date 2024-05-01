@@ -5,6 +5,13 @@
   flex-direction: column;
   gap: 1rem;
 
+
+  .ruins{
+    height: 5rem;
+    width: 5rem;
+    fill: $pipboy;
+  }
+
   .vault-title {
     position: relative;
     padding-left: 56px;
@@ -15,6 +22,10 @@
       left: 0;
       position: absolute;
     }
+  }
+
+  .vault-box{
+    @include hint-img-box(url('/assets/ruins1.svg'), "N'attendez pas !")
   }
 
   .vault-loader {
