@@ -113,13 +113,9 @@ export class SpecialFormComponent {
       name: this.params.name,
       birthyear: this.params.birthyear,
     }
-
     const specialFormKey: string = this.formService.generateKeyFromSpecialForm(
       specialFormData,
-    )
-
-    console.log(specialFormKey);
-    
+    )    
     this.router.navigate(['consent'], { queryParams: { specialFormKey } , relativeTo:this.route.parent})
   }
 

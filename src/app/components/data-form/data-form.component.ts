@@ -33,7 +33,6 @@ export class DataFormComponent {
     if (this.dataForm.valid) {
       const value: DataFromData = { name: this.dataForm.get(['name'])?.value , birthyear:this.dataForm.get(['birthyear'])?.value}
       const key: string = this.formService.generateKeyFromData(value)
-      console.log(this.dataForm.value)
       this.router.navigate(['become-special'], {
         queryParams: {
           ...{'key':key}

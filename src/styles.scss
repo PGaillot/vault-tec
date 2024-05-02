@@ -250,6 +250,21 @@ input[type='checkbox'] {
   }
 }
 
+#screen {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  margin-top: -100vh;
+  background-image: linear-gradient(transparent, transparent, 3px, #222);
+  background-size: 4px 4px;
+  z-index: 999;
+  pointer-events: none;
+  box-shadow: 0 0 5vmin 1vmin rgba(0, 0, 0, 0.78) inset;
+  animation: brightness 5s ease-in-out infinite;
+}
+
+
 .page {
   padding: 2rem;
   animation: blur 5s ease-in-out infinite;
@@ -266,19 +281,6 @@ input[type='checkbox'] {
 
 .vaultboy-box {
   @include hint-img-box(url('/assets/vaultboy.svg'), 'super !');
-}
-#screen {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  margin-top: -100vh;
-  background-image: linear-gradient(transparent, transparent, 3px, #222);
-  background-size: 4px 4px;
-  z-index: 999;
-  pointer-events: none;
-  box-shadow: 0 0 5vmin 1vmin rgba(0, 0, 0, 0.78) inset;
-  animation: brightness 5s ease-in-out infinite;
 }
 
 

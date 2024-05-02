@@ -23,7 +23,6 @@ export class PerkCardComponent {
 
   toggleCard(){
     this.isReveal = !this.isReveal;
-    console.log(this.isReveal);
   }
 
   ngOnInit(): void {

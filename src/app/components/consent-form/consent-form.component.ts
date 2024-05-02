@@ -4,6 +4,8 @@ import { FormService } from '../../services/form.service';
 import { SpecialFormData } from '../special-form/special-form.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SpecialAccount } from '../../models/special.model';
+import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
+import { SpecialAccountService } from '../../services/special-account.service';
 
 @Component({
   selector: 'app-consent-form',
@@ -19,7 +21,7 @@ export class ConsentFormComponent {
     email: new FormControl(''),
   })
   
-  constructor(private route:ActivatedRoute, private formService:FormService, private router:Router){
+  constructor(private route:ActivatedRoute, private formService:FormService, private router:Router, private specialAccountService:SpecialAccountService){
     this.route.queryParams.subscribe({
       next: (value) => {
         try {
@@ -37,22 +39,18 @@ export class ConsentFormComponent {
     })
   }
 
-  onSubmit() {
-
-
+  onSubmit(e:Event) {
+    e.preventDefault()
     if(this.consentForm.valid){
-
       const specialAccount:SpecialAccount = {
         ...this.params,
         email:this.consentForm.get(['email'])?.value
       }
-      console.log(specialAccount);
+      const specialKey:string = this.specialAccountService.generateSpecialKey(specialAccount) 
+      emailjs.send('service_va73iwz', 'template_w3kpl5n', {key:specialKey, to_name:specialAccount.name}, {
+        publicKey:'FJU4JROMlpe1E6kKA'
+      }).then((res) => {
+      }).catch((e) => console.error(e))
     }
-
-
-
-
-
-
   }
 }
