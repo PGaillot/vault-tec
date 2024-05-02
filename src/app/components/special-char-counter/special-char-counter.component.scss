@@ -1,0 +1,92 @@
+@import '../../../styles.scss';
+
+.char-wrapper {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  font-size: 2.5rem;
+  font-weight: 900;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+
+  .number {
+    position: absolute;
+    bottom: 0.25rem;
+    right: 0.25rem;
+    font-size: 1rem;
+    color: $background;
+    z-index: 2;
+  }
+
+  .char {
+    font-family: 'chowderhead';
+    z-index: 1;
+    width: 100%;
+    height: 4rem;
+    background: $pipboy;
+    color: $background;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid $pipboy;
+    user-select: none;
+  }
+
+  .more {
+    top: 0;
+  }
+
+  .less {
+    bottom: 0;
+  }
+  .more,
+  .less {
+    transition-property: top bottom;
+    transition-duration: 100ms;
+    transition-timing-function: linear;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    border: 3px solid $pipboy;
+    user-select: none;
+  }
+
+  &:hover {
+    color: $pipboy;
+    background: none;
+
+    .number {
+      color: $pipboy;
+    }
+
+    .more,
+    .less {
+      &:hover {
+        background: $pipboy;
+        color: $background;
+      }
+
+
+      &:active{
+        background: $background;
+        color: $pipboy;
+      }
+    }
+
+    .more {
+      top: -3rem;
+    }
+    .less {
+      bottom: -3rem;
+    }
+
+    .char {
+      background: $background;
+      color: $pipboy;
+    }
+  }
+}

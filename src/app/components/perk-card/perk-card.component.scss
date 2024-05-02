@@ -1,0 +1,42 @@
+@import '../../../styles.scss';
+
+#perk-block {
+    border: 3px solid $pipboy;
+    border-radius: 0.5rem;
+    &:hover {
+        animation: reveal 2s ease-in;
+    }
+    
+    #front-card {
+      padding: 1rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    svg {
+      height: 10rem;
+      fill: $pipboy;
+    }
+
+    span {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      font-family: 'chowderhead';
+      font-weight: 900;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@keyframes reveal {
+  0% {
+  }
+  50% {
+      transform: skew(90deg, 90deg);
+
+  }
+  100% {
+      transform: skew(90deg);
+  }
+}

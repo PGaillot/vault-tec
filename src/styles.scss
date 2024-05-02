@@ -177,6 +177,13 @@ input {
   }
 }
 
+@font-face {
+  font-family: 'chowderhead';
+  src: url('assets/fonts/chowderhead.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @mixin hint-text-box($text) {
   @extend .box;
   position: relative;

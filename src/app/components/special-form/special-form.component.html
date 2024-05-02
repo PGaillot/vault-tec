@@ -1,0 +1,57 @@
+<div id="special-form-page" class="page">
+  <p>{{ specialPointsCount }} / {{ maxSpecialPointsCount }}</p>
+
+  <div id="chars-wrapper">
+    <app-special-char-counter
+      char="S"
+      [count]="special.strong"
+      (updatePerk)="updatePeck($event)"
+    ></app-special-char-counter>
+    <app-special-char-counter
+      char="P"
+      [count]="special.perception"
+      (updatePerk)="updatePeck($event)"
+    ></app-special-char-counter>
+    <app-special-char-counter
+      char="E"
+      [count]="special.endurance"
+      (updatePerk)="updatePeck($event)"
+    ></app-special-char-counter>
+    <app-special-char-counter
+      char="C"
+      [count]="special.charisma"
+      (updatePerk)="updatePeck($event)"
+    ></app-special-char-counter>
+    <app-special-char-counter
+      char="I"
+      [count]="special.intelligence"
+      (updatePerk)="updatePeck($event)"
+    ></app-special-char-counter>
+    <app-special-char-counter
+      char="A"
+      [count]="special.agility"
+      (updatePerk)="updatePeck($event)"
+    ></app-special-char-counter>
+    <app-special-char-counter
+      char="L"
+      [count]="special.luck"
+      (updatePerk)="updatePeck($event)"
+    ></app-special-char-counter>
+  </div>
+
+  <div id="char-infos" class="box">
+    <h3>Special ?</h3>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, placeat
+      praesentium, quasi optio blanditiis cumque error modi dicta perspiciatis
+      doloribus, vel recusandae eaque totam ipsam.
+    </p>
+  </div>
+  <label for="name">votre nom</label>
+  <input type="text" name="name" id="" />
+  <label for="email">votre email</label>
+  <input type="email" name="email" id="" />
+
+  <button (click)="send()">envoyer</button>
+
+</div>
