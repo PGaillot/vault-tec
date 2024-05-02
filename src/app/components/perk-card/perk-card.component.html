@@ -1,5 +1,5 @@
 <div id="perk-block" (click)="toggleCard()">
-  <div class="perk-card" [ngClass]="isReveal ? 'card-reveal' : 'card-hidden'">
+  <div class="perk-card" [@openClose]="isReveal ? 'open' : 'closed'">
     <!--  -->
 
     @if(!isReveal){

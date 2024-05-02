@@ -52,6 +52,7 @@ $height: 19rem;
     }
 
     .back-card {
+      transform:rotateY(180deg);
       width: calc($width - (2rem));
       height: calc($height - (2rem));
       padding: 1rem;
