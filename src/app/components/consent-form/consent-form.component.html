@@ -1,0 +1,14 @@
+<form
+  [formGroup]="consentForm"
+  (ngSubmit)="onSubmit()"
+  id="consent-form"
+  class="page"
+>
+  <label for="email">email</label>
+  <input type="email" formControlName="email" id="email" />
+
+  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui, a. Accusamus laboriosam eos porro maxime, quis culpa deserunt veniam, ullam vel animi iusto eligendi voluptatibus dolorum ab quod deleniti minus voluptatum, assumenda non tempora tempore quasi ratione sit maiores. Iste veniam perferendis debitis voluptatum quos fugiat reiciendis delectus quam, tenetur a nihil tempore animi magni! Quis beatae nobis earum ex.</p>
+  <label for="consent">Je suis d'accord.</label>
+  <input type="checkbox" id="consent" />
+  <button type="submit">valider</button>
+</form>

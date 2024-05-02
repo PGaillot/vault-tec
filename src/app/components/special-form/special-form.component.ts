@@ -2,6 +2,16 @@ import { Component } from '@angular/core'
 import { SpecialCharCounterComponent } from '../special-char-counter/special-char-counter.component'
 import { SPECIAL, SpecialAccount } from '../../models/special.model'
 import { SpecialAccountService } from '../../services/special-account.service'
+import { ActivatedRoute, Router } from '@angular/router'
+import { DataFromData } from '../data-form/data-form.component'
+import { FormService } from '../../services/form.service'
+
+export interface SpecialFormData {
+  special: SPECIAL
+  createdAt: Date
+  name: string
+  birthyear: number
+}
 
 @Component({
   selector: 'app-special-form',
@@ -11,8 +21,10 @@ import { SpecialAccountService } from '../../services/special-account.service'
   styleUrl: './special-form.component.scss',
 })
 export class SpecialFormComponent {
-  specialPointsCount: number = 33
-  maxSpecialPointsCount: number = 33
+  params!: DataFromData
+  specialPointsCount: number = 0
+  maxSpecialPointsCount: number = 0
+  thisYear: number = new Date().getFullYear()
 
   special: SPECIAL = {
     strong: 0,
@@ -24,73 +36,92 @@ export class SpecialFormComponent {
     luck: 0,
   }
 
-  
   constructor(
-    private specialAccountService:SpecialAccountService
-  ){}
+    private formService: FormService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {
+    this.route.queryParams.subscribe({
+      next: (value) => {
+        try {
+          if (value) {
+            this.params = this.formService.decodeDataFormKey(value['key'])
+            this.maxSpecialPointsCount =
+              this.thisYear - this.params.birthyear + 1
+            this.specialPointsCount = this.maxSpecialPointsCount
+          } else {
+            throw new Error('Empty key')
+          }
+        } catch (error) {
+          console.error(error)
+          this.router.navigate(['not-found'])
+        }
+      },
+      error: (error) => {
+        console.error(error)
+      },
+    })
+  }
 
   updatePeck(event: { perk: string; data: number }) {
-    if(this.specialPointsCount <= 0 && event.data > 0) return
+    if (this.specialPointsCount <= 0 && event.data > 0) return
 
+    switch (event.perk) {
+      case 'S':
+        this.special.strong += event.data
+        break
 
-      switch (event.perk) {
-        case 'S':
-          this.special.strong += event.data
-          break
+      case 'P':
+        this.special.perception += event.data
+        break
 
-        case 'P':
-          this.special.perception += event.data
-          break
+      case 'E':
+        this.special.endurance += event.data
+        break
 
-        case 'E':
-          this.special.endurance += event.data
-          break
+      case 'C':
+        this.special.charisma += event.data
+        break
 
-        case 'C':
-          this.special.charisma += event.data
-          break
+      case 'I':
+        this.special.intelligence += event.data
+        break
 
-        case 'I':
-          this.special.intelligence += event.data
-          break
+      case 'A':
+        this.special.agility += event.data
+        break
 
-        case 'A':
-          this.special.agility += event.data
-          break
+      case 'L':
+        this.special.luck += event.data
+        break
 
-        case 'L':
-          this.special.luck += event.data
-          break
-
-        default:
-          break
-      }
-
-      if(event.data > 0 ){
-        this.specialPointsCount -= 1
-      } else{
-        this.specialPointsCount += 1
-      }
-  } 
-
-
-  send(){
-
-    const specialAccount:SpecialAccount = {
-      special:this.special,
-      createdAt: new Date(),
-      mail:'test@mail.fr',
-      name:'Pierre Gaillot',
-      birthyear:1990,
+      default:
+        break
     }
-    
-    const specialKey:string =  this.specialAccountService.generateSpecialKey(specialAccount)
-    console.log(specialKey);
-    console.log(this.specialAccountService.decodeSpecialKey(specialKey));
-    
-    
 
-
-
+    if (event.data > 0) {
+      this.specialPointsCount -= 1
+    } else {
+      this.specialPointsCount += 1
+    }
   }
+
+  send() {
+    const specialFormData: SpecialFormData = {
+      special: this.special,
+      createdAt: new Date(),
+      name: this.params.name,
+      birthyear: this.params.birthyear,
+    }
+
+    const specialFormKey: string = this.formService.generateKeyFromSpecialForm(
+      specialFormData,
+    )
+
+    console.log(specialFormKey);
+    
+    this.router.navigate(['consent'], { queryParams: { specialFormKey } , relativeTo:this.route.parent})
+  }
+
+  ngOnInit(): void {}
 }

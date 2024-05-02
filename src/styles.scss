@@ -162,7 +162,7 @@ button {
 }
 
 textarea,
-input {
+input[type='text'] , input[type='number'], input[type='email'] {
   background: none;
   border: $pipboy 3px solid;
   resize: none;
@@ -174,6 +174,28 @@ input {
   &:focus {
     outline: none;
     border: $pipboy 3px solid;
+  }
+}
+
+input[type='checkbox'] {
+  cursor: pointer;
+  appearance: none;
+  border: 3px solid $pipboy;
+  height: 1.5rem;
+  width:  1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &::before{
+    content: '';
+    display: block;
+    height: 0.5rem;
+    width: 0.5rem;
+    background: $pipboy;
+    opacity: 0;
+  }
+  &:checked::before {
+    opacity: 1;
   }
 }
 

@@ -1,0 +1,23 @@
+<div id="data-form" class="page" >
+  <p class="hint-box">
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel beatae dolore
+    consectetur, voluptatibus eligendi necessitatibus non animi. A, ad
+    repudiandae. Quo at qui ipsa nesciunt minus? Expedita, cumque ut incidunt
+    sint enim beatae numquam tempore quas pariatur aperiam distinctio delectus.
+  </p>
+
+  <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+    <label for="name">votre nom</label>
+    <input type="text"  id="name" formControlName="name" />
+    <label for="birthyear">votre année de naissance</label>
+    <input
+      type="number"
+      id="birthyear"
+      [min]="thisYear - 100"
+      [max]="thisYear - 18"
+      formControlName="birthyear"
+    />
+
+    <button type="submit">continuer</button>
+  </form>
+</div>

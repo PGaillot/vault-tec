@@ -11,7 +11,7 @@ export interface SPECIAL{
 export interface SpecialAccount{
     special:SPECIAL,
     createdAt: Date,
-    mail:string,
+    email:string,
     name:string,
     birthyear:number,
 }

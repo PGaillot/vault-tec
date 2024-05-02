@@ -7,6 +7,8 @@ import { StoryPageComponent } from './pages/story-page/story-page.component'
 import { SpecialPageComponent } from './pages/special-page/special-page.component'
 import { SpecialFormComponent } from './components/special-form/special-form.component'
 import { SpecialHomePageComponent } from './pages/special-home-page/special-home-page.component'
+import { DataFormComponent } from './components/data-form/data-form.component'
+import { ConsentFormComponent } from './components/consent-form/consent-form.component'
 
 export const routes: Routes = [
   {
@@ -35,7 +37,9 @@ export const routes: Routes = [
     component: SpecialPageComponent,
     children: [
       { path: '', component: SpecialHomePageComponent },
+      { path: 'data', component: DataFormComponent },
       { path: 'become-special', component: SpecialFormComponent },
+      { path: 'consent', component: ConsentFormComponent },
     ],
   },
   {

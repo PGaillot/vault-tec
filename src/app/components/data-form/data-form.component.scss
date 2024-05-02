@@ -1,0 +1,9 @@
+@import '../../../styles.scss';
+
+
+
+#data-form, form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
