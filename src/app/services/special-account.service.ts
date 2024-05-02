@@ -1,20 +1,17 @@
-import { Injectable } from '@angular/core';
-import { SpecialAccount } from '../models/special.model';
+import { Injectable } from '@angular/core'
+import { SpecialAccount } from '../models/special.model'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SpecialAccountService {
+  constructor() {}
 
-  constructor() { }
-
-  generateSpecialKey(specialAccount:SpecialAccount):string{
+  generateSpecialKey(specialAccount: SpecialAccount): string {
     return btoa(JSON.stringify(specialAccount))
   }
 
-
-  decodeSpecialKey(specialKey:string):SpecialAccount{
+  decodeSpecialKey(specialKey: string): SpecialAccount {
     return JSON.parse(atob(specialKey))
   }
-
 }

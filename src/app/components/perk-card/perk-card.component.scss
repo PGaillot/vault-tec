@@ -1,42 +1,100 @@
 @import '../../../styles.scss';
 
+$width: 13rem;
+$height: 19rem;
+
 #perk-block {
+  width: $width;
+  height: $height;
+  padding: 1rem;
+
+  // &:hover {
+  //   .perk-card {
+  //     animation: reveal 0.5s ease-in-out;
+
+  //     .front-card{
+  //       animation: disappear 0.5s ease-in;
+  //     }
+  //     .back-card{
+  //       animation: appear 0.5s ease-in;
+  //     }
+  //   }
+  // }
+
+  .perk-card {
     border: 3px solid $pipboy;
     border-radius: 0.5rem;
-    &:hover {
-        animation: reveal 2s ease-in;
-    }
-    
-    #front-card {
-      padding: 1rem;
+    width: $width;
+    height: $height;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    svg {
-      height: 10rem;
-      fill: $pipboy;
-    }
 
-    span {
+    .front-card {
       position: absolute;
-      top: 0.5rem;
-      left: 0.5rem;
-      font-family: 'chowderhead';
-      font-weight: 900;
-      font-size: 1.5rem;
+      width: calc($width - (2rem));
+      height: calc($height - (2rem));
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      img {
+        height: 10rem;
+        fill: $pipboy;
+      }
+      span {
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+        font-family: 'chowderhead';
+        font-weight: 900;
+        font-size: 1.5rem;
+      }
+    }
+
+    .back-card {
+      width: calc($width - (2rem));
+      height: calc($height - (2rem));
+      padding: 1rem;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .divider{
+        height: 3px;
+        background: $pipboy;
+        margin-bottom: 0.5rem;
+      }
+
+      .perk-name{
+        font-family: 'chowderhead';
+        font-size: 2rem;
+        text-transform: capitalize;
+      }
     }
   }
-}
 
-@keyframes reveal {
-  0% {
+  .card-reveal {
+    .perk-card {
+      animation: reveal 0.5s ease-in-out;
+    }
   }
-  50% {
-      transform: skew(90deg, 90deg);
 
+  .card-hidden {
+    .perk-card {
+      animation: reveal 0.5s ease-in-out;
+    }
   }
-  100% {
-      transform: skew(90deg);
+
+
+  @keyframes reveal {
+    0% {
+    }
+    50% {
+      transform: rotateY(90deg);
+    }
+    100% {
+      transform: rotateY(0deg);
+    }
   }
 }

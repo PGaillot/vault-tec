@@ -6,33 +6,69 @@
   gap: 1rem;
   align-items: center;
 
-  #header{    
+  #header {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: min-content;
-    padding: 1rem 3rem;
+    padding: 1rem 4rem;
     .special-font {
       font-family: 'chowderhead';
       font-size: 5rem;
     }
 
-    svg{
+    svg {
       position: absolute;
       fill: $pipboy;
-      height: 5rem;
-      width: 5rem;
 
-      &:nth-child(1){
+      &:nth-child(1) {
+        height: 5rem;
+        width: 5rem;
         top: 0;
-        left: 0;
+        left: 1rem;
+        animation: floating 4s linear infinite;
       }
-      &:nth-child(2){
+      &:nth-child(2) {
+        height: 5rem;
+        width: 5rem;
         bottom: 0;
+        right: 1rem;
+        animation: floating 4s linear infinite reverse;
+      }
+      &:nth-child(3) {
+        height: 3rem;
+        width: 3rem;
+        bottom: 2.5rem;
+        left: 0;
+        animation: floating 4s linear infinite reverse;
+      }
+      &:nth-child(4) {
+        height: 3rem;
+        width: 3rem;
+        top: 2.5rem;
         right: 0;
+        animation: floating 4s linear infinite;
       }
     }
   }
 
+  #perks {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  @keyframes floating {
+    25% {
+      transform: translate(-0.25rem, -0.5rem)  rotate(-2deg);
+    }
+    50% {
+      transform: translate(0 0)  rotate(0deg);
+    }
+    75% {
+      transform: translate(0.25rem, 0.5rem)  rotate(2deg);
+    }
+  }
 }
