@@ -1,0 +1,36 @@
+@import '../../../styles.scss';
+
+#special-page {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  #chars-wrapper {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    .char {
+      padding: 1rem;
+      background: $pipboy;
+      color: $background;
+      font-size: 1.5rem;
+      font-weight: 900;
+      cursor: pointer;
+      border: 3px solid $pipboy;
+      &::after {
+        content: '.';
+      }
+
+      &:hover{
+        color: $pipboy;
+        background: none;
+      }
+    }
+  }
+
+  #char-infos{
+    h3{
+        font-size: 1.2rem;
+        text-transform: uppercase;
+    }
+  }
+}
