@@ -47,7 +47,7 @@ export class ConsentFormComponent {
         email:this.consentForm.get(['email'])?.value
       }
       const specialKey:string = this.specialAccountService.generateSpecialKey(specialAccount) 
-      emailjs.send('service_va73iwz', 'template_w3kpl5n', {key:specialKey, to_name:specialAccount.name}, {
+      emailjs.send('service_va73iwz', 'template_w3kpl5n', {key:specialKey, to_email: specialAccount.email,to_name:specialAccount.name}, {
         publicKey:'FJU4JROMlpe1E6kKA'
       }).then((res) => {
       }).catch((e) => console.error(e))
