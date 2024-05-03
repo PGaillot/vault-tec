@@ -50,6 +50,11 @@ export class ConsentFormComponent {
       emailjs.send('service_va73iwz', 'template_w3kpl5n', {key:specialKey, to_email: specialAccount.email,to_name:specialAccount.name}, {
         publicKey:'FJU4JROMlpe1E6kKA'
       }).then((res) => {
+        if(res.status === 200) {
+          this.router.navigate(['home'], {relativeTo:this.route.firstChild})
+        } else {
+          console.error(res)
+        }
       }).catch((e) => console.error(e))
     }
   }
