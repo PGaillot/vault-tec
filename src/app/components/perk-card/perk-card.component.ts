@@ -8,6 +8,7 @@ import {
   transition,
   animate,
 } from '@angular/animations';
+import { PerkService } from '../../services/perk.service';
 
 @Component({
   selector: 'app-perk-card',
@@ -40,21 +41,13 @@ export class PerkCardComponent {
   perkName!: string
   isReveal:boolean = false;
 
-  constructor() {
-
-  }
-
-
+  constructor(private perkService:PerkService) {}
 
   toggleCard(){
     this.isReveal = !this.isReveal;
   }
 
   ngOnInit(): void {
-    if(Object.keys(PerksType).includes(this.char)){
-      this.perkName = PerksType[this.char as keyof typeof PerksType];
-    } else {
-      console.error('No perk find with this key :',this.char);
-    }
+    this.perkName = this.perkService.getPerkByChar(this.char)
   }
 }

@@ -1,11 +1,10 @@
 <div id="special-form-page" class="page">
   
   <div class="special-container" >
-      <img class="glitch" [src]="perkImage  ? 'assets/special/' + perkImage  +'.svg' : 'assets/vault-tec-logo-2.svg' " alt="spceial image">
+      <img class="glitch" [src]="perkName  ? 'assets/special/' + perkName  +'.svg' : 'assets/vault-tec-logo-2.svg' " alt="spceial image">
   </div>  
-  
   <div class="perk-container">
-      {{perkImage | uppercase}}  
+    <p class="perk-name">{{perkName | uppercase}}  </p>
     <p>{{ specialPointsCount }} / {{ maxSpecialPointsCount }}</p>
   </div>
 
@@ -62,6 +61,12 @@
       doloribus, vel recusandae eaque totam ipsam.
     </p>
   </div>
+
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, placeat
+    praesentium, quasi optio blanditiis cumque error modi dicta perspiciatis
+    doloribus, vel recusandae eaque totam ipsam.
+  </p>
 
   <button (click)="send()" [disabled]="specialPointsCount !== 0">envoyer</button>
 

@@ -1,36 +1,42 @@
 @import '../../../styles.scss';
 
-#special-form-page{
+#special-form-page {
+  display: flex;
+  // align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: rgba(255, 105, 180, 0.192);
+
+  .special-container {
+    height: 25rem;
+    min-height: 20rem;
     display: flex;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 1rem;
-    .special-container{
-        width: 100%;
-        height: 25rem;
-        min-height: 20rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap: 2rem;
+    gap: 2rem;
+  }
+
+
+  .perk-container {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    font-size: 1.2rem;
+
+    .perk-name{
+        height: 1.2rem;
     }
-    .perk-container{
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap : 2rem;
-        font-size: 1.2rem;
-    }
+  }
 }
 
 #chars-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 0.5rem;
-        height: 10rem;
-
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  height: 10rem;
+}

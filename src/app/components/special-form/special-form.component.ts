@@ -7,6 +7,7 @@ import { DataFromData } from '../data-form/data-form.component'
 import { FormService } from '../../services/form.service'
 import { PerksType } from '../../enums/perks-type'
 import { UpperCasePipe } from '@angular/common'
+import { PerkService } from '../../services/perk.service'
 
 export interface SpecialFormData {
   special: SPECIAL
@@ -27,7 +28,7 @@ export class SpecialFormComponent {
   specialPointsCount: number = 0
   maxSpecialPointsCount: number = 0
   thisYear: number = new Date().getFullYear()
-  perkImage : string = ""
+  perkName : string = ""
   special: SPECIAL = {
     strong: 0,
     perception: 0,
@@ -42,6 +43,7 @@ export class SpecialFormComponent {
     private formService: FormService,
     private router: Router,
     private route: ActivatedRoute,
+    private perkService:PerkService
   ) {
     this.route.queryParams.subscribe({
       next: (value) => {
@@ -64,18 +66,13 @@ export class SpecialFormComponent {
       },
     })
   }
-  getPerkByChar(char : string ): string{
-    if(Object.keys(PerksType).includes(char)){
-      return PerksType[char as keyof typeof PerksType];
-    } else {
-      console.error('No perk find with this key :',char);
-      return 'PERK ERROR'
-    }
-  }
+
   charHover(event : string){
-    this.perkImage = this.getPerkByChar(event)
+    this.perkName = this.perkService.getPerkByChar(event)
 
   }
+
+
   updatePeck(event: { perk: string; data: number }) {
     if (this.specialPointsCount <= 0 && event.data > 0) return
 

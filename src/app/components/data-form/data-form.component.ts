@@ -22,6 +22,7 @@ export interface DataFromData {
 })
 export class DataFormComponent {
   thisYear: number = new Date().getFullYear()
+  legalAge: number = 18
 
   constructor(
     private router: Router,
@@ -38,23 +39,21 @@ export class DataFormComponent {
     birthyear: new FormControl('', [
       Validators.required,
       Validators.min(this.thisYear - 100),
-      Validators.max(this.thisYear - 18),
+      Validators.max(this.thisYear - this.legalAge),
     ]),
   })
 
   onSubmit() {
-    if (this.dataForm.valid) {
-      const value: DataFromData = {
-        name: this.dataForm.get(['name'])?.value,
-        birthyear: this.dataForm.get(['birthyear'])?.value,
-      }
-      const key: string = this.formService.generateKeyFromData(value)
-      this.router.navigate(['become-special'], {
-        queryParams: {
-          ...{ key: key },
-        },
-        relativeTo: this.route.parent,
-      })
+    const value: DataFromData = {
+      name: this.dataForm.get(['name'])?.value,
+      birthyear: this.dataForm.get(['birthyear'])?.value,
     }
+    const key: string = this.formService.generateKeyFromData(value)
+    this.router.navigate(['become-special'], {
+      queryParams: {
+        ...{ key: key },
+      },
+      relativeTo: this.route.parent,
+    })
   }
 }
