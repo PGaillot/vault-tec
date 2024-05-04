@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormService } from '../../services/form.service';
 import { SpecialFormData } from '../special-form/special-form.component';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SpecialAccount } from '../../models/special.model';
 import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
 import { SpecialAccountService } from '../../services/special-account.service';
@@ -18,8 +18,10 @@ export class ConsentFormComponent {
   
   params!:SpecialFormData;
   consentForm = new FormGroup({
-    email: new FormControl(''),
+    email: new FormControl('', [Validators.email, Validators.required]),
+    consent: new FormControl(false, [Validators.requiredTrue]),
   })
+dataForm: any;
   
   constructor(private route:ActivatedRoute, private formService:FormService, private router:Router, private specialAccountService:SpecialAccountService){
     this.route.queryParams.subscribe({

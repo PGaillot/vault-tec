@@ -61,7 +61,7 @@
   <input type="email" formControlName="email" id="email" />
 
   <span class="checkbox-container">
-    <input type="checkbox" id="consent-checkbox" />
+    <input type="checkbox" formControlName="consent" id="consent-checkbox" />
     <label for="consent"> En signant ci-dessous, vous confirmez que vous comprenez et acceptez les
       conditions énoncées dans ce formulaire. Vous reconnaissez que ce
       consentement est volontaire et que vous conservez le droit de refuser ou de
@@ -71,5 +71,5 @@
 
   <!-- <img src="assets/vault-tec-logo-2.svg" alt="" /> -->
 
-  <button type="submit">valider</button>
+  <button type="submit" [disabled]="!consentForm.valid">valider</button>
 </form>
