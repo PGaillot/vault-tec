@@ -27,7 +27,7 @@ export class SpecialFormComponent {
   specialPointsCount: number = 0
   maxSpecialPointsCount: number = 0
   thisYear: number = new Date().getFullYear()
-  specialImage : string = ""
+  perkImage : string = ""
   special: SPECIAL = {
     strong: 0,
     perception: 0,
@@ -73,7 +73,7 @@ export class SpecialFormComponent {
     }
   }
   charHover(event : string){
-    this.specialImage = this.getPerkByChar(event)
+    this.perkImage = this.getPerkByChar(event)
 
   }
   updatePeck(event: { perk: string; data: number }) {

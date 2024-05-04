@@ -1,11 +1,11 @@
 <div id="special-form-page" class="page">
   
   <div class="special-container" >
-      <img class="glitch" [src]="'assets/special/' + specialImage ? specialImage :  'vaultboy' +'.svg'" alt="">
+      <img class="glitch" [src]="perkImage  ? 'assets/special/' + perkImage  +'.svg' : 'assets/vault-tec-logo-2.svg' " alt="spceial image">
   </div>  
   
   <div class="perk-container">
-      {{specialImage | uppercase}}  
+      {{perkImage | uppercase}}  
     <p>{{ specialPointsCount }} / {{ maxSpecialPointsCount }}</p>
   </div>
 
