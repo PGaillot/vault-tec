@@ -12,13 +12,14 @@
     Protection des Données de l'Abri.
   </p>
 
-  <p class="hint-box">
+  <p class="box">
     Veuillez lire attentivement les clauses ci-dessous avant de consentir à
     l'utilisation de vos données par Vault-Tec:
   </p>
 
   <p class="count-box">
-    Collecte et Utilisation des Données: En signant ce formulaire, vous
+    <span>Collecte et Utilisation des Données</span>
+    En signant ce formulaire, vous
     autorisez Vault-Tec à collecter, stocker et utiliser vos données
     personnelles, y compris mais non limité à votre nom, votre âge, votre numéro
     d'identification unique Vault-Tec (VUID), vos habitudes alimentaires, vos
@@ -26,15 +27,22 @@
     utilisées dans le but de mieux vous servir et de garantir votre bien-être
     sous terre.
   </p>
+
+
   <p class="count-box">
-    Communication et Divulgation: Vous consentez à ce que Vault-Tec puisse
+    <span>Communication et Divulgation</span>
+    Vous consentez à ce que Vault-Tec puisse
     communiquer vos informations personnelles à nos partenaires commerciaux, y
     compris des entités externes non identifiées, pour des raisons de sécurité
     et de marketing ciblé. Vos données peuvent également être partagées avec nos
     associés dans d'autres abris pour garantir une coordination efficace des
     ressources post-apocalyptiques.
   </p>
+
+
+
   <p class="count-box">
+    <span>protection de vos données</span>
     Bien que nous nous efforcions de protéger vos données, veuillez noter que
     Vault-Tec ne peut garantir la sécurité totale des informations contre les
     menaces extérieures, y compris les super mutants, les robots défectueux et
@@ -42,29 +50,26 @@
     et libérez Vault-Tec de toute responsabilité en cas de fuite de données
     causée par des événements apocalyptiques.
   </p>
-  <p class="count-box">
+
+  <p class="hint-box">
     Votre consentement restera en vigueur indéfiniment ou jusqu'à ce que votre
     statut de résident de l'abri prenne fin, que ce soit par mutation,
     relocalisation ou autrement.
   </p>
 
-  <p>
-    En signant ci-dessous, vous confirmez que vous comprenez et acceptez les
-    conditions énoncées dans ce formulaire. Vous reconnaissez que ce
-    consentement est volontaire et que vous conservez le droit de refuser ou de
-    retirer votre consentement à tout moment en notifiant Vault-Tec par écrit
-    (si les services postaux existent encore).
-  </p>
-
   <label for="email">email</label>
   <input type="email" formControlName="email" id="email" />
 
-  <div class="checkbox-container">
-    <input type="checkbox" id="consent" />
-    <label for="consent">Je suis d'accord.</label>
-  </div>
+  <span class="checkbox-container">
+    <input type="checkbox" id="consent-checkbox" />
+    <label for="consent"> En signant ci-dessous, vous confirmez que vous comprenez et acceptez les
+      conditions énoncées dans ce formulaire. Vous reconnaissez que ce
+      consentement est volontaire et que vous conservez le droit de refuser ou de
+      retirer votre consentement à tout moment en notifiant Vault-Tec par écrit
+      (si les services postaux existent encore).</label>
+  </span>
 
-  <img src="assets/vault-tec-logo-2.svg" alt="" />
+  <!-- <img src="assets/vault-tec-logo-2.svg" alt="" /> -->
 
   <button type="submit">valider</button>
 </form>

@@ -12,9 +12,6 @@ export class SpecialCharCounterComponent {
   @Input() count:number = 0;
   @Output() updatePerk:EventEmitter<{perk:string, data:number}> = new EventEmitter<{perk:string, data:number}>()
 
-
-
-
   onMoreClick() {
       this.updatePerk.emit({'perk':this.char, 'data': 1})
   }
