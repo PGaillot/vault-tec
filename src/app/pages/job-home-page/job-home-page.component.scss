@@ -1,0 +1,51 @@
+@import '../../../styles.scss';
+
+#job-home-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  label{
+      display: flex;
+      gap: 0.5rem;
+  }
+  #key-wrapper {
+    display: flex;
+    input {
+      flex-grow: 1;
+    }
+    button {
+      border-left: none;
+      height: max-content;
+      font-size: 1.15rem;
+    }
+  }
+
+  .hint-box,
+  .lock-title {
+    margin-top: 4rem;
+  }
+
+  .key-checker-block {
+    padding: 1rem;
+    border: 3px solid $pipboy;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 6rem;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .error-msg {
+    &::before,
+    &::after {
+        content: ' *** ';
+    }
+  }
+
+  .error-marker{
+    width: 0.5rem;
+    background: $pipboy;
+  }
+}

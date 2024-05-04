@@ -12,18 +12,6 @@
     fill: $pipboy;
   }
 
-  .vault-title {
-    position: relative;
-    padding-left: 56px;
-    &::before {
-      content: url('/assets/vault-icon.svg');
-      display: block;
-      top: 0;
-      left: 0;
-      position: absolute;
-    }
-  }
-
   .vault-box{
     @include hint-img-box(url('/assets/ruins1.svg'), "N'attendez pas !")
   }

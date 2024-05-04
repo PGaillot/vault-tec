@@ -1,0 +1,68 @@
+<div id="job-home-page">
+  <h1 class="vault-title">Chaque habitants dois avoir un emploi !</h1>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta nostrum nam
+    tenetur veniam non, placeat beatae aliquid, iusto error quod in blanditiis
+    assumenda harum dignissimos. Labore eos saepe, autem soluta dolores
+    voluptatibus voluptates asperiores recusandae aut itaque dignissimos optio
+    architecto illo qu nobis esse!
+  </p>
+
+  <h1 class="lock-title">Un job specialement pour vous</h1>
+  <p>
+    Vous devez être special pour pouvoir acceder a votre demande res suscipit
+    alias excepturi, fugit aperiam, voluptatem dolor culpa, repellat nulla
+    repudiandae. Minima voluptate nihil veniam molestias itaque voluptatu
+  </p>
+
+  <label for="key">
+    entrez votre [CLEF-SPECIAL] : @for (_ of [].constructor(errorCount); track
+    _) {
+    <span class="error-marker"></span>
+    }
+  </label>
+
+  <div id="key-wrapper">
+    <input [formControl]="key" type="password" id="key" />
+    <button
+      type="submit"
+      [disabled]="!key.valid || errorCount >= 4"
+      (click)="onSubmitKey()"
+    >
+      valider
+    </button>
+  </div>
+
+  <div class="key-checker-block">
+    @if(loading){
+    <p>loading ...</p>
+    }@else { @if (!keyError) {
+        <p>Bienvenu(e) {{username}}</p>
+    <button>tester mes aptitudes</button>
+
+    } @else if (errorCount === 4) {
+    <button routerLink="/troll">reset</button>
+    <button disabled="disabled">corriger l'erreur</button>
+    } @else {
+    <p class="error-msg">{{ errorMsg }}</p>
+    @if (errorCount > 0) {
+    <p>
+      @for (_ of [].constructor(errorCount); track _) {
+      <span>!</span>
+      } [ERREUR] @for (_ of [].constructor(errorCount); track _) {
+      <span>!</span>
+      }
+    </p>
+    } } }
+  </div>
+
+  <p class="hint-box">
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti possimus
+    dolores suscipit alias excepturi, fugit aperiam, voluptatem dolor culpa,
+    repellat nulla repudiandae obcaecati minus nihil veritatis est? Tenetur
+    omnis earum eligendi distinctio hic? Minima voluptate nihil veniam molestias
+    itaque voluptatum.
+  </p>
+
+  <button routerLink="/special">je n'ai pas de [CLEF-SPECIAL]</button>
+</div>

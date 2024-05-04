@@ -3,12 +3,14 @@ import { HomePageComponent } from './pages/home-page/home-page.component'
 import { VaultPageComponent } from './pages/vault-page/vault-page.component'
 import { ContactPageComponent } from './pages/contact-page/contact-page.component'
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component'
-import { StoryPageComponent } from './pages/story-page/story-page.component'
 import { SpecialPageComponent } from './pages/special-page/special-page.component'
 import { SpecialFormComponent } from './components/special-form/special-form.component'
 import { SpecialHomePageComponent } from './pages/special-home-page/special-home-page.component'
 import { DataFormComponent } from './components/data-form/data-form.component'
 import { ConsentFormComponent } from './components/consent-form/consent-form.component'
+import { JobFormComponent } from './components/job-form/job-form.component'
+import { JobPageComponent } from './pages/job-page/job-page.component'
+import { JobHomePageComponent } from './pages/job-home-page/job-home-page.component'
 
 export const routes: Routes = [
   {
@@ -25,8 +27,18 @@ export const routes: Routes = [
     component: VaultPageComponent,
   },
   {
-    path: 'story',
-    component: StoryPageComponent,
+    path: 'job',
+    component: JobPageComponent,
+    children:[
+      {
+        path:"",
+        component:JobHomePageComponent
+      },
+      {
+        path:"work-in-vault",
+        component:JobFormComponent
+      }
+    ]
   },
   {
     path: 'contact',
