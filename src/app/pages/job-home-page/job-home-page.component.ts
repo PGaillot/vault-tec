@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { RouterLink } from '@angular/router'
+import { ActivatedRoute, Router, RouterLink } from '@angular/router'
 import { SpecialAccountService } from '../../services/special-account.service'
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
 import { SpecialAccount } from '../../models/special.model'
@@ -13,37 +13,55 @@ import { LogoLoaderComponent } from '../../components/logo-loader/logo-loader.co
   styleUrl: './job-home-page.component.scss',
 })
 export class JobHomePageComponent {
-  key: FormControl = new FormControl('', [
+  keyFormControl: FormControl = new FormControl('', [
     Validators.required,
     Validators.minLength(1),
   ])
 
-  constructor(private accountSevice: SpecialAccountService) {}
+  constructor(
+    private accountSevice: SpecialAccountService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {}
 
   errorCount: number = 0
   errorMsg: string = 'entrez une [CLEF-SPECIAL] valide'
   keyError: boolean = true
-  loading:boolean = false
-  username:string = '***@#%/&***'
-  onSubmitKey() {
+  loading: boolean = false
+  username: string = '***@#%/&***'
+  specialAccount: SpecialAccount | undefined
+  key: string | undefined
 
-    const randomLoading:number = Math.floor(Math.random() * (1500 - 500 + 1)) + 500
+  onSubmitKey() {
+    const randomLoading: number =
+      Math.floor(Math.random() * (1500 - 500 + 1)) + 500
     this.loading = true
-    const inputText: string = this.key.value
+    const inputText: string = this.keyFormControl.value
     setTimeout(() => {
       try {
-        const specialAccount: SpecialAccount = this.accountSevice.decodeSpecialKey(inputText)
+        const specialAccount: SpecialAccount = this.accountSevice.decodeSpecialKey(
+          inputText,
+        )
         if (specialAccount) {
-          this.username  = specialAccount.name
+          this.specialAccount = specialAccount
+          this.username = specialAccount.name
           this.keyError = false
-          this.loading = false  
+          this.loading = false
+          this.key = inputText
         }
       } catch (error) {
-        this.key.setValue('')
-        this.loading = false  
+        this.keyFormControl.setValue('')
+        this.loading = false
         this.errorCount += 1
         this.errorMsg = `$CLEF-SPECIAL INVALIDE`
       }
     }, randomLoading)
+  }
+
+  navToJobForm() {
+    this.router.navigate(['find-a-job'], {
+      relativeTo:this.route.parent,
+      queryParams: { SPECIALkey: this.key },
+    })
   }
 }

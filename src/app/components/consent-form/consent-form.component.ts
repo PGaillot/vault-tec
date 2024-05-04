@@ -37,7 +37,10 @@ dataForm: any;
           this.router.navigate(['not-found'])
         }
       },
-      error: (error) => {console.error(error)},
+      error: (error) => {
+        console.error(error);
+        this.router.navigate(['not-found'])
+    },
     })
   }
 
@@ -57,7 +60,8 @@ dataForm: any;
         } else {
           console.error(res)
         }
-      }).catch((e) => console.error(e))
+      }).catch((e) => {
+        console.error(e)})
     }
   }
 }

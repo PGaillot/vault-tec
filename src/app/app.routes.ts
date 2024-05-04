@@ -35,7 +35,7 @@ export const routes: Routes = [
         component:JobHomePageComponent
       },
       {
-        path:"work-in-vault",
+        path:"find-a-job",
         component:JobFormComponent
       }
     ]

@@ -23,10 +23,10 @@
   </label>
 
   <div id="key-wrapper">
-    <input [formControl]="key" type="password" id="key" />
+    <input [formControl]="keyFormControl" type="password" id="key" />
     <button
       type="submit"
-      [disabled]="!key.valid || errorCount >= 4"
+      [disabled]="!keyFormControl.valid || errorCount >= 4"
       (click)="onSubmitKey()"
     >
       valider
@@ -38,7 +38,7 @@
     <app-logo-loader></app-logo-loader>
     }@else { @if (!keyError) {
     <p>Bienvenu(e) {{ username }}</p>
-    <button>tester mes aptitudes</button>
+    <button (click)="navToJobForm()">tester mes aptitudes</button>
     } @else if (errorCount === 4) {
     <button routerLink="/troll">reset</button>
     <button disabled="disabled">corriger l'erreur</button>

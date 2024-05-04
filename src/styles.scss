@@ -160,12 +160,11 @@ button {
     color: $pipboy;
   }
 
-
-  &:disabled{
+  &:disabled {
     // background: yellow;
     color: $pipboy;
     background: none;
-    &::before{
+    &::before {
       content: url(assets/lock-icon-8.svg);
       height: 1rem;
       padding-right: 0.5rem;
@@ -174,16 +173,19 @@ button {
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: $pipboy;
-    transition: background-color 5000s ease-in-out 0s;
-    box-shadow: inset 0 0 20px 20px #23232329;
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: $pipboy;
+  transition: background-color 5000s ease-in-out 0s;
+  box-shadow: inset 0 0 20px 20px #23232329;
 }
 textarea,
-input[type='text'] , input[type='number'], input[type='email'], input[type='password'] {
+input[type='text'],
+input[type='number'],
+input[type='email'],
+input[type='password'] {
   background: none;
   border: $pipboy 3px solid;
   resize: none;
@@ -198,16 +200,16 @@ input[type='text'] , input[type='number'], input[type='email'], input[type='pass
   }
 }
 
-input[type='checkbox'] {
+input[type='checkbox'], input[type='radio'] {
   cursor: pointer;
   appearance: none;
   border: 3px solid $pipboy;
   height: 1.5rem;
-  width:  1.5rem;
+  width: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  &::before{
+  &::before {
     content: '';
     display: block;
     height: 0.5rem;
@@ -217,6 +219,13 @@ input[type='checkbox'] {
   }
   &:checked::before {
     opacity: 1;
+  }
+}
+
+input[type='radio']{
+  border-radius: 100%;
+  &::before {
+    border-radius: 100%;
   }
 }
 
@@ -284,7 +293,6 @@ input[type='checkbox'] {
   box-shadow: 0 0 5vmin 1vmin rgba(0, 0, 0, 0.78) inset;
   animation: brightness 5s ease-in-out infinite;
 }
-
 
 .page {
   padding: 2rem;
@@ -357,7 +365,6 @@ body {
 }
 
 @media only screen and (min-width: 1824px) {
-  
   #header-menu {
     $size: 50%;
     width: $size;
