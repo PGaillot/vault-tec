@@ -159,6 +159,18 @@ button {
     background: none;
     color: $pipboy;
   }
+
+
+  &:disabled{
+    // background: yellow;
+    color: $pipboy;
+    background: none;
+    &::before{
+      content: url(assets/lock-icon-8.svg);
+      height: 1rem;
+      padding-right: 0.5rem;
+    }
+  }
 }
 
 textarea,
@@ -325,6 +337,7 @@ body {
 }
 
 @media only screen and (min-width: 1824px) {
+  
   #header-menu {
     $size: 50%;
     width: $size;

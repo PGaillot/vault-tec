@@ -1,4 +1,5 @@
-# VaultTec
+![alt text](src/assets/vault-tec-logo-2.svg)
+# Vault-Tec Project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0.
 

@@ -1,5 +1,10 @@
 import { Component } from '@angular/core'
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms'
 import { ActivatedRoute, Router, RouterLink } from '@angular/router'
 import { FormService } from '../../services/form.service'
 
@@ -25,17 +30,28 @@ export class DataFormComponent {
   ) {}
 
   dataForm = new FormGroup({
-    name: new FormControl(''),
-    birthyear: new FormControl(''),
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(30),
+    ]),
+    birthyear: new FormControl('', [
+      Validators.required,
+      Validators.min(this.thisYear - 100),
+      Validators.max(this.thisYear - 18),
+    ]),
   })
 
   onSubmit() {
     if (this.dataForm.valid) {
-      const value: DataFromData = { name: this.dataForm.get(['name'])?.value , birthyear:this.dataForm.get(['birthyear'])?.value}
+      const value: DataFromData = {
+        name: this.dataForm.get(['name'])?.value,
+        birthyear: this.dataForm.get(['birthyear'])?.value,
+      }
       const key: string = this.formService.generateKeyFromData(value)
       this.router.navigate(['become-special'], {
         queryParams: {
-          ...{'key':key}
+          ...{ key: key },
         },
         relativeTo: this.route.parent,
       })

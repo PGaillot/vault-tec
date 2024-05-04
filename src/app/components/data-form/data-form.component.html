@@ -18,6 +18,6 @@
       formControlName="birthyear"
     />
 
-    <button type="submit">continuer</button>
+    <button type="submit" [disabled]="!dataForm.valid">continuer</button>
   </form>
 </div>
