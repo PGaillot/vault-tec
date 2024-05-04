@@ -1,16 +1,8 @@
 <div id="special-form-page" class="page">
-  @if(specialImage){
-    <div class="special-container" >
-      <img class="glitch" [src]="'assets/special/' + specialImage +'.svg'" alt=""> 
-      
-    </div>
-  }@else {
-    <div class="special-container" >
-      <img class="glitch" [src]="'/assets/vaultboy.svg'" alt=""> 
-      
-     </div>
-     
-  }
+  
+  <div class="special-container" >
+      <img class="glitch" [src]="'assets/special/' + specialImage ? specialImage :  'vaultboy' +'.svg'" alt="">
+  </div>  
   
   <div class="perk-container">
       {{specialImage | uppercase}}  
