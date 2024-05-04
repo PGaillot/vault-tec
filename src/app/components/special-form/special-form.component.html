@@ -1,38 +1,53 @@
-<div id="special-form-page" class="page">  
-  <p>{{ specialPointsCount }} / {{ maxSpecialPointsCount }}</p>
+<div id="special-form-page" class="page">
+  
+  <div class="special-container" >
+      <img class="glitch" [src]="'assets/special/' + specialImage ? specialImage :  'vaultboy' +'.svg'" alt="">
+  </div>  
+  
+  <div class="perk-container">
+      {{specialImage | uppercase}}  
+    <p>{{ specialPointsCount }} / {{ maxSpecialPointsCount }}</p>
+  </div>
 
   <div id="chars-wrapper">
     <app-special-char-counter
+      (charHover)="charHover($event)"
       char="S"
       [count]="special.strong"
       (updatePerk)="updatePeck($event)"
     ></app-special-char-counter>
     <app-special-char-counter
+    (charHover)="charHover($event)"
       char="P"
       [count]="special.perception"
       (updatePerk)="updatePeck($event)"
     ></app-special-char-counter>
     <app-special-char-counter
+    (charHover)="charHover($event)"
       char="E"
       [count]="special.endurance"
       (updatePerk)="updatePeck($event)"
     ></app-special-char-counter>
     <app-special-char-counter
+    (charHover)="charHover($event)"
       char="C"
       [count]="special.charisma"
       (updatePerk)="updatePeck($event)"
     ></app-special-char-counter>
     <app-special-char-counter
+    (charHover)="charHover($event)"
       char="I"
       [count]="special.intelligence"
       (updatePerk)="updatePeck($event)"
     ></app-special-char-counter>
     <app-special-char-counter
+    (charHover)="charHover($event)"
       char="A"
       [count]="special.agility"
       (updatePerk)="updatePeck($event)"
     ></app-special-char-counter>
     <app-special-char-counter
+    (charHover)="charHover($event)"
       char="L"
       [count]="special.luck"
       (updatePerk)="updatePeck($event)"
