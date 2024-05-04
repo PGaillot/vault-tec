@@ -1,0 +1,24 @@
+@import '../../../styles.scss';
+
+
+#terminal-game {
+    font-size: 1.1rem;
+  display: grid;
+  #header{
+    text-transform: uppercase;
+  }
+
+  .game-container{
+
+    .hash{
+        width: 18rem;
+        text-align: justify;
+        text-justify: distribute;
+    }
+
+    .highlight{
+        background: $pipboy;
+        color: $background;
+    }
+  }
+}

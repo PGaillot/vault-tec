@@ -200,7 +200,18 @@ input[type='password'] {
   }
 }
 
-input[type='checkbox'], input[type='radio'] {
+::-moz-selection {
+  color: $background;
+  background: $pipboy-light;
+}
+
+::selection {
+  color: $background;
+  background: $pipboy;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
   cursor: pointer;
   appearance: none;
   border: 3px solid $pipboy;
@@ -222,7 +233,7 @@ input[type='checkbox'], input[type='radio'] {
   }
 }
 
-input[type='radio']{
+input[type='radio'] {
   border-radius: 100%;
   &::before {
     border-radius: 100%;

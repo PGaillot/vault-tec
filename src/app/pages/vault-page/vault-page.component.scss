@@ -5,6 +5,15 @@
   flex-direction: column;
   gap: 1rem;
 
+  .opening-door{
+    // transform: scale(1.2);
+
+    svg #door{
+      animation: openingDoor 5s ease-in infinite;
+    }
+
+
+  }
 
   .ruins{
     height: 5rem;
@@ -23,8 +32,20 @@
       fill: $pipboy;
 
       &:hover{
-          animation: turn 5s linear infinite;
+          animation: turn 5s;
       }
     }
+  }
+}
+
+
+
+
+@keyframes openingDoor {
+  0%, 100%{
+    transform: rotateY(0deg) ;
+  }
+  100%{
+    transform: rotateY(-90deg) ;
   }
 }

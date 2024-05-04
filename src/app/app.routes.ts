@@ -11,6 +11,7 @@ import { ConsentFormComponent } from './components/consent-form/consent-form.com
 import { JobFormComponent } from './components/job-form/job-form.component'
 import { JobPageComponent } from './pages/job-page/job-page.component'
 import { JobHomePageComponent } from './pages/job-home-page/job-home-page.component'
+import { TerminalGameComponent } from './components/terminal-game/terminal-game.component'
 
 export const routes: Routes = [
   {
@@ -33,6 +34,10 @@ export const routes: Routes = [
       {
         path:"",
         component:JobHomePageComponent
+      },
+      {
+        path:'error',
+        component:TerminalGameComponent
       },
       {
         path:"find-a-job",
