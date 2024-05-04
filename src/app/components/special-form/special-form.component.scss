@@ -14,9 +14,15 @@
         align-items: center;
         flex-direction: column;
         gap: 2rem;
-        .perk-container{
-            height: 5rem;
-        }
+    }
+    .perk-container{
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap : 2rem;
+        font-size: 1.2rem;
     }
 }
 

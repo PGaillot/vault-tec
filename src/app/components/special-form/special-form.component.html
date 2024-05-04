@@ -2,9 +2,7 @@
   @if(specialImage){
     <div class="special-container" >
       <img class="glitch" [src]="'assets/special/' + specialImage +'.svg'" alt=""> 
-      <div class="perk-container">
-        {{specialImage}}
-      </div>
+      
     </div>
   }@else {
     <div class="special-container" >
@@ -14,8 +12,10 @@
      
   }
   
-  
-  <p>{{ specialPointsCount }} / {{ maxSpecialPointsCount }}</p>
+  <div class="perk-container">
+      {{specialImage | uppercase}}  
+    <p>{{ specialPointsCount }} / {{ maxSpecialPointsCount }}</p>
+  </div>
 
   <div id="chars-wrapper">
     <app-special-char-counter
