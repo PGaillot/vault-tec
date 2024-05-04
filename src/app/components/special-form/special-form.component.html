@@ -48,6 +48,6 @@
     </p>
   </div>
 
-  <button (click)="send()">envoyer</button>
+  <button (click)="send()" [disabled]="specialPointsCount !== 0">envoyer</button>
 
 </div>
