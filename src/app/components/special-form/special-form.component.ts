@@ -1,10 +1,12 @@
-import { Component } from '@angular/core'
+import { Component, Pipe } from '@angular/core'
 import { SpecialCharCounterComponent } from '../special-char-counter/special-char-counter.component'
 import { SPECIAL, SpecialAccount } from '../../models/special.model'
 import { SpecialAccountService } from '../../services/special-account.service'
 import { ActivatedRoute, Router } from '@angular/router'
 import { DataFromData } from '../data-form/data-form.component'
 import { FormService } from '../../services/form.service'
+import { PerksType } from '../../enums/perks-type'
+import { UpperCasePipe } from '@angular/common'
 
 export interface SpecialFormData {
   special: SPECIAL
@@ -16,7 +18,7 @@ export interface SpecialFormData {
 @Component({
   selector: 'app-special-form',
   standalone: true,
-  imports: [SpecialCharCounterComponent],
+  imports: [SpecialCharCounterComponent, UpperCasePipe],
   templateUrl: './special-form.component.html',
   styleUrl: './special-form.component.scss',
 })
@@ -25,7 +27,7 @@ export class SpecialFormComponent {
   specialPointsCount: number = 0
   maxSpecialPointsCount: number = 0
   thisYear: number = new Date().getFullYear()
-
+  specialImage : string = ""
   special: SPECIAL = {
     strong: 0,
     perception: 0,
@@ -62,7 +64,18 @@ export class SpecialFormComponent {
       },
     })
   }
+  getPerkByChar(char : string ): string{
+    if(Object.keys(PerksType).includes(char)){
+      return PerksType[char as keyof typeof PerksType];
+    } else {
+      console.error('No perk find with this key :',char);
+      return 'PERK ERROR'
+    }
+  }
+  charHover(event : string){
+    this.specialImage = this.getPerkByChar(event)
 
+  }
   updatePeck(event: { perk: string; data: number }) {
     if (this.specialPointsCount <= 0 && event.data > 0) return
 
