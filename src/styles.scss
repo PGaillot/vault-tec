@@ -288,6 +288,7 @@ input[type='checkbox'] {
 
 .page {
   padding: 2rem;
+  height: 100vh;
   animation: blur 5s ease-in-out infinite;
 }
 
@@ -352,7 +353,7 @@ input[type='checkbox'] {
 
 body {
   animation: blur 5s ease-in-out infinite;
-  height: 100%;
+  // height: 100vh;
 }
 
 @media only screen and (min-width: 1824px) {

@@ -32,9 +32,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     min-height: 6rem;
     text-align: center;
     gap: 0.5rem;
+    app-logo-loader{
+        transform: scale(0.8);
+    }
   }
 
   .error-msg {

@@ -3,11 +3,12 @@ import { RouterLink } from '@angular/router'
 import { SpecialAccountService } from '../../services/special-account.service'
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
 import { SpecialAccount } from '../../models/special.model'
+import { LogoLoaderComponent } from '../../components/logo-loader/logo-loader.component'
 
 @Component({
   selector: 'app-job-home-page',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule, LogoLoaderComponent],
   templateUrl: './job-home-page.component.html',
   styleUrl: './job-home-page.component.scss',
 })

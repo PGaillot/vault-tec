@@ -35,11 +35,10 @@
 
   <div class="key-checker-block">
     @if(loading){
-    <p>loading ...</p>
+    <app-logo-loader></app-logo-loader>
     }@else { @if (!keyError) {
-        <p>Bienvenu(e) {{username}}</p>
+    <p>Bienvenu(e) {{ username }}</p>
     <button>tester mes aptitudes</button>
-
     } @else if (errorCount === 4) {
     <button routerLink="/troll">reset</button>
     <button disabled="disabled">corriger l'erreur</button>
