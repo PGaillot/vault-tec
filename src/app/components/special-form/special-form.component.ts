@@ -30,20 +30,23 @@ export class SpecialFormComponent {
   thisYear: number = new Date().getFullYear()
   perkName : string = ""
   special: SPECIAL = {
-    strong: 0,
-    perception: 0,
-    endurance: 0,
-    charisma: 0,
-    intelligence: 0,
-    agility: 0,
-    luck: 0,
+    S: 0,
+    P: 0,
+    E: 0,
+    C: 0,
+    I: 0,
+    A: 0,
+    L: 0
   }
+
+  specialKeys: (keyof SPECIAL)[] = this.perkService.specialKeys;
+
 
   constructor(
     private formService: FormService,
     private router: Router,
     private route: ActivatedRoute,
-    private perkService:PerkService
+    private perkService:PerkService,
   ) {
     this.route.queryParams.subscribe({
       next: (value) => {
@@ -69,46 +72,15 @@ export class SpecialFormComponent {
 
   charHover(event : string){
     this.perkName = this.perkService.getPerkByChar(event)
-
   }
-
 
   updatePeck(event: { perk: string; data: number }) {
     if (this.specialPointsCount <= 0 && event.data > 0) return
-
-    switch (event.perk) {
-      case 'S':
-        this.special.strong += event.data
-        break
-
-      case 'P':
-        this.special.perception += event.data
-        break
-
-      case 'E':
-        this.special.endurance += event.data
-        break
-
-      case 'C':
-        this.special.charisma += event.data
-        break
-
-      case 'I':
-        this.special.intelligence += event.data
-        break
-
-      case 'A':
-        this.special.agility += event.data
-        break
-
-      case 'L':
-        this.special.luck += event.data
-        break
-
-      default:
-        break
-    }
-
+    type PerkKey = keyof typeof PerksType;
+    if( Object.keys(PerksType).includes(event.perk)){
+      const perkKey: PerkKey = event.perk as PerkKey;
+      this.special[perkKey] += event.data
+    } 
     if (event.data > 0) {
       this.specialPointsCount -= 1
     } else {

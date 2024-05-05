@@ -9,48 +9,15 @@
   </div>
 
   <div id="chars-wrapper">
-    <app-special-char-counter
-      (charHover)="charHover($event)"
-      char="S"
-      [count]="special.strong"
-      (updatePerk)="updatePeck($event)"
-    ></app-special-char-counter>
-    <app-special-char-counter
-    (charHover)="charHover($event)"
-      char="P"
-      [count]="special.perception"
-      (updatePerk)="updatePeck($event)"
-    ></app-special-char-counter>
-    <app-special-char-counter
-    (charHover)="charHover($event)"
-      char="E"
-      [count]="special.endurance"
-      (updatePerk)="updatePeck($event)"
-    ></app-special-char-counter>
-    <app-special-char-counter
-    (charHover)="charHover($event)"
-      char="C"
-      [count]="special.charisma"
-      (updatePerk)="updatePeck($event)"
-    ></app-special-char-counter>
-    <app-special-char-counter
-    (charHover)="charHover($event)"
-      char="I"
-      [count]="special.intelligence"
-      (updatePerk)="updatePeck($event)"
-    ></app-special-char-counter>
-    <app-special-char-counter
-    (charHover)="charHover($event)"
-      char="A"
-      [count]="special.agility"
-      (updatePerk)="updatePeck($event)"
-    ></app-special-char-counter>
-    <app-special-char-counter
-    (charHover)="charHover($event)"
-      char="L"
-      [count]="special.luck"
-      (updatePerk)="updatePeck($event)"
-    ></app-special-char-counter>
+
+    @for (char of specialKeys; track char) {
+        <app-special-char-counter
+        (charHover)="charHover($event)"
+        [char]="char"
+        [count]="special[char]"
+        (updatePerk)="updatePeck($event)"
+      ></app-special-char-counter>
+    }
   </div>
 
   <div id="char-infos" class="box">

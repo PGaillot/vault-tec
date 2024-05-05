@@ -1,11 +1,11 @@
 export interface SPECIAL{
-    strong:number,
-    perception:number,
-    endurance:number,
-    charisma:number,
-    intelligence:number,
-    agility:number,
-    luck:number
+    S:number,
+    P:number,
+    E:number,
+    C:number,
+    I:number,
+    A:number,
+    L:number
 }
 
 export interface SpecialAccount{
