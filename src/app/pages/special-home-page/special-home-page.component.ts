@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PerkCardComponent } from '../../components/perk-card/perk-card.component';
+import { Perk } from '../../models/perk.model';
+import { PERKS } from '../../data/perks.data';
 
 @Component({
   selector: 'app-special-home-page',
@@ -10,5 +12,5 @@ import { PerkCardComponent } from '../../components/perk-card/perk-card.componen
   styleUrl: './special-home-page.component.scss'
 })
 export class SpecialHomePageComponent {
-
+  perks:Perk[] = PERKS;
 }
