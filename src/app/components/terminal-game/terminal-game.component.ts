@@ -9,12 +9,11 @@ import { Component, HostListener } from '@angular/core';
   styleUrl: './terminal-game.component.scss',
 })
 export class TerminalGameComponent {
+  maxError: number = 8;
+  errorCount: number = this.maxError;
+  gameRunning: boolean = true;
 
-  maxError:number = 8;
-  errorCount:number = this.maxError;
-  gameRunning:boolean = true;
-
-  words: string[] = [
+  raw_words: string[] = [
     'table',
     'cible',
     'chaos',
@@ -31,6 +30,9 @@ export class TerminalGameComponent {
     'piste',
     'foule',
   ];
+
+  words: string[] = [];
+
   hashs: string[] = [];
   logs: string[] = [];
   winWord!: string;
@@ -38,25 +40,53 @@ export class TerminalGameComponent {
   @HostListener('document:mouseover', ['$event'])
   mouseover(event: MouseEvent) {
     const target = event.target as HTMLElement;
-    const hashOver = target.innerText.trim().toLowerCase();
-    if (target.className === 'hash-code' && this.words.includes(hashOver)) {
-      target.classList.add('highlight');
-      this.selectedWord = target.innerText.trim();
+    if (
+      (target.innerText && target.className === 'hash-code') ||
+      target.className === 'game-container'
+    ) {
+      const hashOver = target.innerText.trim().toLowerCase();
+      if (this.words.includes(hashOver)) {
+        target.classList.add('highlight');
+        this.selectedWord = target.innerText.trim();
+      }
+    } else {
+      this.selectedWord = undefined;
     }
   }
 
   @HostListener('document:mouseout', ['$event'])
   mouseout(event: MouseEvent) {
     const target = event.target as HTMLElement;
-    if (target.classList.contains('hash-code') ) {
+    if (target.classList.contains('hash-code')) {
       target.classList.remove('highlight');
     }
   }
 
   constructor() {
+    let wordsData: any[] = [];
+    this.raw_words.forEach((rw: string) => {
+      const wLength: number = rw.length;
+
+      if (wordsData.find((t: any) => t.wLength === wLength)) {
+        const t = wordsData.find((t: any) => t.wLength === wLength);
+        const tUpdate = { wLength, wCount: t.wCount + 1 };
+        wordsData = wordsData.filter((x: any) => x !== t);
+        wordsData = [...wordsData, tUpdate];
+      } else {
+        wordsData.push({ wLength, wCount: 1 });
+      }
+    });
+    const maxWordsWithSameCharCount: any = wordsData.reduce(
+      (x: any, y: any) => {
+        return x && x.wCount >= y.wCount ? x : y;
+      }
+    );
+    this.words = this.raw_words.filter(
+      (rw: string) => rw.length === maxWordsWithSameCharCount.wLength
+    );
     this.winWord = this.words[this.getRandom(0, this.words.length - 1)];
-    this.hashs = this.generateHashedText(this.words, 800);
     console.warn('winWord :', this.winWord);
+    this.hashs = this.generateHashedText(this.words, 800);
   }
 
   getRandom(min: number, max: number): number {
@@ -133,15 +163,19 @@ export class TerminalGameComponent {
   }
 
   testHash(hash: string) {
-    if (hash.toLowerCase() === this.winWord.toLowerCase()) {
-      this.gameRunning = false
+    console.log('testHash');
+    if (hash.toLowerCase() === this.winWord.toLowerCase() && this.gameRunning) {
+      this.gameRunning = false;
       this.logs = [...this.logs, hash, 'GG FREROT'];
-    } else if (this.words.includes(hash.toLowerCase())) {
-      this.logs.push(hash);
-      this.logs.push('accèes refusé :');
+    } else if (this.words.includes(hash.toLowerCase()) && this.gameRunning) {
+      this.logs = [...this.logs, hash, 'accèes refusé :'];
       this.errorCount -= 1;
-      this.logs.push('similarité :' + this.getLikeness(hash));
-      this.logs.push('---');
+      this.logs = [
+        ...this.logs,
+        'similarité :' + this.getLikeness(hash),
+        'accèes refusé.',
+        '---',
+      ];
     }
     this.selectedWord = undefined;
   }

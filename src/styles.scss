@@ -154,6 +154,7 @@ button {
   font-size: 1.1rem;
   font-family: 'Space Mono', monospace;
   border: $pipboy 3px solid;
+  cursor: pointer;
 
   &:hover {
     background: none;

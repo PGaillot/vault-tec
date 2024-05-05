@@ -14,9 +14,7 @@
   <div id="game-wrapper">
     <div class="game-container">
       @for (hash of hashs; track hash) {
-      <span class="hash-code" (click)="testHash(hash)">
-        {{ hash | uppercase }}
-      </span>
+      <span class="hash-code" (click)="testHash(hash)">{{ hash | uppercase }}</span>
       }
     </div>
 

@@ -4,23 +4,11 @@ $width: 13rem;
 $height: 19rem;
 
 #perk-block {
+  cursor: pointer;
   display:block;
   width: $width;
   height: $height;
   padding: 1rem;
-
-  // &:hover {
-  //   .perk-card {
-  //     animation: reveal 0.5s ease-in-out;
-
-  //     .front-card{
-  //       animation: disappear 0.5s ease-in;
-  //     }
-  //     .back-card{
-  //       animation: appear 0.5s ease-in;
-  //     }
-  //   }
-  // }
 
   .perk-card {
     border: 3px solid $pipboy;
