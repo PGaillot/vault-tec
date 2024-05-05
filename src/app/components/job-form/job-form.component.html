@@ -1,5 +1,4 @@
 <div id="job-form" class="page">
-  <h2>!!! QUESTIONNAIRE EN COURS DE CREATION !!!</h2>
   <p>sujet : {{ specialAccount.name }}</p>
   @if (questionIndex < 0) {
   <!-- INTRO PART -->
@@ -19,12 +18,18 @@
   } @else if (questionIndex >= this.questions.length) { @defer (on timer(1.2s))
   {
     <!-- FINISH BLOCK -->
+    
+    <h2>Félicitation !</h2>
+    <p>Nous avons le plaisir de vous informer que vous avez été séléctionné pour rejoindre l'équipe VAULT-TEC au seins de son équipe de {{jobSelected}}.</p>
+    <button>accepter le poste*</button>
+    <p>*dans le cas où vous ne seriez pas interssé par le poste proposé, vous pourriez également être interssé par un poste dans l'équipe de <span class="link">{{alternativeJobSelected}}</span>.</p>
 
-  } @placeholder{ <app-logo-loader></app-logo-loader> } }@else {
+  } @placeholder{ <app-logo-loader></app-logo-loader> 
+  CHARGEMENT} }@else {
       <!-- QUESTIONS BLOCKS -->
   <app-question
     [question]="questions[questionIndex]"
-    (answer)="questionAnswer($event)"
+    (points)="questionAnswer($event)"
   ></app-question>
   }
 </div>

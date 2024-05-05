@@ -5,16 +5,16 @@
   flex-direction: column;
   gap: 1rem;
 
-  #question {
+  form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+  #question {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
     border: 3px solid $pipboy;
     padding: 1rem;
     .input-wrapper {

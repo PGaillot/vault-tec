@@ -21,17 +21,18 @@ export class JobFormComponent {
   questionIndex: number = -1;
   currentQuestion?: Question;
   questions: Question[] = [];
-  rndJob:number = 0
-  
+  answer: number[] = [];
+  rndJob: number = 0;
+  jobSelected?: JobType;
+  alternativeJobSelected?: JobType;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private specialService: SpecialAccountService,
-    private questionService: QuestionService,
+    private questionService: QuestionService
   ) {
-
-    this.rndJob = this.questionService.getRandom(1, 4)
+    this.rndJob = this.questionService.getRandom(1, 4);
 
     this.route.queryParams.subscribe({
       next: (value) => {
@@ -54,10 +55,22 @@ export class JobFormComponent {
     this.questionIndex += 1;
   }
 
-
-  questionAnswer(points:number){
-    console.log(points);
+  questionAnswer(points: number) {
     this.questionIndex += 1;
+    this.answer = [...this.answer, points];
+    console.log(this.answer);
+
+
+
+    if(this.answer.length === this.questions.length){
+      let asw:any[] = []
+      this.answer.forEach((a, i) => {
+        const question:Question = this.questions[i]
+        asw = [...asw, {question, a}]
+      })
+      this.jobSelected = asw[0].question.type
+      this.alternativeJobSelected = asw[1].question.type
+    }
   }
 
   ngOnInit(): void {
@@ -71,8 +84,8 @@ export class JobFormComponent {
       this.alterateSpecialName += bpValue.key;
     });
 
-    console.table(bestPerk);
-    console.table(this.alterateSpecialName);
+    // console.table(bestPerk);
+    // console.table(this.alterateSpecialName);
 
     const questionOne: JobType =
       JobType[bestPerk[0].key as keyof typeof JobType];
@@ -80,10 +93,6 @@ export class JobFormComponent {
       JobType[bestPerk[2].key as keyof typeof JobType];
     const questionTree: JobType =
       JobType[bestPerk[bestPerk.length - 1].key as keyof typeof JobType];
-
-    // console.log(this.questionService.getQuestionJobType(questionOne));
-    // console.log(this.questionService.getQuestionJobType(questionTwo));
-    // console.log(this.questionService.getQuestionJobType(questionTree));
 
     this.questions = [
       this.questionService.getQuestionJobType(questionOne),

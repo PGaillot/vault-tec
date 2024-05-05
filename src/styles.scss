@@ -394,6 +394,13 @@ body {
   }
 }
 
+.link{
+  &:hover{
+    text-decoration: underline;  
+    cursor: pointer;
+  }
+}
+
 @keyframes turn {
   0% {
     transform: rotate(0deg);

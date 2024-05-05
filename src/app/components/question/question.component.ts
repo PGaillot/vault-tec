@@ -16,14 +16,15 @@ import {
 })
 export class QuestionComponent {
   @Input() question?: Question;
-  @Output() answer: EventEmitter<number> = new EventEmitter<number>();
+  @Output() points: EventEmitter<number> = new EventEmitter<number>();
 
-  answserForm: FormGroup = new FormGroup({
-    answser: new FormControl(null, [Validators.required]),
+  answerForm: FormGroup = new FormGroup({
+    answer: new FormControl(null, [Validators.required]),
   });
 
   onSubmit(points: number) {
-    this.answer.emit(points);
-    this.answserForm.reset();
+    const p:number = this.answerForm.value.answer
+    this.points.emit(p);
+    this.answerForm.reset();
   }
 }
