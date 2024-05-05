@@ -13,7 +13,6 @@
       <p>{{ content }}</p>
   }
 
-
   <div id="actions-wrapper">
       @for (action of messagePageData.actions; track action) {
           <button (click)="navToDestination(action.destination)">{{action.name}}</button>
