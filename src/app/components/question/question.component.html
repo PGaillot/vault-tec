@@ -1,0 +1,19 @@
+<div id="question-job">
+    <form [formGroup]="answserForm" (ngSubmit)="onSubmit($event)">
+  <div id="question">
+    <p>{{ question!.title }}</p>
+      @for (answer of question!.answers; track answer) {
+      <div class="input-wrapper">
+        <input
+          type="radio"
+          [id]="answer.id"
+          [value]="answer.points"
+          formControlName="answser"
+        />
+        <label [for]="answer.id">{{ answer.title }}</label>
+      </div>
+      }
+    </div>
+    <button type="submit" [disabled]="!answserForm.valid">Valider</button>
+</form>
+</div>

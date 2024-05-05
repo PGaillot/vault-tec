@@ -1,33 +1,30 @@
 <div id="job-form" class="page">
+  <h2>!!! QUESTIONNAIRE EN COURS DE CREATION !!!</h2>
+  <p>sujet : {{ specialAccount.name }}</p>
+  @if (questionIndex < 0) {
+  <!-- INTRO PART -->
+  <p>
+    Les intustries VAULT-TEC qui recherchent actuellement dans
+    {{ questions.length }} secteurs différents :
+  </p>
+  <ul>
+    @for (question of questions; track $index) {
+    <li>
+      {{ question.type }} ({{ (($index + $index) * $index + 1) * 3 + rndJob }}
+      postes)
+    </li>
+    }
+  </ul>
+  <button (click)="beginTest()">Commencer le test</button>
+  } @else if (questionIndex >= this.questions.length) { @defer (on timer(1.2s))
+  {
+    <!-- FINISH BLOCK -->
 
-
-    <h2>!!! QUESTIONNAIRE EN COURS DE CREATION !!!</h2>
-
-
-
-
-    <div id="question-job">
-
-        <p>sujet : {{specialAccount.name}}</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit cumque atque, sit in magni consequuntur ?</p>
-
-        <div class="input-wrapper">
-            <input type="radio" name="question" id="A" value="A">
-            <label for="A">consectetur adipisicing elit !</label>
-        </div>
-
-        <div class="input-wrapper">
-            <input type="radio" name="question" id="B" value="B">
-            <label for="B">consectetung elit ??!</label>
-        </div>
-
-        <div class="input-wrapper">
-            <input type="radio" name="question" id="C" value="C">
-            <label for="C">sed ectetur asicing it !</label>
-        </div>
-
-    </div>
-
-    <button>Valider</button>
-
+  } @placeholder{ <app-logo-loader></app-logo-loader> } }@else {
+      <!-- QUESTIONS BLOCKS -->
+  <app-question
+    [question]="questions[questionIndex]"
+    (answer)="questionAnswer($event)"
+  ></app-question>
+  }
 </div>

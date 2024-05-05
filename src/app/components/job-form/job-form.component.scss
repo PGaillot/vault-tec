@@ -2,16 +2,16 @@
 
 #job-form{
 
-    #question-job{
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        border: 3px solid $pipboy;
-        padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    ul{
+        li{
+            &::before{
+                content: '- ';
+            }
+        }
     }
-    
-    .input-wrapper{
-        display: flex;
-        align-items: center;
-    }
+
 }

@@ -13,6 +13,7 @@ import { JobPageComponent } from './pages/job-page/job-page.component'
 import { JobHomePageComponent } from './pages/job-home-page/job-home-page.component'
 import { TerminalGameComponent } from './components/terminal-game/terminal-game.component'
 import { MessagePageComponent } from './pages/message-page/message-page.component'
+import { QuestionComponent } from './components/question/question.component'
 
 export const routes: Routes = [
   {
@@ -42,7 +43,7 @@ export const routes: Routes = [
       },
       {
         path:"find-a-job",
-        component:JobFormComponent
+        component:JobFormComponent,
       }
     ]
   },
