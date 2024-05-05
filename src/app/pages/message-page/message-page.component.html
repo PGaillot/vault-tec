@@ -1,0 +1,22 @@
+<div id="message-page" class="sub-page">
+
+    <div id="congrat-anim">
+        <img id="vault-boy" src="../../../assets/vaultboy-party.svg" alt="vault-boy party !" srcset="">
+        <img class="ballon ballon-left" src="../../../assets/ballon.svg" alt="ballon">
+        <img class="ballon ballon-right" src="../../../assets/ballon.svg" alt="ballon">
+    </div>
+
+  <h1>{{ messagePageData.title }}</h1>
+
+
+  @for (content of messagePageData.contents; track content) {
+      <p>{{ content }}</p>
+  }
+
+  
+  <div id="actions-wrapper">
+      @for (action of messagePageData.actions; track action) {
+          <button (click)="navToDestination(action.destination)">{{action.name}}</button>
+      }
+  </div>
+</div>

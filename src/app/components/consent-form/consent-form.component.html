@@ -71,5 +71,5 @@
 
   <!-- <img src="assets/vault-tec-logo-2.svg" alt="" /> -->
 
-  <button type="submit" [disabled]="!consentForm.valid">valider</button>
+  <button type="submit" [disabled]="!consentForm.valid || sendLoading">valider</button>
 </form>

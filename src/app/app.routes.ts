@@ -12,6 +12,7 @@ import { JobFormComponent } from './components/job-form/job-form.component'
 import { JobPageComponent } from './pages/job-page/job-page.component'
 import { JobHomePageComponent } from './pages/job-home-page/job-home-page.component'
 import { TerminalGameComponent } from './components/terminal-game/terminal-game.component'
+import { MessagePageComponent } from './pages/message-page/message-page.component'
 
 export const routes: Routes = [
   {
@@ -57,6 +58,7 @@ export const routes: Routes = [
       { path: 'data', component: DataFormComponent },
       { path: 'become-special', component: SpecialFormComponent },
       { path: 'consent', component: ConsentFormComponent },
+      { path: 'email-send', component: MessagePageComponent },
     ],
   },
   {
