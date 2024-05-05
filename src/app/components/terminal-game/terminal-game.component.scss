@@ -1,24 +1,68 @@
 @import '../../../styles.scss';
 
-
 #terminal-game {
-    font-size: 1.1rem;
-  display: grid;
-  #header{
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  #header {
     text-transform: uppercase;
   }
-
-  .game-container{
-
-    .hash{
-        width: 18rem;
+  #game-wrapper {
+    gap: 1rem;
+    display: flex;
+    .game-container {
+      width: 70%;
+      .hash {
         text-align: justify;
         text-justify: distribute;
-    }
+      }
 
-    .highlight{
+      .highlight {
         background: $pipboy;
         color: $background;
+      }
+    }
+
+    #logs {
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      .log {
+        &::before {
+          content: '> ';
+        }
+      }
+
+      .log-loader{
+        height: 1.1rem;
+        width: 0.7rem;
+        background: $pipboy;
+        animation:logBar 1s infinite;
+        &::before {
+          content: '> ';
+        }
+      }
     }
   }
+}
+
+@keyframes logBar {
+  100%, 0%{
+    opacity: 1;
+    
+  }
+  50%{
+    opacity: 1;
+    
+  }
+  51%{
+    opacity: 0;
+    
+  }
+  100%{
+    opacity: 0;
+  }
+  
 }

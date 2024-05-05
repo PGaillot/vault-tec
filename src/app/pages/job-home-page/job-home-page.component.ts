@@ -64,4 +64,10 @@ export class JobHomePageComponent {
       queryParams: { SPECIALkey: this.key },
     })
   }
+
+  navToError() {
+    this.router.navigate(['error'], {
+      relativeTo:this.route.parent,
+    })
+  }
 }

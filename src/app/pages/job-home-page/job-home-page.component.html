@@ -41,7 +41,7 @@
     <button (click)="navToJobForm()">tester mes aptitudes</button>
     } @else if (errorCount === 4) {
     <button routerLink="/troll">reset</button>
-    <button disabled="disabled">corriger l'erreur</button>
+    <button (click)="navToError()">corriger l'erreur</button>
     } @else {
     <p class="error-msg">{{ errorMsg }}</p>
     @if (errorCount > 0) {

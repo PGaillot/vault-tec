@@ -1,13 +1,26 @@
 <div id="terminal-game">
-
   <div id="header">
     <p>robco industries (tm) termlink protocol</p>
     <p>!!! warning : lockout imminent !!!</p>
   </div>
+  <p>tentative restantes</p>
+  <div id="game-wrapper">
+    <div class="game-container">
+      @for (hash of hashs; track hash) {
+      <span class="hash-code" (click)="testHash(hash)">
+        {{ hash | uppercase }}
+      </span>
+      }
+    </div>
 
-  <div class="game-container">
-    @for (hash of hashs; track hash) {
-        <span class="hash-code">{{hash | uppercase}}</span>
-    }
+    <div id="logs">
+      @for (log of logs.reverse(); track log) {
+      <span class="log">{{ log }}</span>
+      } @if (selectedWord) {
+      <span class="log">{{ selectedWord }}</span>
+      } @else {
+      <p class="log-loader"></p>
+      }
+    </div>
   </div>
 </div>

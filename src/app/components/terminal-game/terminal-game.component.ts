@@ -9,15 +9,19 @@ import { Component, HostListener } from '@angular/core'
   styleUrl: './terminal-game.component.scss',
 })
 export class TerminalGameComponent {
+
   words: string[] = ['test', 'tête', 'fête', 'belle', 'bête']
   hashs: string[] = []
-
+  logs: string[] = []
+  winWord!:string;
+  selectedWord:string | undefined;
   @HostListener('document:mouseover', ['$event'])
   mouseover(event: MouseEvent) {
     const target = event.target as HTMLElement;
     const hashOver = target.innerText.trim().toLowerCase();
     if (target.className === 'hash-code' && this.words.includes(hashOver)) {
       target.classList.add('highlight');
+      this.selectedWord = target.innerText.trim()
     } 
   }
 
@@ -30,8 +34,9 @@ export class TerminalGameComponent {
   }
 
   constructor() {
+    this.winWord = this.words[this.getRandom(0, this.words.length -1)]
     this.hashs = this.generateHashedText(this.words, 800)
-    console.log(this.hashs)
+    console.log(this.winWord);
   }
 
   getRandom(min: number, max: number): number {
@@ -93,8 +98,28 @@ export class TerminalGameComponent {
         mixedList = [...mixedList, h]
       }
     })
-
-    console.log(mixedList)
     return mixedList
+  }
+
+
+  getLikeness(test:string):number{
+    const winW:string = this.winWord.toUpperCase()
+    let likeness:number = 0;
+    for (let i = 0; i < winW.length; i++) {
+      if(test[i] === winW[i]){
+        likeness += 1
+      }
+    }
+    return likeness;
+  }
+
+  testHash(hash: string) {
+    if(hash.toLowerCase() === this.winWord.toLowerCase()){
+      this.logs = [...this.logs, hash,'GG FREROT']
+    } else if(this.words.includes(hash.toLowerCase())){
+      this.logs.push(hash)
+      this.logs.push('similarité :'+ this.getLikeness(hash))
+    }
+    this.selectedWord = undefined
   }
 }
