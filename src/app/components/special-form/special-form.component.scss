@@ -7,8 +7,9 @@
   gap: 1rem;
 
   .special-container {
+    align-self: center;
     height: 25rem;
-    min-height: 20rem;
+    width:  25rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,7 +21,7 @@
   .perk-container {
     justify-content: center;
     align-items: center;
-    width: 100%;
+    // width: 100%;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -38,4 +39,12 @@
   align-items: center;
   gap: 0.5rem;
   height: 10rem;
+}
+
+#char-infos{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 5rem;
+  
 }

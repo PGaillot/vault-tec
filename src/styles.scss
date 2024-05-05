@@ -306,8 +306,8 @@ input[type='radio'] {
 }
 
 .page {
-  padding: 2rem;
-  height: 100vh;
+  // padding: 2rem;
+  // height: 100vh;
   animation: blur 5s ease-in-out infinite;
 }
 
@@ -382,9 +382,14 @@ body {
     padding-left: calc((100% - $size) / 2);
   }
   .page {
-    $size: 30%;
+    $size: 60%;
     width: $size;
     padding-left: calc((100% - $size) / 2);
+    padding-right: calc((100% - $size) / 2);
+    height: 100vh;
+  }
+  .subpage {
+    // width: max-content;
   }
 }
 

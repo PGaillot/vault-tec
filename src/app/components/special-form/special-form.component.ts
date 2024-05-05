@@ -8,6 +8,8 @@ import { FormService } from '../../services/form.service'
 import { PerksType } from '../../enums/perks-type'
 import { UpperCasePipe } from '@angular/common'
 import { PerkService } from '../../services/perk.service'
+import { Perk } from '../../models/perk.model'
+import { PERKS } from '../../data/perks.data'
 
 export interface SpecialFormData {
   special: SPECIAL
@@ -29,6 +31,8 @@ export class SpecialFormComponent {
   maxSpecialPointsCount: number = 0
   thisYear: number = new Date().getFullYear()
   perkName : string = ""
+  selectedPerk : Perk | undefined
+  perks:Perk[] = PERKS
   special: SPECIAL = {
     S: 0,
     P: 0,
@@ -72,6 +76,7 @@ export class SpecialFormComponent {
 
   charHover(event : string){
     this.perkName = this.perkService.getPerkByChar(event)
+    this.selectedPerk = this.perks.find((p:Perk) => p.char === event)
   }
 
   updatePeck(event: { perk: string; data: number }) {
