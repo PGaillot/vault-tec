@@ -7,7 +7,7 @@ export const QUESTIONS:Question[] = [
 
     {
         type:JobType.S,
-        title:'Une question de FORCE',
+        title:'Vous êtes en charge de la securité de l\'atelier B78564 et un feu vient de se declaré ! Les habiants sont coincé derrière une porte ...',
         answers:[
             {
                 id:1,
