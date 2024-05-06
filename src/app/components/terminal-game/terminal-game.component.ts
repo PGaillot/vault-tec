@@ -1,5 +1,6 @@
 import { UpperCasePipe } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
+import { SYMBOLS } from '../../data/symbols.data';
 
 @Component({
   selector: 'app-terminal-game',
@@ -94,26 +95,7 @@ export class TerminalGameComponent {
   }
 
   generateHashedText(wordsList: string[], size: number = 500): string[] {
-    const symbols: string[] = [
-      '#',
-      '$',
-      '%',
-      '<',
-      '>',
-      ':',
-      '_',
-      '|',
-      '*',
-      ';',
-      '/',
-      '[',
-      ']',
-      '?',
-      '!',
-      '-',
-      '+',
-      '^',
-    ];
+    const symbols: string[] = SYMBOLS
     const hashPartsNumber: number = wordsList.length;
     const hashCharsNeed =
       size - wordsList.reduce((total, w) => total + w.length, 0);
