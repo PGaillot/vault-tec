@@ -61,32 +61,30 @@ export class SpecialAccountService {
 
 
   decodeSpecial(code: string):SPECIAL {
-    let bin: string[] = [];
-    let specialValues: number[] = [];
-    let decodePerks: number[] = [];
-    code.split('').forEach((value) => {
-      let decode: number = parseInt(value, 16) - 2;
-      if (this.symbols.includes(value)) {
-        bin.push(value);
-      } else {
-        specialValues.push(decode);
-      }
-    });
-   
-  
-    console.log('Special décodé:', decodePerks);
+    let decryptedCode: number[] = [];
+    const str : string = code;
+    const pairs = [];
 
+  for (let i = 0; i < str.length; i += 2) {
+    const pair = str.substring(i, i + 2);
+    pairs.push(pair);
+  }
+  pairs.forEach((pair) => {
+    decryptedCode.push((parseInt(pair,16) -2))
+  })
+  
+  
+  
 
     const specialOutput:SPECIAL = {
-      S: specialValues[0],
-      P: specialValues[1],
-      E: specialValues[2],
-      C: specialValues[3],
-      I: specialValues[4],
-      A: specialValues[5],
-      L: specialValues[6]
+      S: decryptedCode[0],
+      P: decryptedCode[1],
+      E: decryptedCode[2],
+      C: decryptedCode[3],
+      I: decryptedCode[4],
+      A: decryptedCode[5],
+      L: decryptedCode[6]
     }
-
     return specialOutput
   }
 

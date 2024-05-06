@@ -36,6 +36,15 @@ describe('SpecialAccountService', () => {
     A: 1,
     L: 1
   }
+  const customSpecial2:SPECIAL = {
+    S: 15,
+    P: 24,
+    E: 14,
+    C: 5,
+    I: 4,
+    A: 11,
+    L: 1
+  }
 
 
 
@@ -66,6 +75,11 @@ describe('SpecialAccountService', () => {
   });
 
   it('decode custom special', () => {
+    expect(service.decodeSpecial('7?6#6]7*6_3%3>')).toEqual(customSpecial);
+  });
+
+
+  it('decode custom special2', () => {
     expect(service.decodeSpecial('7?6#6]7*6_3%3>')).toEqual(customSpecial);
   });
 
