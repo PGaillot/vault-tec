@@ -10,6 +10,9 @@ import {
 } from '@angular/animations';
 import { PerkService } from '../../services/perk.service';
 
+const animDuration:number = 300;
+
+
 @Component({
   selector: 'app-perk-card',
   standalone: true,
@@ -31,7 +34,7 @@ import { PerkService } from '../../services/perk.service';
               transform:'rotateY(0deg)',
             })
           ),
-          transition('* => *', [animate('0.5s')]),
+          transition('* => *', [animate(animDuration + 'ms')]),
         ]),
   ]
 })
@@ -40,11 +43,15 @@ export class PerkCardComponent {
   @Input() char!: string
   perkName!: string
   isReveal:boolean = false;
+  showBack:boolean = false;
 
   constructor(private perkService:PerkService) {}
 
   toggleCard(){
     this.isReveal = !this.isReveal;
+    setTimeout(() => {
+      this.showBack = !this.showBack
+    },animDuration / 2)
   }
 
   ngOnInit(): void {

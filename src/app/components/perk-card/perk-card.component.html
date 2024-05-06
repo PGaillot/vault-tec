@@ -2,7 +2,7 @@
   <div class="perk-card" [@openClose]="isReveal ? 'open' : 'closed'">
     <!--  -->
 
-    @if(!isReveal){
+    @if(!showBack){
       <div class="front-card">
         <img
           [src]="'../../../assets/special/' + perkName + '.svg'"
