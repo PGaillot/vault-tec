@@ -39,6 +39,7 @@ export class JobFormComponent {
         try {
           const key: string = value['SPECIALkey'];
           this.specialAccount = this.specialService.decodeSpecialKey(key);
+          this.specialService.decodeSpecial(  this.specialService.cryptSpecial(this.specialAccount.special))
         } catch (error) {
           console.error(error);
           this.router.navigate(['not-found']);

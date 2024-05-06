@@ -1,21 +1,94 @@
 import { Injectable } from '@angular/core';
 import { SPECIAL, SpecialAccount } from '../models/special.model';
+import { QuestionService } from './question.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SpecialAccountService {
-  constructor() {}
+  symbols: string[] = [
+    '#',
+    '$',
+    '%',
+    '<',
+    '>',
+    ':',
+    '_',
+    '|',
+    '*',
+    ';',
+    '/',
+    '[',
+    ']',
+    '?',
+    '!',
+    '-',
+    '+',
+    '^',
+    '¤',
+  ];
+  alphabet: string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
+  constructor(private randomService: QuestionService) {}
 
   generateSpecialKey(specialAccount: SpecialAccount): string {
+    console.log(this.cryptSpecial(specialAccount.special));
+
     return btoa(JSON.stringify(specialAccount));
   }
+
+  cryptSpecial(special: SPECIAL) {
+    let perks: number[] = [];
+    let cryptedPerks: any[] = [];
+
+    Object.keys(special).forEach((key: string) => {
+      perks = [...perks, special[key as keyof typeof special]];
+    });
+    console.log(perks);
+
+    perks.forEach((n: number) => {
+      let crypt: any = (n + 2).toString(16);
+      if (crypt.length < 2) {
+        const random = this.randomService.getRandom(0, this.symbols.length - 1);
+        crypt = crypt + this.symbols[random];
+      }
+      cryptedPerks.push(crypt);
+    });
+    console.log(cryptedPerks.join(''));
+
+    return cryptedPerks.join('');
+  }
+
+
+
+  decodeSpecial(code: string) {
+    let bin: string[] = [];
+    let specialValues: number[] = [];
+    let decodePerks: number[] = [];
+    code.split('').forEach((value) => {
+      let decode: number = parseInt(value, 16) - 2;
+      if (this.symbols.includes(value)) {
+        bin.push(value);
+      } else {
+        specialValues.push(decode);
+      }
+    });
+   
+    
+    
+    
+    
+    console.log('Special décodé:', decodePerks);
+  }
+
+
+
+
 
   decodeSpecialKey(specialKey: string): SpecialAccount {
     return JSON.parse(atob(specialKey));
   }
 
-  getPerksSorted(special: SPECIAL):{key:string, value:number}[] {
+  getPerksSorted(special: SPECIAL): { key: string; value: number }[] {
     let perks: any[] = [];
 
     Object.keys(special).forEach((key: string) => {
