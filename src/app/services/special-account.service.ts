@@ -60,7 +60,7 @@ export class SpecialAccountService {
 
 
 
-  decodeSpecial(code: string) {
+  decodeSpecial(code: string):SPECIAL {
     let bin: string[] = [];
     let specialValues: number[] = [];
     let decodePerks: number[] = [];
@@ -73,11 +73,23 @@ export class SpecialAccountService {
       }
     });
    
-    
-    
-    
-    
+  
     console.log('Special décodé:', decodePerks);
+
+
+    const specialOutput:SPECIAL = {
+      S: 50,
+      P: 50,
+      E: 50,
+      C: 50,
+      I: 50,
+      A: 50,
+      L: 50
+    }
+
+
+
+    return specialOutput
   }
 
 
