@@ -4,7 +4,30 @@ import { SpecialAccountService } from './special-account.service';
 import { QuestionService } from './question.service';
 import { SPECIAL } from '../models/special.model';
 
-const symbols: string[] = [];
+let questionService: QuestionService = new QuestionService();
+let service: SpecialAccountService = new SpecialAccountService(questionService);
+
+const symbols: string[] = [
+  '#',
+  '$',
+  '%',
+  '<',
+  '>',
+  ':',
+  '_',
+  '|',
+  '*',
+  ';',
+  '/',
+  '[',
+  ']',
+  '?',
+  '!',
+  '-',
+  '+',
+  '^',
+  '¤',
+];
 
 const Special5_4_4_5_4_1_1: SPECIAL = {
   S: 5,
@@ -76,12 +99,27 @@ const Special100_100_100_100_100_100_100: SPECIAL = {
   L: 100,
 };
 
-describe('Encode SPECIAL', () => {
-  let questionService: QuestionService = new QuestionService();
-  let service: SpecialAccountService = new SpecialAccountService(
-    questionService
-  );
+/**
+ * ? ------ POUR SAVOIR SI UN SYMBOLE SE MET BIEN SUR LES PETITS CHIFFRES
+ */
+describe('POUR SAVOIR SI UN SYMBOLE SE MET BIEN SUR LES PETITS CHIFFRES', () => {
+  it('VERIFIE SI UN SYMBOLE SE MET BIEN APRES LES PETITS CHIFFRES', () => {
+    expect(
+      symbols.includes(service.cryptSpecial(Special5_4_4_5_4_1_1).slice(1, 2))
+    ).toBeTrue();
+  });
 
+  it('VERIFIE SI UN SYMBOLE NE SE MET PAS APRES LES CHIFFRES > 9', () => {
+    expect(
+      symbols.includes(service.cryptSpecial(Special50_50_50_50_50_50_50).slice(1, 2))
+    ).toBeFalse();
+  });
+});
+
+/**
+ * ? ------ LES TESTS POUR ENCODER
+ */
+describe('Encode SPECIAL', () => {
   it('code Special50_50_50_50_50_50_50', () => {
     expect(service.cryptSpecial(Special50_50_50_50_50_50_50)).toEqual(
       '34343434343434'
@@ -93,18 +131,18 @@ describe('Encode SPECIAL', () => {
       '66666666666666'
     );
   });
-
 });
 
-
-
+/**
+ * ? ------ LES TESTS POUR DECODER
+ */
 describe('Decode SPECIAL-CODE', () => {
   let questionService: QuestionService = new QuestionService();
   let service: SpecialAccountService = new SpecialAccountService(
     questionService
   );
 
-  it('decode 34343434343434' , () => {
+  it('decode 34343434343434', () => {
     expect(service.decodeSpecial('34343434343434')).toEqual(
       Special50_50_50_50_50_50_50
     );
@@ -116,12 +154,18 @@ describe('Decode SPECIAL-CODE', () => {
     );
   });
 
+  it('decode 0C0C0C0C0C0C0C', () => {
+    expect(service.decodeSpecial('0C0C0C0C0C0C0C')).toEqual(
+      Special10_10_10_10_10_10_10
+    );
+  });
+
   it('decode 7?6#6]7*6_3%3>', () => {
     expect(service.decodeSpecial('7?6#6]7*6_3%3>')).toEqual(
       Special5_4_4_5_4_1_1
     );
   });
-  
+
   it('decode 3?3?3?3?3?3?3?', () => {
     expect(service.decodeSpecial('3?3?3?3?3?3?3?')).toEqual(
       Special1_1_1_1_1_1_1
@@ -133,6 +177,4 @@ describe('Decode SPECIAL-CODE', () => {
       Special0_0_0_0_0_0_0
     );
   });
-
-
 });
