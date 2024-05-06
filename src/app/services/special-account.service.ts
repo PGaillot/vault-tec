@@ -78,16 +78,14 @@ export class SpecialAccountService {
 
 
     const specialOutput:SPECIAL = {
-      S: 50,
-      P: 50,
-      E: 50,
-      C: 50,
-      I: 50,
-      A: 50,
-      L: 50
+      S: specialValues[0],
+      P: specialValues[1],
+      E: specialValues[2],
+      C: specialValues[3],
+      I: specialValues[4],
+      A: specialValues[5],
+      L: specialValues[6]
     }
-
-
 
     return specialOutput
   }

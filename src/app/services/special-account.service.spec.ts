@@ -18,6 +18,24 @@ describe('SpecialAccountService', () => {
     A: 50,
     L: 50
   }
+  const hardSpecial:SPECIAL = {
+    S: 100,
+    P: 100,
+    E: 100,
+    C: 100,
+    I: 100,
+    A: 100,
+    L: 100
+  }
+  const customSpecial:SPECIAL = {
+    S: 5,
+    P: 4,
+    E: 4,
+    C: 5,
+    I: 4,
+    A: 1,
+    L: 1
+  }
 
 
 
@@ -29,8 +47,26 @@ describe('SpecialAccountService', () => {
     expect(service.cryptSpecial(simpleSpecial)).toEqual('34343434343434');
   });
 
-  it('encode simple special', () => {
+
+  it('decode simple special', () => {
     expect(service.decodeSpecial('34343434343434')).toEqual(simpleSpecial);
+  });
+
+
+
+  
+  it('code HARD special', () => {
+    expect(service.cryptSpecial(hardSpecial)).toEqual('66666666666666');
+  });
+
+
+
+  it('decode HARD special', () => {
+    expect(service.decodeSpecial('66666666666666')).toEqual(hardSpecial);
+  });
+
+  it('decode custom special', () => {
+    expect(service.decodeSpecial('7?6#6]7*6_3%3>')).toEqual(customSpecial);
   });
 
 
