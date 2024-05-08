@@ -1,37 +1,46 @@
-@import '../styles.scss';
-#outlet {
-  // display: flex;
-  // align-items: center;
-  // width: 100%;
-  margin-top: 5rem;
-}
-
-#header-menu {
-  text-transform: uppercase;
-}
-
-ul {
+@import "../styles.scss";
+#app {
   display: flex;
-  justify-content: space-between;
-  padding: 1rem 2rem;
+  flex-direction: column;
   align-items: center;
-  li {
-    cursor: pointer;
-    padding: 0.4rem 0.8rem;
+  height: 100vh;
 
-    svg {
-      height: 2rem;
-      width: 6rem;
-      fill: $pipboy;
-    }
+  #outlet {
+    margin-top: 5rem;
+    flex-grow: 1;
+  }
 
-    &:hover {
-      color: $background;
-      background: $pipboy;
-      font-weight: 700;
+  #header-menu {
+    text-transform: uppercase;
+  }
+
+  app-footer{
+    justify-self: flex-end;
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    align-items: center;
+    li {
+      cursor: pointer;
+      padding: 0.4rem 0.8rem;
 
       svg {
-        fill: $background;
+        height: 2rem;
+        width: 6rem;
+        fill: $pipboy;
+      }
+
+      &:hover {
+        color: $background;
+        background: $pipboy;
+        font-weight: 700;
+
+        svg {
+          fill: $background;
+        }
       }
     }
   }
