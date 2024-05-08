@@ -1,0 +1,12 @@
+<h3>Bienvenue USERNAME</h3>
+<p>
+  Cette exercice a pour but de tester vos talents de '''SPECIAL''', afin de
+  determiner le poste le vous convient le mieux.
+</p>
+
+
+<form [formGroup]="form"   (ngSubmit)="onSubmit($event)">
+    <label for="confirm-checkbox">confirm-checkbox</label>
+    <input type="checkbox" formControlName="confirm"  id="confirm-checkbox">
+    <button type="submit" [disabled]="!form.valid">commencer l'exercice</button>
+</form>

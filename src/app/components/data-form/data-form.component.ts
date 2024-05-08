@@ -24,12 +24,7 @@ export class DataFormComponent {
   thisYear: number = new Date().getFullYear()
   legalAge: number = 18
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private formService: FormService,
-  ) {}
-
+  
   dataForm = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -43,6 +38,12 @@ export class DataFormComponent {
     ]),
   })
 
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private formService: FormService,
+  ) {}
+  
   onSubmit() {
     const value: DataFromData = {
       name: this.dataForm.get(['name'])?.value,

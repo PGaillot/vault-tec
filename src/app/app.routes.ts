@@ -15,6 +15,8 @@ import { TerminalGameComponent } from './components/terminal-game/terminal-game.
 import { MessagePageComponent } from './pages/message-page/message-page.component'
 import { QuestionComponent } from './components/question/question.component'
 import { PerceptionGamePageComponent } from './pages/perception-game-page/perception-game-page.component'
+import { StartComponent } from './components/games/perception/start/start.component'
+import { PerceptionGameComponent } from './components/games/perception/perception-game/perception-game.component'
 
 export const routes: Routes = [
   {
@@ -65,7 +67,19 @@ export const routes: Routes = [
   },
   {
     path:'perception-exercise',
-    component:PerceptionGamePageComponent
+    component:PerceptionGamePageComponent,
+    children:[
+      {
+        path:'',
+        component:StartComponent,
+      },
+      
+      {
+        path:'exercise',
+        component:PerceptionGameComponent,
+      },
+
+    ]
   },
   {
     path: '**',
