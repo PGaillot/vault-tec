@@ -14,6 +14,7 @@ import { JobHomePageComponent } from './pages/job-home-page/job-home-page.compon
 import { TerminalGameComponent } from './components/terminal-game/terminal-game.component'
 import { MessagePageComponent } from './pages/message-page/message-page.component'
 import { QuestionComponent } from './components/question/question.component'
+import { PerceptionGamePageComponent } from './pages/perception-game-page/perception-game-page.component'
 
 export const routes: Routes = [
   {
@@ -61,6 +62,10 @@ export const routes: Routes = [
       { path: 'consent', component: ConsentFormComponent },
       { path: 'email-send', component: MessagePageComponent },
     ],
+  },
+  {
+    path:'perception-exercise',
+    component:PerceptionGamePageComponent
   },
   {
     path: '**',
