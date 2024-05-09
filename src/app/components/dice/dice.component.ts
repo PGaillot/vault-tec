@@ -28,7 +28,7 @@ export class DiceComponent {
   ){}
 
   @Input() value: number = 1;
-  @Input() locked: boolean = false;
+  @Input() locked!: boolean 
   @Output() valueChange:EventEmitter<number> = new EventEmitter<number>();
 
   get diceValue(): DiceValues {
@@ -51,15 +51,17 @@ export class DiceComponent {
   }
 
   throwDice(){
-    let int:number = 100; // nombres de millisecondes 
-    const interval =  setInterval(() => {
-      this.value = this.questionService.getRandom(1, 6)
-      int = int + (int / 2)
-      if(int > 2000){
-        clearInterval(interval)
-        this.valueChange.emit(this.value)
-      }
-    }, int)
+    if(this.locked) return
+      let int:number = 100; // nombres de millisecondes 
+      const interval =  setInterval(() => {
+        this.value = this.questionService.getRandom(1, 6)
+        int = int + (int / 2)
+        if(int > 2000){
+          clearInterval(interval)
+          this.valueChange.emit(this.value)
+        }
+      }, int)
+    
 
   }
 }

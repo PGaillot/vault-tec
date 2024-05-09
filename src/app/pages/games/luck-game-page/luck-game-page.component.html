@@ -1,66 +1,86 @@
-
 <div class="page" id="luck-game">
-    <div class="header">
-        <div class="guess">
-            <p>Estimez votre résultat</p>
-            <form [formGroup]="guessForm" (ngSubmit)="onSubmit()">
-                <input type="number" min="1" max="6" formControlName="firstGuess"  >
-                <input type="number" min="1" max="6" formControlName="secondGuess" >
-                <input type="number" min="1" max="6" formControlName="thirdGuess" >
-                @if (!gameStarted) {
-                    <button type="submit" [disabled]="guessForm.invalid">Commencer l'exercice</button>  
-                }
-            </form>          
-        </div>
-    
-        <div class="chance-remaining">
-            <div class="throw-remaning">{{throwRemainingCounter}}</div>
-            <p>Lancer restants</p>
-        </div>
+  <div class="header">
+    <div class="guess">
+      <p>Estimez votre résultat</p>
+      <form [formGroup]="guessForm" (ngSubmit)="onSubmit()">
+        <input type="number" min="1" max="6" formControlName="firstGuess" />
+        <input type="number" min="1" max="6" formControlName="secondGuess" />
+        <input type="number" min="1" max="6" formControlName="thirdGuess" />
+        @if (!gameStarted) {
+        <button type="submit" [disabled]="guessForm.invalid">
+          Commencer l'exercice
+        </button>
+        }
+      </form>
     </div>
-    @if(gameStarted){
-        <div class="game-launched">
-            <button type="button" (click)="throwDices()">Lancer les dés</button>
-            <div class="dice-wrapper">
-                <div class="dice">
-                    <app-dice #firstDice (valueChange)="getDiceValue($event)"></app-dice>
-                    <button type="button" class="keep-dice" (click)="keepDice()" [disabled]="throwRemainingCounter === maxThrow || throwRemainingCounter <= 0">Garder</button>
-                </div>
-                <div class="dice">
-                    <app-dice #secondDice (valueChange)="getDiceValue($event)"></app-dice>
-                    <button type="button" class="keep-dice" (click)="keepDice()" [disabled]="throwRemainingCounter === maxThrow || throwRemainingCounter <= 0">Garder</button>
-                </div>
-                <div class="dice">
-                    <app-dice #thirdDice (valueChange)="getDiceValue($event)"></app-dice>
-                    <button type="button" class="keep-dice" (click)="keepDice()" [disabled]="throwRemainingCounter === maxThrow || throwRemainingCounter <= 0">Garder</button>
-                </div>
-            </div>
 
-        </div>
-    }
-
+    <div class="chance-remaining">
+      <div class="throw-remaning">{{ throwRemainingCounter }}</div>
+      <p>Lancer restants</p>
+    </div>
+  </div>
+  @if(gameStarted){
+  <div class="game-launched">
+    <button type="button" (click)="throwDices()">Lancer les dés</button>
+    <div class="dice-wrapper">
+      <div class="dice">
+        <app-dice
+          #firstDice
+          [locked]="rollLockArray[0]"
+        ></app-dice>
+        <button
+          type="button"
+          class="keep-dice"
+          (click)="keepDice(0)"
+          [disabled]="
+            throwRemainingCounter === maxThrow ||
+            throwRemainingCounter <= 0 ||
+            rollLockArray[0]
+          "
+        >
+          Garder
+        </button>
+      </div>
+      <div class="dice">
+        <app-dice
+          #secondDice
+          [locked]="rollLockArray[1]"
+        ></app-dice>
+        <button
+          type="button"
+          class="keep-dice"
+          (click)="keepDice(1)"
+          [disabled]="
+            throwRemainingCounter === maxThrow ||
+            throwRemainingCounter <= 0 ||
+            rollLockArray[1]
+          "
+        >
+          Garder
+        </button>
+      </div>
+      <div class="dice">
+        <app-dice
+          #thirdDice
+          [locked]="rollLockArray[2]"
+        ></app-dice>
+        <button
+          type="button"
+          class="keep-dice"
+          (click)="keepDice(2)"
+          [disabled]="
+            throwRemainingCounter === maxThrow ||
+            throwRemainingCounter <= 0 ||
+            rollLockArray[2]
+          "
+        >
+          Garder
+        </button>
+      </div>
+    </div>
+  </div>
+  }
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- <app-dice [value]="1"></app-dice>
 <app-dice [value]="2"></app-dice>
@@ -69,4 +89,3 @@
 <app-dice [value]="5"></app-dice>
 <app-dice [value]="6"></app-dice>
 <app-dice [value]="354"></app-dice> -->
-
