@@ -1,5 +1,7 @@
 import { NgClass } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { SpecialAccountService } from '../../services/special-account.service';
+import { QuestionService } from '../../services/question.service';
 
 export enum DiceValues {
   ONE = 'one',
@@ -21,7 +23,13 @@ export enum DiceValues {
 export class DiceComponent {
 
 
+  constructor(
+
+    private questionService:QuestionService
+  ){}
+
   @Input() value: number = 1;
+  @Output() valueChange:EventEmitter<number> = new EventEmitter<number>();
 
   get diceValue(): DiceValues {
     switch (this.value) {
@@ -40,5 +48,19 @@ export class DiceComponent {
       default:
         return DiceValues.ERROR;
     }
+  }
+
+
+  throwDice(){
+    let int:number = 100; // nombres de millisecondes 
+    const interval =  setInterval(() => {
+      this.value = this.questionService.getRandom(1, 6)
+      int = int + (int / 2)
+      if(int > 2000){
+        clearInterval(interval)
+        this.valueChange.emit(this.value)
+      }
+    }, int)
+
   }
 }
