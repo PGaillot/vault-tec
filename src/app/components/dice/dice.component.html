@@ -1,0 +1,78 @@
+<div id="dice">
+  @switch (diceValue) { @case ('one') {
+
+  <div class="points-container" [ngClass]="diceValue">
+    <div class="point"></div>
+  </div>
+
+  } @case ('two') {
+  <div class="points-container" [ngClass]="diceValue">
+    <div class="point"></div>
+    <div class="end">
+        <div class="point"></div>
+      </div>
+  </div>
+
+  } @case ('tree') {
+  <div class="points-container" [ngClass]="diceValue">
+    <div class="point"></div>
+    <div class="center">
+      <div class="point"></div>
+    </div>
+    <div class="end">
+        <div class="point"></div>
+      </div>
+  </div>
+
+  } @case ('four') {
+  <div class="points-container" [ngClass]="diceValue">
+    <div class="col">
+      <div class="point"></div>
+      <div class="point"></div>
+    </div>
+
+    <div class="col">
+      <div class="point"></div>
+      <div class="point"></div>
+    </div>
+  </div>
+
+  } @case ('five') {
+  <div class="points-container" [ngClass]="diceValue">
+    <div class="col">
+      <div class="point"></div>
+      <div class="point"></div>
+    </div>
+
+    <div class="center">
+      <div class="point"></div>
+    </div>
+
+    <div class="col">
+      <div class="point"></div>
+      <div class="point"></div>
+    </div>
+  </div>
+
+  } @case ('six') {
+  <div class="points-container" [ngClass]="diceValue">
+    <div class="col">
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+    </div>
+
+    <div class="col">
+      <div class="point"></div>
+      <div class="point"></div>
+      <div class="point"></div>
+    </div>
+  </div>
+
+  } @case ('error') {
+
+  <div class="points-container" [ngClass]="diceValue">
+    <p>ERROR</p>
+  </div>
+  } }
+</div>

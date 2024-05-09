@@ -14,6 +14,7 @@ import { JobHomePageComponent } from './pages/job-home-page/job-home-page.compon
 import { TerminalGameComponent } from './components/terminal-game/terminal-game.component'
 import { MessagePageComponent } from './pages/message-page/message-page.component'
 import { QuestionComponent } from './components/question/question.component'
+import { LuckGamePageComponent } from './pages/games/luck-game-page/luck-game-page.component'
 
 export const routes: Routes = [
   {
@@ -50,6 +51,10 @@ export const routes: Routes = [
   {
     path: 'contact',
     component: ContactPageComponent,
+  },
+  {
+    path: 'luck-exercise',
+    component: LuckGamePageComponent,
   },
   {
     path: 'special',

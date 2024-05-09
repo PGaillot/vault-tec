@@ -1,0 +1,62 @@
+@import "../../../styles.scss";
+
+$size: 8rem;
+$point-size: 1rem;
+
+#dice {
+  height: $size;
+  width: $size;
+  border-radius: 1rem;
+  border: 3px solid $pipboy;
+  display: flex;
+}
+
+.one,
+.two,
+.tree,
+.four,
+.five,
+.six,
+.error {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem;
+}
+
+.points-container {
+  flex-grow: 1;
+  .col,
+  .center,
+  .end {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .col {
+    justify-content: space-between;
+  }
+
+  .center {
+    justify-content: center;
+  }
+
+  .end {
+    justify-content: flex-end;
+  }
+}
+.one {
+  justify-content: center;
+  align-items: center;
+}
+
+.error {
+  justify-content: center;
+  align-items: center;
+}
+
+.point {
+  height: $point-size;
+  width: $point-size;
+  background: $pipboy;
+  border-radius: 100%;
+}
