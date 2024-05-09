@@ -1,33 +1,35 @@
 <div class="page" id="luck-game">
-  <div class="header">
-    <div class="guess">
-      <p>Estimez votre résultat</p>
-      <form [formGroup]="guessForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="guessForm" (ngSubmit)="onSubmit()">
+    <div class="header">
+      <div class="guess">
+        <p>Estimez votre résultat</p>
         <input type="number" min="1" max="6" formControlName="firstGuess" />
         <input type="number" min="1" max="6" formControlName="secondGuess" />
         <input type="number" min="1" max="6" formControlName="thirdGuess" />
-        @if (!gameStarted) {
-        <button type="submit" [disabled]="guessForm.invalid">
-          Commencer l'exercice
-        </button>
+      </div>
+      <div class="chance-remaining">
+        @for (_ of [].constructor(throwRemainingCounter); track _) {
+        <div class="error-marker"></div>
         }
-      </form>
+        <p>Lancer restants</p>
+      </div>
     </div>
+    @if (!gameStarted) {
+    <button type="submit" [disabled]="guessForm.invalid">
+      Commencer l'exercice
+    </button>
+    }
+  </form>
 
-    <div class="chance-remaining">
-      <div class="throw-remaning">{{ throwRemainingCounter }}</div>
-      <p>Lancer restants</p>
-    </div>
-  </div>
-  @if(gameStarted){
+  <!-- GAME START ! -->
+  @if(gameStarted){ @if (!gameFinish) {
   <div class="game-launched">
-    <button type="button" (click)="throwDices()">Lancer les dés</button>
+    <button type="button" (click)="throwDices()" [disabled]="gameFinish">
+      Lancer les dés
+    </button>
     <div class="dice-wrapper">
       <div class="dice">
-        <app-dice
-          #firstDice
-          [locked]="rollLockArray[0]"
-        ></app-dice>
+        <app-dice #firstDice [locked]="rollLockArray[0]"></app-dice>
         <button
           type="button"
           class="keep-dice"
@@ -42,10 +44,7 @@
         </button>
       </div>
       <div class="dice">
-        <app-dice
-          #secondDice
-          [locked]="rollLockArray[1]"
-        ></app-dice>
+        <app-dice #secondDice [locked]="rollLockArray[1]"></app-dice>
         <button
           type="button"
           class="keep-dice"
@@ -60,10 +59,7 @@
         </button>
       </div>
       <div class="dice">
-        <app-dice
-          #thirdDice
-          [locked]="rollLockArray[2]"
-        ></app-dice>
+        <app-dice #thirdDice [locked]="rollLockArray[2]"></app-dice>
         <button
           type="button"
           class="keep-dice"
@@ -79,13 +75,14 @@
       </div>
     </div>
   </div>
-  }
-</div>
 
-<!-- <app-dice [value]="1"></app-dice>
-<app-dice [value]="2"></app-dice>
-<app-dice [value]="3"></app-dice>
-<app-dice [value]="4"></app-dice>
-<app-dice [value]="5"></app-dice>
-<app-dice [value]="6"></app-dice>
-<app-dice [value]="354"></app-dice> -->
+  } @else { 
+    
+    @if (roundWin) {
+  <p>Vous avez reussi l'exercice avec succèes.</p>
+  } @else {
+  <p>Vous avez lamentablement raté l'exercice.</p>
+  }
+  <button>TERMINER L'EXERCICE</button>
+  } }
+</div>

@@ -13,11 +13,6 @@
   #error-counter{
     display: flex;
     gap: 0.4rem;
-    .error-marker{
-      height: 1.1rem;
-      width: 0.8rem;
-      background: $pipboy;
-    }
   }
   #game-wrapper {
     gap: 1rem;

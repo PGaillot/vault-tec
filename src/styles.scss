@@ -337,6 +337,12 @@ input[type='radio'] {
   }
 }
 
+.error-marker{
+  height: 1.1rem;
+  width: 0.8rem;
+  background: $pipboy;
+}
+
 .glitch {
   animation: glitch 8s ease-in infinite;
 }

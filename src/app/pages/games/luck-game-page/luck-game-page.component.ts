@@ -25,7 +25,9 @@ export class LuckGamePageComponent {
   rollLockArray: boolean[] = [false, false, false];
   rollLocked: number[] = [];
   guessLocked: boolean = false;
+  gameFinish: boolean = false;
   guessedValues: number[] = [];
+  roundWin:boolean = false;
 
   guessForm = new FormGroup({
     firstGuess: new FormControl({ value: 1, disabled: false }, [
@@ -69,9 +71,12 @@ export class LuckGamePageComponent {
     });
     if (win) {
       console.log('VICTOIRE', this.rollLocked);
+      this.roundWin = true;
     } else {
       console.log('BOUHHHHH', this.rollLocked);
     }
+
+    this.gameFinish = true;
   }
 
   keepDice(diceId: number) {
