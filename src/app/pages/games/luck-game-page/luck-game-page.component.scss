@@ -1,40 +1,50 @@
 @import "../../../../styles.scss";
 
 #luck-game {
+  display: flex;
+flex-direction: column;
+gap: 2rem;
 
-
-}
-
-.header, 
-.gess,
-.chance-remaining{
+form{
     display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
 }
 
+}
 
-.header {
-  justify-content: space-between;
+.header,
+.gess,
+.chance-remaining,
+.game-launched {
+  display: flex;
+}
+
+.header {  
+  font-size: 1.2rem;
+  flex-direction: column;
+  gap: 2rem;
+
+  .guess {
+    gap: 0.5rem;
+    justify-content: center;
     align-items: center;
-    font-size: 1.2rem;
 
-  .guess{
-    align-items: center;
-
-    input{
-        height: 1.5rem;
-        width: 1.5rem;
-        text-align: center;
+    input {
+      height: 1.5rem;
+      width: 1.5rem;
+      text-align: center;
     }
   }
 
-
-  .chance-remaining{
+  .chance-remaining {
     gap: 0.5rem;
+
   }
 }
 
 .game-launched {
-  display: flex;
   flex-direction: column;
   gap: 2rem;
   button {

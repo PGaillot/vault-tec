@@ -30,17 +30,17 @@ export class LuckGamePageComponent {
   roundWin:boolean = false;
 
   guessForm = new FormGroup({
-    firstGuess: new FormControl({ value: 1, disabled: false }, [
+    firstGuess: new FormControl({ value: 0, disabled: false }, [
       Validators.required,
       Validators.min(1),
       Validators.max(6),
     ]),
-    secondGuess: new FormControl({ value: 3, disabled: false }, [
+    secondGuess: new FormControl({ value: 0, disabled: false }, [
       Validators.required,
       Validators.min(1),
       Validators.max(6),
     ]),
-    thirdGuess: new FormControl({ value: 2, disabled: false }, [
+    thirdGuess: new FormControl({ value: 0, disabled: false }, [
       Validators.required,
       Validators.min(1),
       Validators.max(6),
