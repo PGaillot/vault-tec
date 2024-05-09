@@ -50,7 +50,6 @@ export class DiceComponent {
     }
   }
 
-
   throwDice(){
     let int:number = 100; // nombres de millisecondes 
     const interval =  setInterval(() => {
