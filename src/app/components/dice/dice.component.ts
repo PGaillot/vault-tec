@@ -24,11 +24,11 @@ export class DiceComponent {
 
 
   constructor(
-
     private questionService:QuestionService
   ){}
 
   @Input() value: number = 1;
+  @Input() locked: boolean = false;
   @Output() valueChange:EventEmitter<number> = new EventEmitter<number>();
 
   get diceValue(): DiceValues {

@@ -1,4 +1,4 @@
-<div id="dice" >
+<div id="dice" [ngClass]="locked ? 'locked' : 'unlocked'">
   @switch (diceValue) { @case ('one') {
 
   <div class="points-container" [ngClass]="diceValue">

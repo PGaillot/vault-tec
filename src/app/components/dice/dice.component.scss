@@ -11,6 +11,20 @@ $point-size: 1.1rem;
   display: flex;
 }
 
+.locked {
+  background: $pipboy;
+  .point {
+    background: $background;
+  }
+}
+
+.unlocked {
+  background: none;
+  .point {
+    background: $pipboy;
+  }
+}
+
 .one,
 .two,
 .tree,
@@ -57,6 +71,5 @@ $point-size: 1.1rem;
 .point {
   height: $point-size;
   width: $point-size;
-  background: $pipboy;
   border-radius: 100%;
 }
