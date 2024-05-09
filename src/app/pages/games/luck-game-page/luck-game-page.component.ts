@@ -61,12 +61,12 @@ export class LuckGamePageComponent {
         break;
     }
   }
-  
+
   checkVictory() {
-    let win : boolean = true
+    let win: boolean = true;
     this.guessedValues.forEach((value) => {
-      if(!this.rollLocked.includes(value)) win = false
-    })
+      if (!this.rollLocked.includes(value)) win = false;
+    });
     if (win) {
       console.log('VICTOIRE', this.rollLocked);
     } else {
@@ -77,13 +77,13 @@ export class LuckGamePageComponent {
   keepDice(diceId: number) {
     this.rollLockArray[diceId] = true;
     this.getDiceValue(diceId);
-    if(!this.rollLockArray.includes(false)){
-      this.gameFinished()
+    if (!this.rollLockArray.includes(false)) {
+      this.gameFinished();
     }
   }
-  gameFinished(){
+  gameFinished() {
     for (let i = 0; i < this.rollLockArray.length; i++) {
-      if (!this.rollLockArray[i]) {          
+      if (!this.rollLockArray[i]) {
         this.getDiceValue(i);
       }
     }
@@ -92,17 +92,17 @@ export class LuckGamePageComponent {
 
   throwDices() {
     if (this.throwRemainingCounter > 0 && this.rollLockArray.includes(false)) {
-      this.firstDiceRef.throwDice();
-
-      this.secondDiceRef.throwDice();
-
-      this.thirdDiceRef.throwDice();
-
-      this.throwRemainingCounter -= 1;
-      if(this.throwRemainingCounter === 0){
-        this.gameFinished()
-      }
-    } 
+      this.firstDiceRef.throwDice().then((res) => {
+        this.secondDiceRef.throwDice().then((res) => {
+          this.thirdDiceRef.throwDice().then((res) => {
+            this.throwRemainingCounter -= 1;
+            if (this.throwRemainingCounter === 0) {
+              this.gameFinished();
+            }
+          });
+        });
+      });
+    }
   }
 
   onSubmit() {

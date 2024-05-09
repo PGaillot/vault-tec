@@ -21,15 +21,11 @@ export enum DiceValues {
   styleUrl: './dice.component.scss',
 })
 export class DiceComponent {
-
-
-  constructor(
-    private questionService:QuestionService
-  ){}
+  constructor(private questionService: QuestionService) {}
 
   @Input() value: number = 1;
-  @Input() locked!: boolean 
-  @Output() valueChange:EventEmitter<number> = new EventEmitter<number>();
+  @Input() locked!: boolean;
+  @Output() valueChange: EventEmitter<number> = new EventEmitter<number>();
 
   get diceValue(): DiceValues {
     switch (this.value) {
@@ -50,18 +46,24 @@ export class DiceComponent {
     }
   }
 
-  throwDice(){
-    if(this.locked) return
-      let int:number = 100; // nombres de millisecondes 
-      const interval =  setInterval(() => {
-        this.value = this.questionService.getRandom(1, 6)
-        int = int + (int / 2)
-        if(int > 2000){
-          clearInterval(interval)
-          this.valueChange.emit(this.value)
-        }
-      }, int)
-    
-
+  throwDice(): Promise<any> {
+    if (!this.locked) {
+      return new Promise<any>((resolve) => {
+        let int: number = 100; // nombres de millisecondes
+        const interval = setInterval(() => {
+          this.value = this.questionService.getRandom(1, 6);
+          int = int + int / 2;
+          if (int > 2000) {
+            clearInterval(interval);
+            this.valueChange.emit(this.value);
+            resolve(this.value);
+          }
+        }, int);
+      });
+    } else {
+      return new Promise((resolve) => {
+        resolve('locked');
+      });
+    }
   }
 }
