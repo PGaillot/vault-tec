@@ -1,3 +1,7 @@
+
+@import '../../../styles.scss';
+
+
 #footer{
     display: flex;
     flex-direction: column;
@@ -21,6 +25,14 @@
                 }
                 &::after{
                     content: ']--';
+                }
+            }
+
+            li{
+                cursor: pointer;
+                &:hover{
+                    background: $pipboy;
+                    color: $background;
                 }
             }
         }

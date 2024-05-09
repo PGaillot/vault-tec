@@ -53,6 +53,30 @@ export const routes: Routes = [
     component: ContactPageComponent,
   },
   {
+    path: 'strength-exercise',
+    component: LuckGamePageComponent,
+  },
+  {
+    path: 'perception-exercise',
+    component: LuckGamePageComponent,
+  },
+  {
+    path: 'endurance-exercise',
+    component: LuckGamePageComponent,
+  },
+  {
+    path: 'charisma-exercise',
+    component: LuckGamePageComponent,
+  },
+  {
+    path: 'intelligence-exercise',
+    component: TerminalGameComponent,
+  },
+  {
+    path: 'agility-exercise',
+    component: LuckGamePageComponent,
+  },
+  {
     path: 'luck-exercise',
     component: LuckGamePageComponent,
   },
