@@ -1,0 +1,26 @@
+@import '../../../../styles.scss';
+
+$lockSize:6rem;
+
+#agility-game{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+
+    #lock{
+        height: $lockSize;
+        width: $lockSize;
+        border-radius: $lockSize;
+        background: $pipboy;
+
+
+        .lockpick{
+            width: 20rem;
+            height: 0.5rem;
+            background-color: $pipboy;
+        }
+    }
+}
