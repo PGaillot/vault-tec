@@ -15,6 +15,7 @@ import { TerminalGameComponent } from './components/terminal-game/terminal-game.
 import { MessagePageComponent } from './pages/message-page/message-page.component'
 import { QuestionComponent } from './components/question/question.component'
 import { LuckGamePageComponent } from './pages/games/luck-game-page/luck-game-page.component'
+import { EndurenceGamePageComponent } from './pages/games/endurence-game-page/endurence-game-page.component'
 
 export const routes: Routes = [
   {
@@ -62,7 +63,7 @@ export const routes: Routes = [
   },
   {
     path: 'endurance-exercise',
-    component: LuckGamePageComponent,
+    component: EndurenceGamePageComponent,
   },
   {
     path: 'charisma-exercise',
