@@ -194,7 +194,7 @@ export class StrengthGamePageComponent {
         this.gameHeight / 2
       );
       return;
-    } else if (!this.gameRun && this.round === 0) {
+    } else if (!this.gameRun) {
       return;
     }
     this.ctx.clearRect(0, 0, this.gameWidth, this.gameHeight);
@@ -227,7 +227,7 @@ export class StrengthGamePageComponent {
     if (
       this.enemies.length > 0 &&
       this.enemies.filter((enemy: Enemy) => enemy.dead).length ===
-        this.enemies.length &&
+        this.maxEnemiesRoundCount &&
       this.gameRun
     ) {
       console.log('VAGUE COMPLETE');
