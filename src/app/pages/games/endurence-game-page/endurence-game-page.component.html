@@ -3,9 +3,16 @@
 
 
     <div id="mini-game">
+        
+        @if (gameOver) {
+            <h1>GAME OVER</h1>
+        }
+        
         <p>score : {{score}}</p>
+        <canvas id="game" #gameCanvas></canvas>
 
-        <canvas id="game" #gameCanvas height="300" width="300"></canvas>
+
+        <p>'_espace_' pour sauter</p>
     </div>
 
 

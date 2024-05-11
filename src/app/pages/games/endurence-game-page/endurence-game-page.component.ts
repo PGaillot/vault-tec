@@ -47,12 +47,18 @@ export class EndurenceGamePageComponent {
   yVelocity: number = 0;
   gravity: number = 0.0115;
 
+  game:{height:number, width:number};
+  gameHeight:number = 300;
+  gameWidth:number = 300;
+
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
     this.jumpCharacter(event);
   }
 
-  constructor(private questionService: QuestionService) {}
+  constructor(private questionService: QuestionService) {
+    this.game = {height:this.gameHeight, width:this.gameWidth}
+  }
 
   startAnimation() {
     setInterval(this.placeObstacle, 3000);
@@ -70,7 +76,7 @@ export class EndurenceGamePageComponent {
   update() {
     // Appeler la prochaine frame d'animation
     if(this.gameOver) return
-    this.ctx.clearRect(0, 0, 300, 300);
+    this.ctx.clearRect(0, 0, this.game.width, this.game.height);
 
     // PLACE ROAD
     this.placeRoad();
@@ -96,10 +102,15 @@ export class EndurenceGamePageComponent {
       }
     });
 
+    while(this.obstacles.length > 0 && this.obstacles[0].x < -this.obstacles[0].width){
+      this.obstacles.shift()
+    }
+
+
     // PLACE CHARACTER
     this.yVelocity += this.gravity;
     this.character.y = Math.max(this.character.y + this.yVelocity, 0);
-    this.character.y = Math.min(this.character.y + this.yVelocity, 300 - 55);
+    this.character.y = Math.min(this.character.y + this.yVelocity, this.game.height - 55);
     this.ctx.drawImage(
       this.character.img,
       this.character.x,
@@ -119,7 +130,7 @@ export class EndurenceGamePageComponent {
 
     const obstacle: Obstacle = {
       img: this.obstacleIgm!,
-      x: 300,
+      x: this.game.height,
       y: this.roadHeight - 31,
       width: 31,
       height: 30,
@@ -152,6 +163,9 @@ export class EndurenceGamePageComponent {
 
   ngOnInit(): void {
     const canvas: HTMLCanvasElement = this.gameRef.nativeElement;
+    canvas.height = this.game.height;
+    canvas.width = this.game.width;
+
     this.ctx = canvas.getContext('2d')!;
 
     if (this.ctx) {
