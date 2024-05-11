@@ -28,6 +28,7 @@ interface Shoot extends CanvasObject {
 }
 
 interface Round {
+  interval:number;
   velocity: number;
   enemiesId: string[];
 }
@@ -60,6 +61,7 @@ export class StrengthGamePageComponent {
   enemies: Enemy[] = [];
   gameRun: boolean = false;
   round: number = 0;
+  maxShoots:number = 3;
   character: Character = {
     img: new Image(),
     x: 0,
@@ -70,6 +72,7 @@ export class StrengthGamePageComponent {
 
   rounds: Round[] = [
     {
+      interval:1500,
       velocity: 0.4,
       enemiesId: [
         'submarine',
@@ -80,6 +83,7 @@ export class StrengthGamePageComponent {
       ],
     },
     {
+      interval:1200,
       velocity: 0.6,
       enemiesId: [
         'submarine',
@@ -93,6 +97,7 @@ export class StrengthGamePageComponent {
       ],
     },
     {
+      interval:1000,
       velocity: 0.8,
       enemiesId: [
         'submarine',
@@ -108,6 +113,7 @@ export class StrengthGamePageComponent {
       ],
     },
     {
+      interval:600,
       velocity: 1,
       enemiesId: [
         'submarine',
@@ -122,6 +128,7 @@ export class StrengthGamePageComponent {
       ],
     },
     {
+      interval:400,
       velocity: 1.5,
       enemiesId: [
         'submarine',
@@ -137,6 +144,31 @@ export class StrengthGamePageComponent {
         'submarine',
         'submarine',
         'submarine',
+      ],
+    },
+    {
+      interval:200,
+      velocity: 1.5,
+      enemiesId: [
+        'mask',
+        'submarine',
+        'submarine',
+        'submarine',
+        'institute',
+        'institute',
+        'mask',
+        'mask',
+        'institute',
+        'institute',
+        'institute',
+        'mask',
+        'mask',
+        'institute',
+        'institute',
+        'submarine',
+        'submarine',
+        'submarine',
+        'mask',
       ],
     },
   ];
@@ -172,15 +204,21 @@ export class StrengthGamePageComponent {
   constructor(private gameService: GameService) {}
 
   shoot() {
-    const shoot: Shoot = {
-      x: this.character.x + this.character.width / 2,
-      y: this.gameHeight - this.character.height - 15,
-      width: 4,
-      height: 15,
-      destroy: false,
-    };
+    if(this.shoots.length < this.maxShoots){
+      const shoot: Shoot = {
+        x: this.character.x + this.character.width / 2,
+        y: this.gameHeight - this.character.height - 15,
+        width: 4,
+        height: 15,
+        destroy: false,
+      };
+      this.shoots = [...this.shoots, shoot];
+      console.log(this.shoots);
+    }
 
-    this.shoots = [...this.shoots, shoot];
+
+      
+    
   }
 
   update() {
@@ -210,6 +248,7 @@ export class StrengthGamePageComponent {
         this.enemies.forEach((enemy: Enemy) => {
           if (this.gameService.detectCollision(shoot, enemy) && !enemy.dead) {
             shoot.destroy = true;
+            this.shoots = this.shoots.filter((s:Shoot) => s !== shoot)
             enemy.dead = true;
             console.log('Booom !');
           }
@@ -230,7 +269,6 @@ export class StrengthGamePageComponent {
         this.maxEnemiesRoundCount &&
       this.gameRun
     ) {
-      console.log('VAGUE COMPLETE');
       this.ctx.textAlign = 'center';
       this.ctx.fillStyle = this.pipboyColor;
       this.ctx.font = "900 32px 'Space Mono', monospace";
@@ -282,7 +320,9 @@ export class StrengthGamePageComponent {
       this.shoots = [];
       this.enemiesRoundCount = 0;
       this.maxEnemiesRoundCount = round.enemiesId.length
-      this.intervalEnemies = setInterval(()=>{this.placeEnemy(round)}, 1500);
+      console.log(round.interval);
+      
+      this.intervalEnemies = setInterval(()=>{this.placeEnemy(round)}, round.interval);
       this.gameRun = true;
       this.enemiesVelocityX = round.velocity;
       console.log(round);
@@ -312,8 +352,7 @@ export class StrengthGamePageComponent {
   }
 
   placeEnemy = (round:Round) => {
-
-    console.log('palce enemy');
+  
     
     const mask: Enemy = {
       id: 'mask',
