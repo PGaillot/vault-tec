@@ -7,6 +7,7 @@ import { QuestionService } from '../../services/question.service';
 import { QuestionComponent } from '../question/question.component';
 import { Question } from '../../models/question.model';
 import { LogoLoaderComponent } from '../logo-loader/logo-loader.component';
+import { GameService } from '../../services/game.service';
 
 @Component({
   selector: 'app-job-form',
@@ -30,9 +31,10 @@ export class JobFormComponent {
     private route: ActivatedRoute,
     private router: Router,
     private specialService: SpecialAccountService,
-    private questionService: QuestionService
+    private questionService: QuestionService,
+    private gameService: GameService
   ) {
-    this.rndJob = this.questionService.getRandom(1, 4);
+    this.rndJob = this.gameService.getRandom(1, 4);
 
     this.route.queryParams.subscribe({
       next: (value) => {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SPECIAL, SpecialAccount } from '../models/special.model';
-import { QuestionService } from './question.service';
 import { SYMBOLS } from '../data/symbols.data';
+import { GameService } from './game.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,7 @@ import { SYMBOLS } from '../data/symbols.data';
 export class SpecialAccountService {
 
   alphabet: string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
-  constructor(private randomService: QuestionService) {}
+  constructor(private gameService: GameService) {}
 
   generateSpecialKey(specialAccount: SpecialAccount): string {
     console.log(this.cryptSpecial(specialAccount.special));
@@ -29,7 +29,7 @@ export class SpecialAccountService {
     perks.forEach((n: number) => {
       let crypt: any = (n + 2).toString(16);
       if (crypt.length < 2) {
-        const random = this.randomService.getRandom(0, SYMBOLS.length - 1);
+        const random = this.gameService.getRandom(0, SYMBOLS.length - 1);
         crypt = crypt + SYMBOLS[random];
       }
       cryptedPerks.push(crypt);

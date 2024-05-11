@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { QuestionService } from '../../../services/question.service';
+import { GameService } from '../../../services/game.service';
 
 interface Obstacle {
   img: HTMLImageElement;
@@ -61,7 +61,7 @@ export class EndurenceGamePageComponent {
     this.jumpCharacter(event);
   }
 
-  constructor(private questionService: QuestionService) {
+  constructor(private gameService: GameService) {
     this.game = { height: this.gameHeight, width: this.gameWidth };
 
     if (sessionStorage.getItem(this.bestScoreLocalKey)) {
@@ -111,7 +111,7 @@ export class EndurenceGamePageComponent {
         obstacle.passed = true;
       }
 
-      if (this.detectCollision(this.character, obstacle)) {
+      if (this.gameService.detectCollision(this.character, obstacle)) {
         this.gameOver = true;
         this.finishGame()
         if (sessionStorage.getItem(this.bestScoreLocalKey) !== null) {
@@ -146,7 +146,7 @@ export class EndurenceGamePageComponent {
     this.yVelocity += this.gravity;
     this.character.y = Math.max(this.character.y + this.yVelocity, 0);
     this.character.y = Math.min(
-      this.character.y + this.yVelocity,
+      this.character.y,
       this.roadHeight - 55
     );
     this.ctx.drawImage(
@@ -162,8 +162,8 @@ export class EndurenceGamePageComponent {
 
   placeObstacle = () => {
     if (this.gameOver) return;
-    const medRand: number = this.questionService.getRandom(1, 2);
-    const highRand: number = this.questionService.getRandom(3, 4);
+    const medRand: number = this.gameService.getRandom(1, 2);
+    const highRand: number = this.gameService.getRandom(3, 4);
 
     const smallObstacleImg = new Image();
     smallObstacleImg.src = '../../../../assets/obstacle5.svg'
@@ -203,7 +203,7 @@ export class EndurenceGamePageComponent {
 
     const allObstacles:Obstacle[] = [obstacleSmall, obstacleMedium, obstacleHigh]
 
-    this.obstacles.push(allObstacles[this.questionService.getRandom(0, (allObstacles.length - 1))]);
+    this.obstacles.push(allObstacles[this.gameService.getRandom(0, (allObstacles.length - 1))]);
   };
 
   placeRoad() {
@@ -229,16 +229,6 @@ export class EndurenceGamePageComponent {
     this.ctx.lineWidth = 2;
     this.ctx.stroke();
   }
-
-  detectCollision(a: any, b: any): boolean {
-    return (
-      a.x < b.x + b.width &&
-      a.x + a.width > b.x &&
-      a.y < b.y + b.height &&
-      a.y + a.height > b.y
-    );
-  }
-
 
   finishGame(){
     this.ctx.textAlign = 'center'

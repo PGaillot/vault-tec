@@ -16,6 +16,7 @@ import { MessagePageComponent } from './pages/message-page/message-page.componen
 import { QuestionComponent } from './components/question/question.component'
 import { LuckGamePageComponent } from './pages/games/luck-game-page/luck-game-page.component'
 import { EndurenceGamePageComponent } from './pages/games/endurence-game-page/endurence-game-page.component'
+import { StrengthGamePageComponent } from './pages/games/strength-game-page/strength-game-page.component'
 
 export const routes: Routes = [
   {
@@ -55,7 +56,7 @@ export const routes: Routes = [
   },
   {
     path: 'strength-exercise',
-    component: LuckGamePageComponent,
+    component: StrengthGamePageComponent,
   },
   {
     path: 'perception-exercise',

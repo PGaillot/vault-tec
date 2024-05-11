@@ -1,7 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SpecialAccountService } from '../../services/special-account.service';
-import { QuestionService } from '../../services/question.service';
+import { GameService } from '../../services/game.service';
 
 export enum DiceValues {
   ONE = 'one',
@@ -21,7 +21,7 @@ export enum DiceValues {
   styleUrl: './dice.component.scss',
 })
 export class DiceComponent {
-  constructor(private questionService: QuestionService) {}
+  constructor(private gameService: GameService) {}
 
   @Input() value: number = 1;
   @Input() locked!: boolean;
@@ -51,7 +51,7 @@ export class DiceComponent {
       return new Promise<any>((resolve) => {
         let int: number = 100; // nombres de millisecondes
         const interval = setInterval(() => {
-          this.value = this.questionService.getRandom(1, 6);
+          this.value = this.gameService.getRandom(1, 6);
           int = int + int / 2;
           if (int > 2000) {
             clearInterval(interval);

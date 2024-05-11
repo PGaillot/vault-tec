@@ -2,16 +2,14 @@ import { Injectable } from '@angular/core';
 import { JobType } from '../enums/job-type';
 import { Answer, Question } from '../models/question.model';
 import { QUESTIONS } from '../data/questions.data';
+import { GameService } from './game.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuestionService {
-  constructor() {}
+  constructor(private gameService:GameService) {}
 
-  getRandom(min: number, max: number): number {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
 
   shuffleAnswers(question: Question): Question {
     const ordonedAnswers: Answer[] = question.answers;
@@ -36,7 +34,7 @@ export class QuestionService {
     );
 
     const q: Question =
-      jobQuestions[this.getRandom(0, jobQuestions.length - 1)];
+      jobQuestions[this.gameService.getRandom(0, jobQuestions.length - 1)];
 
     return this.shuffleAnswers(q);
   }
