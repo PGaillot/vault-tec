@@ -31,28 +31,30 @@ export class EndurenceGamePageComponent {
   private ctx!: CanvasRenderingContext2D;
   private animationId: number = 0;
   private pipboyColor: string = '#2dc92d';
-  
+
   // imgs
   obstacleIgm: HTMLImageElement | undefined;
   characterImg: HTMLImageElement | undefined;
-  
+
   character!: Character;
   obstacles: Obstacle[] = [];
 
   // GAME
-  gameOver:boolean = false;
+  gameOver: boolean = false;
   score: number = 0;
-  game:{height:number, width:number};
-  gameHeight:number = 300;
-  gameWidth:number = 300;
+  game: { height: number; width: number };
+  gameHeight: number = 300;
+  gameWidth: number = 500;
+  bestScore: string = '0';
+  bestScoreLocalKey: string = 'enducence-game-best-score';
 
   //Road
-  roadHeight: number = 296;
+  roadHeight: number = 250;
+  lineDashOffset = 0;
 
   xVelocity: number = -1;
   yVelocity: number = 0;
   gravity: number = 0.0115;
-
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
@@ -60,7 +62,11 @@ export class EndurenceGamePageComponent {
   }
 
   constructor(private questionService: QuestionService) {
-    this.game = {height:this.gameHeight, width:this.gameWidth}
+    this.game = { height: this.gameHeight, width: this.gameWidth };
+
+    if (sessionStorage.getItem(this.bestScoreLocalKey)) {
+      this.bestScore = sessionStorage.getItem(this.bestScoreLocalKey)!;
+    }
   }
 
   startAnimation() {
@@ -69,19 +75,23 @@ export class EndurenceGamePageComponent {
   }
 
   jumpCharacter(e: KeyboardEvent) {
-    if (e.code === 'Space' && this.character.y >= this.roadHeight - (this.character.height +1) ) {
+    if (
+      e.code === 'ArrowUp' &&
+      this.character.y >= this.roadHeight - (this.character.height + 5)
+    ) {
       this.yVelocity = -1.2;
     }
   }
 
   update() {
-
     // Appeler la prochaine frame d'animation
-    if(this.gameOver) return
+    if (this.gameOver) return;
     this.ctx.clearRect(0, 0, this.game.width, this.game.height);
 
     // PLACE ROAD
     this.placeRoad();
+    this.lineDashOffset += -(this.xVelocity / 0.9);
+    this.placeLineRoad();
 
     //PLACE OBSTACLES
     this.obstacles.forEach((obstacle: Obstacle, i) => {
@@ -94,25 +104,48 @@ export class EndurenceGamePageComponent {
         obstacle.height
       );
 
-      if(!obstacle.passed && this.character.x > obstacle.x + obstacle.width){
+      if (!obstacle.passed && this.character.x > obstacle.x + obstacle.width) {
         this.score += 1;
-        obstacle.passed = true
+        obstacle.passed = true;
       }
 
-      if(this.detectCollision(this.character, obstacle)) {
-        this.gameOver = true;        
+      if (this.detectCollision(this.character, obstacle)) {
+        this.gameOver = true;
+        if (
+          typeof sessionStorage.getItem(this.bestScoreLocalKey) === 'string' &&
+          sessionStorage.getItem(this.bestScoreLocalKey) !== null
+        ) {
+          const bestScore: number | null = parseInt(
+            sessionStorage.getItem(this.bestScoreLocalKey)!
+          );
+
+          if (bestScore < this.score){
+            sessionStorage.setItem(
+              this.bestScoreLocalKey,
+              this.score.toString()
+            );
+
+            this.bestScore = this.score.toString()
+          }
+      
+        }
       }
     });
 
-    while(this.obstacles.length > 0 && this.obstacles[0].x < -this.obstacles[0].width){
-      this.obstacles.shift()
+    while (
+      this.obstacles.length > 0 &&
+      this.obstacles[0].x < -this.obstacles[0].width
+    ) {
+      this.obstacles.shift();
     }
-
 
     // PLACE CHARACTER
     this.yVelocity += this.gravity;
     this.character.y = Math.max(this.character.y + this.yVelocity, 0);
-    this.character.y = Math.min(this.character.y + this.yVelocity, this.game.height - 55);
+    this.character.y = Math.min(
+      this.character.y + this.yVelocity,
+      this.roadHeight - 55
+    );
     this.ctx.drawImage(
       this.character.img,
       this.character.x,
@@ -125,8 +158,7 @@ export class EndurenceGamePageComponent {
   }
 
   placeObstacle = () => {
-
-    if(this.gameOver) return
+    if (this.gameOver) return;
     const rand: number = this.questionService.getRandom(1, 2);
 
     this.obstacleIgm = new Image();
@@ -134,7 +166,7 @@ export class EndurenceGamePageComponent {
 
     const obstacle: Obstacle = {
       img: this.obstacleIgm!,
-      x: this.game.height,
+      x: this.game.width,
       y: this.roadHeight - 31,
       width: 31,
       height: 30,
@@ -150,16 +182,32 @@ export class EndurenceGamePageComponent {
     this.ctx.strokeStyle = this.pipboyColor;
     this.ctx.moveTo(0, this.roadHeight);
     this.ctx.lineTo(this.game.width, this.roadHeight);
+    this.ctx.setLineDash([]);
     this.ctx.lineWidth = 3;
     this.ctx.stroke();
   }
 
-  detectCollision(a:any, b:any):boolean{
+  placeLineRoad() {
+    this.ctx.beginPath();
+    this.ctx.strokeStyle = this.pipboyColor;
+    this.ctx.moveTo(0, this.roadHeight + 15);
+    this.ctx.lineTo(this.game.width, this.roadHeight + 15);
 
-    return a.x < b.x + b.width &&
-           a.x + a.width > b.x &&
-           a.y < b.y + b.height &&
-           a.y + a.height > b.y;
+    // Apply line dash only to this line
+    this.ctx.setLineDash([12, 24]);
+    this.ctx.lineDashOffset = this.lineDashOffset; // Décalage de 6 pixels
+
+    this.ctx.lineWidth = 2;
+    this.ctx.stroke();
+  }
+
+  detectCollision(a: any, b: any): boolean {
+    return (
+      a.x < b.x + b.width &&
+      a.x + a.width > b.x &&
+      a.y < b.y + b.height &&
+      a.y + a.height > b.y
+    );
   }
 
   ngOnInit(): void {
