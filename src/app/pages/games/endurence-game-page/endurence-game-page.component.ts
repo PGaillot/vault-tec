@@ -76,12 +76,9 @@ export class EndurenceGamePageComponent {
 
   jumpCharacter(e: KeyboardEvent) {
 
-    console.log(this.character.y);
-    console.log(this.roadHeight - (this.character.height  + 5));
-    
 
     if (
-      e.code === 'ArrowUp' &&
+      (e.code === 'ArrowUp' || e.code === 'Space') &&
       this.character.y >= this.roadHeight - (this.character.height  + 5)
     ) {
       this.yVelocity = -1.2;
@@ -116,10 +113,7 @@ export class EndurenceGamePageComponent {
 
       if (this.detectCollision(this.character, obstacle)) {
         this.gameOver = true;
-        if (
-          typeof sessionStorage.getItem(this.bestScoreLocalKey) === 'string' &&
-          sessionStorage.getItem(this.bestScoreLocalKey) !== null
-        ) {
+        if (sessionStorage.getItem(this.bestScoreLocalKey) !== null) {
           const bestScore: number | null = parseInt(
             sessionStorage.getItem(this.bestScoreLocalKey)!
           );
@@ -133,6 +127,9 @@ export class EndurenceGamePageComponent {
             this.bestScore = this.score.toString()
           }
       
+        } else {
+          sessionStorage.setItem(this.bestScoreLocalKey, this.score.toString())
+          this.bestScore = this.score.toString()
         }
       }
     });
@@ -166,11 +163,6 @@ export class EndurenceGamePageComponent {
     if (this.gameOver) return;
     const medRand: number = this.questionService.getRandom(1, 2);
     const highRand: number = this.questionService.getRandom(3, 4);
-console.log(medRand);
-console.log(highRand);
-
-    // this.obstacleIgm = new Image();
-    // this.obstacleIgm.src = '../../../../assets/obstacle' + rand + '.svg';
 
     const smallObstacleImg = new Image();
     smallObstacleImg.src = '../../../../assets/obstacle5.svg'
