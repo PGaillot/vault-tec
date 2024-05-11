@@ -57,7 +57,7 @@ export class StrengthGamePageComponent {
   enemiesRoundCount: number = 0;
   maxEnemiesRoundCount: number = 5;
   gameOver: boolean = false;
-  score:number = 0
+  score: number = 0;
   shoots: Shoot[] = [];
   enemies: Enemy[] = [];
   gameRun: boolean = false;
@@ -322,6 +322,10 @@ export class StrengthGamePageComponent {
         this.shoot();
         break;
 
+      case 'ArrowUp':
+        this.shoot();
+        break;
+
       default:
         break;
     }
@@ -379,8 +383,9 @@ export class StrengthGamePageComponent {
             shoot.destroy = true;
             this.shoots = this.shoots.filter((s: Shoot) => s !== shoot);
             enemy.dead = true;
-            console.log('Booom !');
-            this.score ++
+
+            this.score += 1 - (enemy.line / 10 + 0.1);
+            console.log('Boom !');
           }
         });
       }
