@@ -113,6 +113,7 @@ export class EndurenceGamePageComponent {
 
       if (this.detectCollision(this.character, obstacle)) {
         this.gameOver = true;
+        this.finishGame()
         if (sessionStorage.getItem(this.bestScoreLocalKey) !== null) {
           const bestScore: number | null = parseInt(
             sessionStorage.getItem(this.bestScoreLocalKey)!
@@ -203,7 +204,6 @@ export class EndurenceGamePageComponent {
     const allObstacles:Obstacle[] = [obstacleSmall, obstacleMedium, obstacleHigh]
 
     this.obstacles.push(allObstacles[this.questionService.getRandom(0, (allObstacles.length - 1))]);
-    console.log(this.obstacles);
   };
 
   placeRoad() {
@@ -237,6 +237,15 @@ export class EndurenceGamePageComponent {
       a.y < b.y + b.height &&
       a.y + a.height > b.y
     );
+  }
+
+
+  finishGame(){
+    this.ctx.textAlign = 'center'
+    this.ctx.fillStyle = this.pipboyColor
+    this.ctx.font = "900 32px 'Space Mono', monospace"
+    this.ctx.fillText('FIN DE L\'EXERCICE', this.game.width/2, this.game.height/2)
+
   }
 
   ngOnInit(): void {
