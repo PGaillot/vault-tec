@@ -31,25 +31,28 @@ export class EndurenceGamePageComponent {
   private ctx!: CanvasRenderingContext2D;
   private animationId: number = 0;
   private pipboyColor: string = '#2dc92d';
-  obstacles: Obstacle[] = [];
+  
+  // imgs
   obstacleIgm: HTMLImageElement | undefined;
-  character!: Character;
   characterImg: HTMLImageElement | undefined;
+  
+  character!: Character;
+  obstacles: Obstacle[] = [];
 
+  // GAME
   gameOver:boolean = false;
-
   score: number = 0;
+  game:{height:number, width:number};
+  gameHeight:number = 300;
+  gameWidth:number = 300;
 
   //Road
   roadHeight: number = 296;
 
-  xVelocity: number = -0.4;
+  xVelocity: number = -1;
   yVelocity: number = 0;
   gravity: number = 0.0115;
 
-  game:{height:number, width:number};
-  gameHeight:number = 300;
-  gameWidth:number = 300;
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
@@ -61,19 +64,18 @@ export class EndurenceGamePageComponent {
   }
 
   startAnimation() {
-    setInterval(this.placeObstacle, 3000);
+    setInterval(this.placeObstacle, 1000);
     this.animationId = requestAnimationFrame(this.update.bind(this));
   }
 
   jumpCharacter(e: KeyboardEvent) {
-    
     if (e.code === 'Space' && this.character.y >= this.roadHeight - (this.character.height +1) ) {
-      
       this.yVelocity = -1.2;
     }
   }
 
   update() {
+
     // Appeler la prochaine frame d'animation
     if(this.gameOver) return
     this.ctx.clearRect(0, 0, this.game.width, this.game.height);
@@ -123,6 +125,8 @@ export class EndurenceGamePageComponent {
   }
 
   placeObstacle = () => {
+
+    if(this.gameOver) return
     const rand: number = this.questionService.getRandom(1, 2);
 
     this.obstacleIgm = new Image();
@@ -145,11 +149,10 @@ export class EndurenceGamePageComponent {
     this.ctx.beginPath();
     this.ctx.strokeStyle = this.pipboyColor;
     this.ctx.moveTo(0, this.roadHeight);
-    this.ctx.lineTo(300, this.roadHeight);
+    this.ctx.lineTo(this.game.width, this.roadHeight);
     this.ctx.lineWidth = 3;
     this.ctx.stroke();
   }
-
 
   detectCollision(a:any, b:any):boolean{
 
@@ -158,8 +161,6 @@ export class EndurenceGamePageComponent {
            a.y < b.y + b.height &&
            a.y + a.height > b.y;
   }
-
-
 
   ngOnInit(): void {
     const canvas: HTMLCanvasElement = this.gameRef.nativeElement;
