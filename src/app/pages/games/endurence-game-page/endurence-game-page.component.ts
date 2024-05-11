@@ -75,9 +75,14 @@ export class EndurenceGamePageComponent {
   }
 
   jumpCharacter(e: KeyboardEvent) {
+
+    console.log(this.character.y);
+    console.log(this.roadHeight - (this.character.height  + 5));
+    
+
     if (
       e.code === 'ArrowUp' &&
-      this.character.y >= this.roadHeight - (this.character.height + 5)
+      this.character.y >= this.roadHeight - (this.character.height  + 5)
     ) {
       this.yVelocity = -1.2;
     }
@@ -159,13 +164,34 @@ export class EndurenceGamePageComponent {
 
   placeObstacle = () => {
     if (this.gameOver) return;
-    const rand: number = this.questionService.getRandom(1, 2);
+    const medRand: number = this.questionService.getRandom(1, 2);
+    const highRand: number = this.questionService.getRandom(3, 4);
+console.log(medRand);
+console.log(highRand);
 
-    this.obstacleIgm = new Image();
-    this.obstacleIgm.src = '../../../../assets/obstacle' + rand + '.svg';
+    // this.obstacleIgm = new Image();
+    // this.obstacleIgm.src = '../../../../assets/obstacle' + rand + '.svg';
 
-    const obstacle: Obstacle = {
-      img: this.obstacleIgm!,
+    const smallObstacleImg = new Image();
+    smallObstacleImg.src = '../../../../assets/obstacle5.svg'
+
+    const mediumObstacleImg = new Image();
+    mediumObstacleImg.src = '../../../../assets/obstacle' + medRand + '.svg';
+        
+    const highObstacleImg = new Image();
+    highObstacleImg.src = '../../../../assets/obstacle' + highRand + '.svg';
+
+    const obstacleSmall: Obstacle = {
+      img: smallObstacleImg!,
+      x: this.game.width,
+      y: this.roadHeight - 23,
+      width: 23,
+      height: 23,
+      passed: false,
+    };
+
+    const obstacleMedium: Obstacle = {
+      img: mediumObstacleImg!,
       x: this.game.width,
       y: this.roadHeight - 31,
       width: 31,
@@ -173,7 +199,18 @@ export class EndurenceGamePageComponent {
       passed: false,
     };
 
-    this.obstacles.push(obstacle);
+    const obstacleHigh: Obstacle = {
+      img: highObstacleImg!,
+      x: this.game.width,
+      y: this.roadHeight - 54,
+      width: 30,
+      height: 54,
+      passed: false,
+    };
+
+    const allObstacles:Obstacle[] = [obstacleSmall, obstacleMedium, obstacleHigh]
+
+    this.obstacles.push(allObstacles[this.questionService.getRandom(0, (allObstacles.length - 1))]);
     console.log(this.obstacles);
   };
 
