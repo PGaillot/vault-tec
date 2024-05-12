@@ -19,6 +19,7 @@ import { EndurenceGamePageComponent } from './pages/games/endurence-game-page/en
 import { StrengthGamePageComponent } from './pages/games/strength-game-page/strength-game-page.component'
 import { PerceptionGamePageComponent } from './pages/games/perception-game-page/perception-game-page.component'
 import { CharismaGamePageComponent } from './pages/games/charisma-game-page/charisma-game-page.component'
+import { AgilityGamePageComponent } from './pages/games/agility-game-page/agility-game-page.component'
 
 export const routes: Routes = [
   {
@@ -78,7 +79,7 @@ export const routes: Routes = [
   },
   {
     path: 'agility-exercise',
-    component: LuckGamePageComponent,
+    component: AgilityGamePageComponent,
   },
   {
     path: 'luck-exercise',
