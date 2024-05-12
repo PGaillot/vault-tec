@@ -3,16 +3,26 @@
   <div id="header">
 
     <div class="illustration glitch">
-
       @defer (on timer(3s)) {
-        <img src="../../../assets/simple-vaultboy-2.svg" alt="">
+        <img class="finish" src="../../../assets/simple-vaultboy-2.svg" alt="">
       }@placeholder {
         <img class="intro" src="../../../assets/simple-vaultboy.svg" alt="">
       }
 
+      <div class="vault-wrapper">
+        <img class="vault" src="../../../assets/vault-stroke.svg" alt="">
+      </div>
     </div>
 
-    <h1 >Vault-tec a besoin de vous</h1>
+
+    <h1>Vault-tec a besoin de vous !</h1>
+
+    @defer (on timer(3s)) {
+      <h3 class="glitch">... et vous avez besoin de Vault-tec !</h3>
+    }
+  @placeholder {
+    <h3> </h3>
+  }
   </div>
 
 
