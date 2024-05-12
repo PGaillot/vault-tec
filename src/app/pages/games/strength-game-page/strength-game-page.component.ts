@@ -384,7 +384,7 @@ export class StrengthGamePageComponent {
             this.shoots = this.shoots.filter((s: Shoot) => s !== shoot);
             enemy.dead = true;
 
-            this.score += 1 - (enemy.line / 10 + 0.1);
+            this.score += (1 - (enemy.line / 10 + 0.1));
             console.log('Boom !');
           }
         });
