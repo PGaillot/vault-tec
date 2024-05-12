@@ -17,6 +17,7 @@ import { QuestionComponent } from './components/question/question.component'
 import { LuckGamePageComponent } from './pages/games/luck-game-page/luck-game-page.component'
 import { EndurenceGamePageComponent } from './pages/games/endurence-game-page/endurence-game-page.component'
 import { StrengthGamePageComponent } from './pages/games/strength-game-page/strength-game-page.component'
+import { CharismaGamePageComponent } from './pages/games/charisma-game-page/charisma-game-page.component'
 
 export const routes: Routes = [
   {
@@ -68,7 +69,7 @@ export const routes: Routes = [
   },
   {
     path: 'charisma-exercise',
-    component: LuckGamePageComponent,
+    component: CharismaGamePageComponent,
   },
   {
     path: 'intelligence-exercise',
