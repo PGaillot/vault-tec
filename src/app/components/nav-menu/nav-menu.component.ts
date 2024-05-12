@@ -38,7 +38,7 @@ export class NavMenuComponent {
 
     {
       name: 's.p.e.c.i.a.l.',
-      shortName: 'special',
+      shortName: 'spec.',
       routerLink: '/special',
     },
 

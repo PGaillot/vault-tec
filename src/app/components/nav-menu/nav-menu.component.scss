@@ -6,9 +6,16 @@
   justify-content: space-between;
   padding: 1rem 2rem;
   align-items: center;
+  .main{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    max-width: 10rem;
+  }
   li {
     cursor: pointer;
     padding: 0.4rem 0.8rem;
+
 
     svg {
       height: 2rem;
