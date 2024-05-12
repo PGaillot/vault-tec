@@ -21,8 +21,8 @@
     
     <h2>Félicitation !</h2>
     <p>Nous avons le plaisir de vous informer que vous avez été séléctionné pour rejoindre l'équipe VAULT-TEC au seins de son équipe de {{jobSelected}}.</p>
-    <button>accepter le poste*</button>
-    <p>*dans le cas où vous ne seriez pas interssé par le poste proposé, vous pourriez également être interssé par un poste dans l'équipe de <span class="link">{{alternativeJobSelected}}</span>.</p>
+    <button (click)="navToExervice(jobSelected!)">Commencer l'exercice {{jobSelected}}*</button>
+    <p>*dans le cas où vous ne seriez pas interssé par le poste proposé, vous pourriez également être interssé par un poste dans l'équipe de <span class="link" (click)="navToExervice(alternativeJobSelected!)">{{alternativeJobSelected}}</span>.</p>
 
   } @placeholder{ <app-logo-loader></app-logo-loader> 
   CHARGEMENT} }@else {

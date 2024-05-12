@@ -22,7 +22,7 @@ export class JobFormComponent {
   questionIndex: number = -1;
   currentQuestion?: Question;
   questions: Question[] = [];
-  answer: number[] = [];
+  answers: number[] = [];
   rndJob: number = 0;
   jobSelected?: JobType;
   alternativeJobSelected?: JobType;
@@ -60,19 +60,37 @@ export class JobFormComponent {
 
   questionAnswer(points: number) {
     this.questionIndex += 1;
-    this.answer = [...this.answer, points];
-    console.log(this.answer);
+    this.answers = [...this.answers, points];
 
 
 
-    if(this.answer.length === this.questions.length){
+    if(this.answers.length === this.questions.length){
       let asw:any[] = []
-      this.answer.forEach((a, i) => {
+      this.answers.forEach((a, i) => {
         const question:Question = this.questions[i]
         asw = [...asw, {question, a}]
       })
       this.jobSelected = asw[0].question.type
       this.alternativeJobSelected = asw[1].question.type
+    }
+  }
+
+  navToExervice(jobType:JobType){
+    switch(jobType){
+      case JobType.S:
+        return this.router.navigate(['strength-exercise'])
+      case JobType.P:
+        return this.router.navigate(['perception-exercise'])
+      case JobType.E:
+        return this.router.navigate(['endurance-exercise'])
+      case JobType.C:
+        return this.router.navigate(['charisma-exercise'])
+      case JobType.I:
+        return this.router.navigate(['intelligence-exercise'])
+        case JobType.A:
+        return this.router.navigate(['agility-exercise'])
+        case JobType.L:
+        return this.router.navigate(['luck-exercise'])
     }
   }
 
@@ -87,8 +105,6 @@ export class JobFormComponent {
       this.alterateSpecialName += bpValue.key;
     });
 
-    // console.table(bestPerk);
-    // console.table(this.alterateSpecialName);
 
     const questionOne: JobType =
       JobType[bestPerk[0].key as keyof typeof JobType];

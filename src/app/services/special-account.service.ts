@@ -12,7 +12,7 @@ export class SpecialAccountService {
   constructor(private gameService: GameService) {}
 
   generateSpecialKey(specialAccount: SpecialAccount): string {
-    console.log(this.cryptSpecial(specialAccount.special));
+    // console.log(this.cryptSpecial(specialAccount.special));
 
     return btoa(JSON.stringify(specialAccount));
   }
@@ -24,7 +24,7 @@ export class SpecialAccountService {
     Object.keys(special).forEach((key: string) => {
       perks = [...perks, special[key as keyof typeof special]];
     });
-    console.log(perks);
+    // console.log(perks);
 
     perks.forEach((n: number) => {
       let crypt: any = (n + 2).toString(16);
@@ -34,7 +34,7 @@ export class SpecialAccountService {
       }
       cryptedPerks.push(crypt);
     });
-    console.log(cryptedPerks.join(''));
+    // console.log(cryptedPerks.join(''));
 
     return cryptedPerks.join('');
   }
@@ -53,7 +53,7 @@ export class SpecialAccountService {
     });
    
   
-    console.log('Special décodé:', decodePerks);
+    // console.log('Special décodé:', decodePerks);
 
 
     const specialOutput:SPECIAL = {

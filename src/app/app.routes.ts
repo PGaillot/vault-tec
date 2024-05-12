@@ -50,7 +50,35 @@ export const routes: Routes = [
       {
         path:"find-a-job",
         component:JobFormComponent,
-      }
+      },
+      {
+        path: 'strength-exercise',
+        component: StrengthGamePageComponent,
+      },
+      {
+        path: 'perception-exercise',
+        component: PerceptionGamePageComponent,
+      },
+      {
+        path: 'endurance-exercise',
+        component: EndurenceGamePageComponent,
+      },
+      {
+        path: 'charisma-exercise',
+        component: CharismaGamePageComponent,
+      },
+      {
+        path: 'intelligence-exercise',
+        component: TerminalGameComponent,
+      },
+      {
+        path: 'agility-exercise',
+        component: AgilityGamePageComponent,
+      },
+      {
+        path: 'luck-exercise',
+        component: LuckGamePageComponent,
+      },
     ]
   },
   {
