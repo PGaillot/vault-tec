@@ -1,33 +1,49 @@
-@import '../../../styles.scss';
-
+@import "../../../styles.scss";
 
 #header-menu {
-    text-transform: uppercase;
-  }
-  
-  ul {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    align-items: center;
-    li {
-      cursor: pointer;
-      padding: 0.4rem 0.8rem;
-  
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  align-items: center;
+  li {
+    cursor: pointer;
+    padding: 0.4rem 0.8rem;
+
+    svg {
+      height: 2rem;
+      width: 6rem;
+      fill: $pipboy;
+    }
+
+    &:hover {
+      color: $background;
+      background: $pipboy;
+      font-weight: 700;
+
       svg {
-        height: 2rem;
-        width: 6rem;
-        fill: $pipboy;
-      }
-  
-      &:hover {
-        color: $background;
-        background: $pipboy;
-        font-weight: 700;
-  
-        svg {
-          fill: $background;
-        }
+        fill: $background;
       }
     }
   }
+}
+
+
+@media only screen and (min-width: 1824px) {
+  #header-menu {
+    $size: 50%;
+    width: $size;
+    padding-left: calc((100% - $size) / 2);
+  }
+}
+
+
+@media only screen and (max-width: 900px) {
+  #header-menu {
+    svg {
+      height: 1.5rem;
+      width: 4rem;
+      fill: $pipboy;
+    }
+  }
+}

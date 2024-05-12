@@ -379,15 +379,9 @@ input[type='radio'] {
 
 body {
   animation: blur 5s ease-in-out infinite;
-  // height: 100vh;
 }
 
 @media only screen and (min-width: 1824px) {
-  #header-menu {
-    $size: 50%;
-    width: $size;
-    padding-left: calc((100% - $size) / 2);
-  }
   .page {
     $size: 60%;
     width: $size;
