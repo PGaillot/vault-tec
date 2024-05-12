@@ -1,13 +1,42 @@
-@import '../../../styles.scss';
+@import "../../../styles.scss";
 
 #job-home-page {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 
-  label{
-      display: flex;
-      gap: 0.5rem;
+  #header {
+    h1 {
+      padding: 0;
+      margin: 0;
+    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    padding-bottom: 3rem;
+
+    .illustration {
+      height: 18rem;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+
+      .intro {
+        position: absolute;
+        transform: translateX(-50%);
+        left: 50%;
+        animation: appear 1s ease-in 1s both;
+      }
+    }
+
+
+  }
+
+  label {
+    display: flex;
+    gap: 0.5rem;
   }
   #key-wrapper {
     display: flex;
@@ -36,20 +65,30 @@
     min-height: 6rem;
     text-align: center;
     gap: 0.5rem;
-    app-logo-loader{
-        transform: scale(0.8);
+    app-logo-loader {
+      transform: scale(0.8);
     }
   }
 
   .error-msg {
     &::before,
     &::after {
-        content: ' *** ';
+      content: " *** ";
     }
   }
 
-  .error-marker{
+  .error-marker {
     width: 0.5rem;
     background: $pipboy;
   }
 }
+
+@keyframes appear {
+  from {
+    top: 18rem;
+  }
+  to {
+    top: 0;
+  }
+}
+

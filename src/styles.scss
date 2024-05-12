@@ -248,6 +248,13 @@ input[type='radio'] {
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'FontdinerSwanky';
+  src: url('assets/fonts/FontdinerSwanky-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @mixin hint-text-box($text) {
   @extend .box;
   position: relative;
