@@ -6,7 +6,6 @@
   height: 4rem;
   font-size: 2.5rem;
   font-weight: 900;
-  display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
@@ -53,6 +52,7 @@
     width: 100%;
     border: 3px solid $pipboy;
     user-select: none;
+    z-index: -1;
   }
 
   &:hover {

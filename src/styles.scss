@@ -325,6 +325,13 @@ input[type='radio'] {
   @include hint-img-box(url('/assets/vaultboy.svg'), 'super !');
 }
 
+.github-box {
+  @include hint-img-box(url('/assets/github-bg.svg'), 'github');
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .vault-title {
   position: relative;
   padding-left: 56px;
