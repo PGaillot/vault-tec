@@ -17,6 +17,7 @@ import { QuestionComponent } from './components/question/question.component'
 import { LuckGamePageComponent } from './pages/games/luck-game-page/luck-game-page.component'
 import { EndurenceGamePageComponent } from './pages/games/endurence-game-page/endurence-game-page.component'
 import { StrengthGamePageComponent } from './pages/games/strength-game-page/strength-game-page.component'
+import { PerceptionGamePageComponent } from './pages/games/perception-game-page/perception-game-page.component'
 
 export const routes: Routes = [
   {
@@ -60,7 +61,7 @@ export const routes: Routes = [
   },
   {
     path: 'perception-exercise',
-    component: LuckGamePageComponent,
+    component: PerceptionGamePageComponent,
   },
   {
     path: 'endurance-exercise',
