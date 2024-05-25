@@ -4,7 +4,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { SoundsService } from './services/sounds.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import {
   FormControl,
   FormControlName,
@@ -22,6 +22,7 @@ import { SettingsService } from './services/settings.service';
     NavMenuComponent,
     AsyncPipe,
     ReactiveFormsModule,
+    NgClass
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

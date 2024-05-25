@@ -1,3 +1,11 @@
+<div
+  id="screen"
+  [ngClass]="{
+    'line-pref': linePreference.value,
+    'effect-pref': effectPreference.value
+  }"
+></div>
+
 <app-nav-menu></app-nav-menu>
 
 <div id="outlet">
@@ -58,14 +66,23 @@
     </div>
 
     <div class="setting">
-      <input type="checkbox" name="line-effect" id="line-effect" [formControl]="linePreference" />
+      <input
+        type="checkbox"
+        name="line-effect"
+        id="line-effect"
+        [formControl]="linePreference"
+      />
       <label for="line-effect">line effect</label>
     </div>
 
     <div class="setting">
-      <input type="checkbox" name="visual-effect" id="visual-effect" [formControl]="effectPreference" />
+      <input
+        type="checkbox"
+        name="visual-effect"
+        id="visual-effect"
+        [formControl]="effectPreference"
+      />
       <label for="visual-effect">visual effect</label>
     </div>
   </div>
-
 </div>
