@@ -28,40 +28,30 @@ import {
 export class AppComponent {
   title = 'VAULT-TEC';
   muted: BehaviorSubject<boolean>;
-  volume: FormControl = new FormControl(0.2);
-
+  volume: FormControl = new FormControl(0);
   constructor(private soundsService: SoundsService) {
     this.muted = soundsService.muted;
+    this.volume.setValue(this.soundsService.initialVolume.value * 10)
   }
 
   toogleMute() {
     this.soundsService.toggleMute();
   }
 
-
   onVolumeChange(volume: number) {
-    console.log('Volume changed to:', volume);
-    // Vous pouvez ajouter ici le code pour mettre à jour le volume dans le service
     this.soundsService.volume.next(volume);
   }
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
 
+    
     this.volume.valueChanges.subscribe({
       next: (value) => {
-
         if(value){
           this.onVolumeChange(value / 10)
         }
       },
     });
 
-    // this.volume..subscribe({
-    //   next: (value) => {
-    //     console.log(value + '!!!');
-    //   },
-    // })
   }
 }

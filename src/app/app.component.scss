@@ -1,19 +1,41 @@
-@import '../styles.scss';
+@import "../styles.scss";
 #outlet {
-  // display: flex;
-  // align-items: center;
-  // width: 100%;
   margin-top: 5rem;
 }
 
-
-#sound-menu{
+#sound-menu {
   position: sticky;
-  bottom: 0;
-  right: 0;
+  bottom: 2rem;
+  margin-left: 2rem;
 
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+
+  .slider {
+    -webkit-appearance: none; 
+    appearance: none;
+    width: 10rem; 
+    height: 10px; 
+    outline: 4px solid $pipboy;
+    background: none;
+    opacity: 1; 
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none; 
+      appearance: none;
+      width: 10px; 
+      height: 10px; 
+      background: $pipboy;; 
+      cursor: pointer; 
+    }
+    &::-moz-range-thumb {
+      width: 10px; 
+      height: 10px;
+      background: $pipboy; 
+      cursor: pointer; 
+    }
+  }
 }
 
 @keyframes brightness {

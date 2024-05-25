@@ -7,12 +7,30 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 export class SoundsService {
 
   constructor() {
-    this.subscription = [
-      ...this.subscription, 
-    ]
+     const userVolume:string | null = sessionStorage.getItem(this.volumePrefKey);
+
+     if(userVolume){
+       this.initialVolume =  new BehaviorSubject<number>(parseFloat(userVolume))
+      } else {
+        this.initialVolume =  new BehaviorSubject<number>(0.3)
+      }
+      this.volume = new BehaviorSubject<number>(this.initialVolume.value)
+
+      this.subscription = [
+       ...this.subscription, 
+       this.volume.subscribe({
+         next:(value) => {
+             sessionStorage.setItem(this.volumePrefKey, value.toString())
+         },
+       })
+       
+     ]
+
   }
 
-  public volume:BehaviorSubject<number> = new BehaviorSubject<number>(0.2);
+  volumePrefKey:string = 'vault-tec_pref_vol'
+  public initialVolume:BehaviorSubject<number>;
+  public volume:BehaviorSubject<number>;
   public muted:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   subscription:Subscription[] = [];
 
@@ -44,12 +62,14 @@ export class SoundsService {
     audio.load();
     audio.volume = this.volume.getValue();
     audio.play();    
-    console.log('audio error')
+  }
+
+  ngOnInit(): void {
+    
+    
   }
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
     this.subscription.forEach((sub:Subscription) => sub.unsubscribe())
   }
   
