@@ -4,6 +4,7 @@ import { SpecialAccountService } from '../../services/special-account.service'
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
 import { SpecialAccount } from '../../models/special.model'
 import { LogoLoaderComponent } from '../../components/logo-loader/logo-loader.component'
+import { SoundsService } from '../../services/sounds.service'
 
 @Component({
   selector: 'app-job-home-page',
@@ -22,6 +23,7 @@ export class JobHomePageComponent {
     private accountSevice: SpecialAccountService,
     private router: Router,
     private route: ActivatedRoute,
+    private soundsServices:SoundsService,
   ) {}
 
   errorCount: number = 0
@@ -33,8 +35,11 @@ export class JobHomePageComponent {
   key: string | undefined
 
   onSubmitKey() {
+
+    this.soundsServices.playAudioClick()
+    
     const randomLoading: number =
-      Math.floor(Math.random() * (1500 - 500 + 1)) + 500
+    Math.floor(Math.random() * (1500 - 500 + 1)) + 500
     this.loading = true
     const inputText: string = this.keyFormControl.value
     setTimeout(() => {
@@ -50,6 +55,7 @@ export class JobHomePageComponent {
           this.key = inputText
         }
       } catch (error) {
+        this.soundsServices.playAudioError()
         this.keyFormControl.setValue('')
         this.loading = false
         this.errorCount += 1
@@ -57,12 +63,17 @@ export class JobHomePageComponent {
       }
     }, randomLoading)
   }
-
+  
   navToJobForm() {
+    this.soundsServices.playAudioClick()
     this.router.navigate(['find-a-job'], {
       relativeTo:this.route.parent,
       queryParams: { SPECIALkey: this.key },
     })
+  }
+  
+  playAudioClick(){
+    this.soundsServices.playAudioClick()
   }
 
   navToError() {

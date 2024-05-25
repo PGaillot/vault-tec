@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormService } from '../../services/form.service';
+import { SoundsService } from '../../services/sounds.service';
 
 export interface MessagePageData{
   contents:string[];
@@ -27,7 +28,8 @@ export class MessagePageComponent {
   constructor(
     private route:ActivatedRoute,
     private router:Router,
-    private formService:FormService
+    private formService:FormService,
+    private soundsServices:SoundsService
   ){
     this.route.queryParams.subscribe({
       next:(value) => {
@@ -47,6 +49,7 @@ export class MessagePageComponent {
 
 
   navToDestination(destination:string){
+    this.soundsServices.playAudioClick()
     this.router.navigate([destination], {relativeTo:this.route.root})
   }
 }

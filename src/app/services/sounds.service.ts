@@ -16,5 +16,14 @@ export class SoundsService {
     audio.volume = this.volume;
     audio.play();    
   }
+
+  playAudioError(){
+    let audio = new Audio();
+    audio.src = "../../../assets/sounds/console-error.mp3";
+    audio.load();
+    audio.volume = this.volume;
+    audio.play();    
+    console.log('audio error')
+  }
   
 }

@@ -39,7 +39,7 @@
   </p>
 
   
-  <button [routerLink]="'data'">je veux devenir special !</button>
+  <button [routerLink]="'data'" (click)="playAudio()">je veux devenir special !</button>
 
   <div id="perks">
     @for (perk of perks; track perk) {
