@@ -20,6 +20,7 @@ import { StrengthGamePageComponent } from './pages/games/strength-game-page/stre
 import { PerceptionGamePageComponent } from './pages/games/perception-game-page/perception-game-page.component'
 import { CharismaGamePageComponent } from './pages/games/charisma-game-page/charisma-game-page.component'
 import { AgilityGamePageComponent } from './pages/games/agility-game-page/agility-game-page.component'
+import { VaultHomePageComponent } from './pages/vault-home-page/vault-home-page.component'
 
 export const routes: Routes = [
   {
@@ -34,6 +35,12 @@ export const routes: Routes = [
   {
     path: 'vault',
     component: VaultPageComponent,
+    children:[
+      {
+        path:'',
+        component:VaultHomePageComponent
+      }
+    ]
   },
   {
     path: 'job',

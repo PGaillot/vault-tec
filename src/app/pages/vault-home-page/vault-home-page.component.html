@@ -1,0 +1,16 @@
+<form [formGroup]="addressForm" (submit)="submit($event)"> 
+    <input type="text" formControlName="zipcodeInput" >
+    <button type="submit" [disabled]="!addressForm.valid">Rechercher un abris</button>
+</form>
+
+
+<div class="vault-list">
+
+    @for (vault of dummyVaultList; track vault) {
+    <div class="vault-element">
+        <span>{{vault.name}}</span>
+        <span>{{vault.completeAddress}}</span>
+        <button>Reserver ma place</button>
+    </div>
+    }
+</div>
