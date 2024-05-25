@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { SoundsService } from '../../services/sounds.service';
 
 @Component({
   selector: 'app-question',
@@ -22,7 +23,11 @@ export class QuestionComponent {
     answer: new FormControl(null, [Validators.required]),
   });
 
+
+  constructor(private soundsServices:SoundsService){}
+
   onSubmit(points: number) {
+    this.soundsServices.playAudioClick()
     const p:number = this.answerForm.value.answer
     this.points.emit(p);
     this.answerForm.reset();

@@ -7,6 +7,7 @@ import {
 } from '@angular/forms'
 import { ActivatedRoute, Router, RouterLink } from '@angular/router'
 import { FormService } from '../../services/form.service'
+import { SoundsService } from '../../services/sounds.service'
 
 export interface DataFromData {
   name: string
@@ -28,6 +29,7 @@ export class DataFormComponent {
     private router: Router,
     private route: ActivatedRoute,
     private formService: FormService,
+    private soundsServices:SoundsService
   ) {}
 
   dataForm = new FormGroup({
@@ -44,6 +46,7 @@ export class DataFormComponent {
   })
 
   onSubmit() {
+    this.soundsServices.playAudioClick();
     const value: DataFromData = {
       name: this.dataForm.get(['name'])?.value,
       birthyear: this.dataForm.get(['birthyear'])?.value,

@@ -10,6 +10,7 @@ import { UpperCasePipe } from '@angular/common'
 import { PerkService } from '../../services/perk.service'
 import { Perk } from '../../models/perk.model'
 import { PERKS } from '../../data/perks.data'
+import { SoundsService } from '../../services/sounds.service'
 
 export interface SpecialFormData {
   special: SPECIAL
@@ -51,6 +52,7 @@ export class SpecialFormComponent {
     private router: Router,
     private route: ActivatedRoute,
     private perkService:PerkService,
+    private soundsServices:SoundsService
   ) {
     this.route.queryParams.subscribe({
       next: (value) => {
@@ -94,6 +96,10 @@ export class SpecialFormComponent {
   }
 
   send() {
+
+    this.soundsServices.playAudioClick()
+
+
     const specialFormData: SpecialFormData = {
       special: this.special,
       createdAt: new Date(),

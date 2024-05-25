@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { SoundsService } from '../../services/sounds.service';
 
 interface NavMenuItem {
   name: string;
@@ -49,14 +50,11 @@ export class NavMenuComponent {
     },
   ];
 
-  constructor(private observer: BreakpointObserver) {}
+  constructor(private observer: BreakpointObserver, private soundsService:SoundsService) {}
 
 
   playAudio(){
-    let audio = new Audio();
-    audio.src = "../../../assets/sounds/pen-click.mp3";
-    audio.load();
-    audio.play();    
+    this.soundsService.playAudioClick()
   }
 
 
@@ -64,5 +62,5 @@ export class NavMenuComponent {
     this.observer.observe(Breakpoints.Small).subscribe(res => this.smallScreen = res.matches);
     this.observer.observe(Breakpoints.XSmall).subscribe(res => this.smallScreen = res.matches);
   }
-  
+
 }

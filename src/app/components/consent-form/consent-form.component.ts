@@ -11,6 +11,7 @@ import {
 import { SpecialAccount } from '../../models/special.model';
 import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
 import { SpecialAccountService } from '../../services/special-account.service';
+import { SoundsService } from '../../services/sounds.service';
 
 @Component({
   selector: 'app-consent-form',
@@ -32,7 +33,8 @@ export class ConsentFormComponent {
     private route: ActivatedRoute,
     private formService: FormService,
     private router: Router,
-    private specialAccountService: SpecialAccountService
+    private specialAccountService: SpecialAccountService,
+    private soundsServices:SoundsService
   ) {
     this.route.queryParams.subscribe({
       next: (value) => {
@@ -57,6 +59,9 @@ export class ConsentFormComponent {
   }
 
   onSubmit(e: Event) {
+
+    this.soundsServices.playAudioClick()
+
     this.sendLoading = true;
 
     e.preventDefault();

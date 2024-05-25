@@ -8,6 +8,7 @@ import { QuestionComponent } from '../question/question.component';
 import { Question } from '../../models/question.model';
 import { LogoLoaderComponent } from '../logo-loader/logo-loader.component';
 import { GameService } from '../../services/game.service';
+import { SoundsService } from '../../services/sounds.service';
 
 @Component({
   selector: 'app-job-form',
@@ -32,7 +33,8 @@ export class JobFormComponent {
     private router: Router,
     private specialService: SpecialAccountService,
     private questionService: QuestionService,
-    private gameService: GameService
+    private gameService: GameService,
+    private soundsServices:SoundsService
   ) {
     this.rndJob = this.gameService.getRandom(1, 4);
 
@@ -55,6 +57,7 @@ export class JobFormComponent {
   }
 
   beginTest() {
+    this.soundsServices.playAudioClick()
     this.questionIndex += 1;
   }
 
@@ -76,6 +79,10 @@ export class JobFormComponent {
   }
 
   navToExervice(jobType:JobType){
+
+
+    this.soundsServices.playAudioClick()
+
     switch(jobType){
       case JobType.S:
         return this.router.navigate(['strength-exercise'])
