@@ -22,37 +22,50 @@
     </svg>
   </div>
 
-  <div>
-    <svg
-      (click)="toogleMute()"
-      xmlns="http://www.w3.org/2000/svg"
-      width="32"
-      height="32"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="lucide lucide-volume-1"
-    >
-      @if (muted | async) {
-      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-      <line x1="22" x2="16" y1="9" y2="15" />
-      <line x1="16" x2="22" y1="9" y2="15" />
-      } @else {
-      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-      <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-      }
-    </svg>
+  <div id="setting">
+    <div class="setting">
+      <svg
+        (click)="toogleMute()"
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-volume-1"
+      >
+        @if (muted | async) {
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+        <line x1="22" x2="16" y1="9" y2="15" />
+        <line x1="16" x2="22" y1="9" y2="15" />
+        } @else {
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+        }
+      </svg>
 
-    <input
-      type="range"
-      min="0"
-      max="10"
-      class="slider"
-      id="myRange"
-      [formControl]="volume"
-    />
+      <input
+        type="range"
+        min="0"
+        max="10"
+        class="slider"
+        id="myRange"
+        [formControl]="volume"
+      />
+    </div>
+
+    <div class="setting">
+      <input type="checkbox" name="line-effect" id="line-effect" [formControl]="linePreference" />
+      <label for="line-effect">line effect</label>
+    </div>
+
+    <div class="setting">
+      <input type="checkbox" name="visual-effect" id="visual-effect" [formControl]="effectPreference" />
+      <label for="visual-effect">visual effect</label>
+    </div>
   </div>
+
 </div>

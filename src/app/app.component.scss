@@ -4,45 +4,49 @@
 }
 
 #sound-menu {
-
-  $menu-height:6rem;
-
+  $menu-height: 10rem;
 
   position: sticky;
   bottom: -$menu-height;
-  transition: bottom 100ms  linear;
+  transition: bottom 100ms linear;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  &:hover{
+  &:hover {
     bottom: 0;
   }
 
-  div {
+  #setting {
+    justify-content: space-evenly;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 0.5rem;
+    cursor: pointer;
+    .setting {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
     height: $menu-height;
     outline: 4px solid $pipboy;
-    padding: 0 1rem;
+    padding: 0 2rem;
     background: $background;
   }
 
   .setting-btn {
     height: 3.5rem;
-    width:  3.5rem;
+    width: 3.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0.2rem;
     background: $pipboy;
 
-    &:hover{
-
-      svg{
+    &:hover {
+      svg {
         animation: turn 5s;
       }
-  }
+    }
   }
 
   .slider {
@@ -53,6 +57,7 @@
     outline: 4px solid $pipboy;
     background: none;
     opacity: 1;
+    cursor: pointer;
 
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
