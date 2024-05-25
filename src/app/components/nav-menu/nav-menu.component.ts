@@ -61,10 +61,8 @@ export class NavMenuComponent {
 
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     this.observer.observe(Breakpoints.Small).subscribe(res => this.smallScreen = res.matches);
     this.observer.observe(Breakpoints.XSmall).subscribe(res => this.smallScreen = res.matches);
-
   }
+  
 }

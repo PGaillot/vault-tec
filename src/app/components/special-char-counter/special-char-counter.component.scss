@@ -17,9 +17,11 @@
     font-size: 1rem;
     color: $background;
     z-index: 2;
+    margin: 0;
   }
 
   .char {
+    position: relative;
     font-family: 'chowderhead';
     z-index: 1;
     width: 100%;
@@ -52,7 +54,7 @@
     width: 100%;
     border: 3px solid $pipboy;
     user-select: none;
-    z-index: -1;
+    z-index: 0;
   }
 
   &:hover {

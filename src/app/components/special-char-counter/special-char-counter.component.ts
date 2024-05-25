@@ -21,7 +21,6 @@ export class SpecialCharCounterComponent {
     }
   }
 
-
   onMoreClick() {
       this.updatePerk.emit({'perk':this.char, 'data': 1})
   }
