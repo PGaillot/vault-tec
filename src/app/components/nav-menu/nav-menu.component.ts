@@ -51,6 +51,15 @@ export class NavMenuComponent {
 
   constructor(private observer: BreakpointObserver) {}
 
+
+  playAudio(){
+    let audio = new Audio();
+    audio.src = "../../../assets/sounds/pen-click.mp3";
+    audio.load();
+    audio.play();    
+  }
+
+
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.

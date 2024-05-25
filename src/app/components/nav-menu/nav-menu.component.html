@@ -1,7 +1,7 @@
 <ul id="header-menu">
   @for (item of menuItems; track item) { @if(item.name === 'home' &&
   !smallScreen){
-  <li [routerLink]="'/' + item.routerLink" class="main">
+  <li [routerLink]="'/' + item.routerLink" class="main" (click)="playAudio()">
     <svg
       width="399"
       height="133"
@@ -16,12 +16,12 @@
     </svg>
   </li>
   } @else if (item.name === 'home') {
-  <li [routerLink]="'/' + item.routerLink">
+  <li [routerLink]="'/' + item.routerLink" (click)="playAudio()">
     {{ smallScreen ? item.shortName : item.name }}
   </li>
 
   } @else {
-  <li [routerLink]="'/' + item.routerLink">
+  <li [routerLink]="'/' + item.routerLink" (click)="playAudio()">
     {{ smallScreen ? item.shortName : item.name }}
   </li>
   } }
