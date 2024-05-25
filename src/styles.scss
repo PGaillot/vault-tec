@@ -312,7 +312,6 @@ input[type='radio'] {
 .effect-pref{
   box-shadow: 0 0 5vmin 1vmin rgba(0, 0, 0, 0.78) inset;
   animation: brightness 5s ease-in-out infinite;
-  animation: blur 5s ease-in-out infinite;
 }
 
 .line-pref{
@@ -321,6 +320,7 @@ input[type='radio'] {
 }
 
 .page {
+  animation: blur 5s ease-in-out infinite;
   padding: 0 2rem;
 }
 
