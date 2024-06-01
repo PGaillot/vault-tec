@@ -51,6 +51,16 @@ export class AppComponent {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 
+  onAnimationStart() {
+    document.getElementById('footer')!.classList.add('hide-during-animation');
+    document.getElementById('sound-menu')!.classList.add('hide-during-animation');
+  }
+
+  onAnimationDone() {
+    document.getElementById('footer')!.classList.remove('hide-during-animation');
+    document.getElementById('sound-menu')!.classList.remove('hide-during-animation');
+  }
+
   toogleMute() {
     this.soundsService.toggleMute();
   }

@@ -3,6 +3,17 @@
   margin-top: 5rem;
 }
 
+.router-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hide-during-animation {
+  visibility: hidden;
+}
+
 #sound-menu {
   $menu-height: 10rem;
 

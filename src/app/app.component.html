@@ -8,11 +8,18 @@
 
 <app-nav-menu></app-nav-menu>
 
-<div  [@routeAnimations]="prepareRoute(outlet)">
-  <router-outlet  #outlet="outlet"></router-outlet>
+
+<div class="router-container">
+  <div  id="outlet"
+  [@routeAnimations]="prepareRoute(outlet)"
+  (@routeAnimations.start)="onAnimationStart()"
+  (@routeAnimations.done)="onAnimationDone()"
+  >
+    <router-outlet   #outlet="outlet"></router-outlet>
+  </div>
 </div>
 
-<app-footer></app-footer>
+<app-footer id="footer"></app-footer>
 
 <div id="sound-menu">
   <div class="setting-btn">

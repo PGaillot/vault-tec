@@ -26,6 +26,9 @@ export const routes: Routes = [
     path: '',
     redirectTo: '/home',
     pathMatch: 'full',
+    data:{
+      animation:'HomePage'
+    }
   },
   {
     path: 'home',
@@ -34,13 +37,20 @@ export const routes: Routes = [
       animation:'HomePage'
     }
   },
+  
   {
     path: 'vault',
     component: VaultPageComponent,
+    data:{
+      animation:'VaultPage'
+    }
   },
   {
     path: 'job',
     component: JobPageComponent,
+    data:{
+      animation:'JobPage'
+    },
     children:[
       {
         path:"",
@@ -87,6 +97,9 @@ export const routes: Routes = [
   {
     path: 'contact',
     component: ContactPageComponent,
+    data:{
+      animation:'ContactPage'
+    }
   },
   {
     path: 'strength-exercise',
@@ -119,6 +132,9 @@ export const routes: Routes = [
   {
     path: 'special',
     component: SpecialPageComponent,
+    data:{
+      animation:'SpecialPage'
+    },
     children: [
       { path: '', component: SpecialHomePageComponent },
       { path: 'data', component: DataFormComponent },
@@ -126,12 +142,12 @@ export const routes: Routes = [
       { path: 'consent', component: ConsentFormComponent },
       { path: 'email-send', component: MessagePageComponent },
     ],
-    data:{
-      animation:'SpecialPage'
-    }
   },
   {
     path: '**',
     component: NotFoundPageComponent,
+    data:{
+      animation:'NotFoundPage'
+    }
   },
 ]
