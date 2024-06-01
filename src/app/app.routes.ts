@@ -30,6 +30,9 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomePageComponent,
+    data:{
+      animation:'HomePage'
+    }
   },
   {
     path: 'vault',
@@ -123,6 +126,9 @@ export const routes: Routes = [
       { path: 'consent', component: ConsentFormComponent },
       { path: 'email-send', component: MessagePageComponent },
     ],
+    data:{
+      animation:'SpecialPage'
+    }
   },
   {
     path: '**',

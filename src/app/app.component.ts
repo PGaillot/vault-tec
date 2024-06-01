@@ -11,6 +11,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { SettingsService } from './services/settings.service';
+import { slideInAnimation } from './animations/animations';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,7 @@ import { SettingsService } from './services/settings.service';
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  animations:[slideInAnimation]
 })
 export class AppComponent {
   title = 'VAULT-TEC';
@@ -43,6 +45,10 @@ export class AppComponent {
     this.volume.setValue(this.soundsService.initialVolume.value * 10);
     this.linePreference.setValue(this.settingSevice.linePref);
     this.effectPreference.setValue(this.settingSevice.effectPref);
+  }
+
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 
   toogleMute() {
