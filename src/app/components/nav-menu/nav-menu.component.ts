@@ -44,7 +44,7 @@ export class NavMenuComponent {
     },
 
     {
-      name: 'recurtement',
+      name: 'recrutement',
       shortName: 'job',
       routerLink: '/job',
     },
