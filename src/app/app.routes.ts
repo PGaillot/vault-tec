@@ -41,7 +41,7 @@ export const routes: Routes = [
   
   {
     path: 'vault',
-    component: VaultPageComponent,
+    component: VaultHomePageComponent,
     data:{
       animation:'VaultPage'
     }
