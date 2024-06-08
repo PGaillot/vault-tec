@@ -52,11 +52,13 @@ export class AppComponent {
   }
 
   onAnimationStart() {
+    document.getElementById('main-page')!.classList.add('full-height');
     document.getElementById('footer')!.classList.add('hide-during-animation');
     document.getElementById('sound-menu')!.classList.add('hide-during-animation');
   }
 
   onAnimationDone() {
+    document.getElementById('main-page')!.classList.remove('full-height');
     document.getElementById('footer')!.classList.remove('hide-during-animation');
     document.getElementById('sound-menu')!.classList.remove('hide-during-animation');
   }
