@@ -1,16 +1,37 @@
-<form [formGroup]="addressForm" (submit)="submit($event)"> 
-    <input type="text" formControlName="zipcodeInput" >
-    <button type="submit" [disabled]="!addressForm.valid">Rechercher un abris</button>
+<form [formGroup]="addressForm" (submit)="submit($event)">
+  <label for="country">Country</label>
+  @defer (when countries.length > 0) {
+  <select formControlName="countrySelect" name="countrySelect" id="country">
+    @for (country of countries; track country) {
+    <option [value]="country.name">{{ country.name | uppercase }}</option>
+    }
+  </select>
+  } @placeholder {
+  <div class="select">---------</div>
+
+  } @defer (when states.length > 0) { @if (states.length > 0) {
+  <select formControlName="stateSelect" name="stateSelect" id="state">
+    @for (state of states; track state) {
+    <option [value]="state.name">{{ state.name | uppercase }}</option>
+    }
+  </select>
+  } @else {
+  <div class="select">---------</div>
+  } } @placeholder {
+  <div class="select">---------</div>
+  }
 </form>
 
+@if(vaults.length > 0){
 
 <div class="vault-list">
-
-    @for (vault of dummyVaultList; track vault) {
-    <div class="vault-element">
-        <span>{{vault.name}}</span>
-        <span>{{vault.completeAddress}}</span>
-        <button>Reserver ma place</button>
-    </div>
-    }
+  @for (vault of vaults; track $index) {
+  <div class="vault-element">
+    <span>{{ vault.name }}</span>
+    <span>{{ vault.shortName }}</span>
+    <span>{{ $index | counterDisplay }}</span>
+    <button>Reserver ma place</button>
+  </div>
+  }
 </div>
+}

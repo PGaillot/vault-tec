@@ -88,7 +88,7 @@ video {
   // border: 0;
   // font-size: 100%;
   vertical-align: baseline;
-  font-family: 'Space Mono', monospace;
+  font-family: "Space Mono", monospace;
 }
 article,
 aside,
@@ -107,7 +107,8 @@ body {
   margin: 0;
   line-height: 1;
   background: $background;
-  color: $pipboy;}
+  color: $pipboy;
+}
 ol,
 ul {
   list-style: none;
@@ -120,7 +121,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: '';
+  content: "";
   content: none;
 }
 table {
@@ -133,7 +134,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Noto Sans Display', sans-serif;
+  font-family: "Noto Sans Display", sans-serif;
   font-weight: 800;
   font-stretch: ultra-condensed;
 }
@@ -152,7 +153,7 @@ button {
   text-transform: uppercase;
   font-weight: 800;
   font-size: 1.1rem;
-  font-family: 'Space Mono', monospace;
+  font-family: "Space Mono", monospace;
   border: $pipboy 3px solid;
   cursor: pointer;
 
@@ -183,17 +184,17 @@ input:-webkit-autofill:active {
   box-shadow: inset 0 0 20px 20px #23232329;
 }
 textarea,
-input[type='text'],
-input[type='number'],
-input[type='email'],
-input[type='password'] {
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"] {
   background: none;
   border: $pipboy 3px solid;
   resize: none;
   color: $pipboy;
   padding: 0.5rem;
   font-size: 1.05rem;
-  font-family: 'Space Mono', monospace;
+  font-family: "Space Mono", monospace;
 
   &:focus {
     outline: none;
@@ -211,8 +212,8 @@ input[type='password'] {
   background: $pipboy;
 }
 
-input[type='checkbox'],
-input[type='radio'] {
+input[type="checkbox"],
+input[type="radio"] {
   cursor: pointer;
   appearance: none;
   border: 3px solid $pipboy;
@@ -222,7 +223,7 @@ input[type='radio'] {
   align-items: center;
   justify-content: center;
   &::before {
-    content: '';
+    content: "";
     display: block;
     height: 0.5rem;
     width: 0.5rem;
@@ -234,7 +235,7 @@ input[type='radio'] {
   }
 }
 
-input[type='radio'] {
+input[type="radio"] {
   border-radius: 100%;
   &::before {
     border-radius: 100%;
@@ -242,15 +243,15 @@ input[type='radio'] {
 }
 
 @font-face {
-  font-family: 'chowderhead';
-  src: url('assets/fonts/chowderhead.ttf') format('truetype');
+  font-family: "chowderhead";
+  src: url("assets/fonts/chowderhead.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'FontdinerSwanky';
-  src: url('assets/fonts/FontdinerSwanky-Regular.ttf') format('truetype');
+  font-family: "FontdinerSwanky";
+  src: url("assets/fonts/FontdinerSwanky-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -291,7 +292,7 @@ input[type='radio'] {
   &::before {
     content: $text;
     display: block;
-    font-family: 'Noto Sans Display', sans-serif;
+    font-family: "Noto Sans Display", sans-serif;
     text-transform: uppercase;
     font-weight: 800;
     font-size: 1.75rem;
@@ -308,13 +309,34 @@ input[type='radio'] {
   pointer-events: none;
 }
 
+.select,
+select {
+  border: 4px solid $pipboy;
+  height: 40px;
+  background: none;
+  color: $pipboy;
+  &:focus{
+    outline: none;
+  }
 
-.effect-pref{
+
+  &::before{
+    background: yellow;
+  }
+}
+
+.select{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.effect-pref {
   box-shadow: 0 0 5vmin 1vmin rgba(0, 0, 0, 0.78) inset;
   animation: brightness 5s ease-in-out infinite;
 }
 
-.line-pref{
+.line-pref {
   background-image: linear-gradient(transparent, transparent, 3px, #222);
   background-size: 4px 4px;
 }
@@ -330,15 +352,15 @@ input[type='radio'] {
 }
 
 .hint-box {
-  @include hint-text-box('HINT');
+  @include hint-text-box("HINT");
 }
 
 .vaultboy-box {
-  @include hint-img-box(url('/assets/vaultboy.svg'), 'super !');
+  @include hint-img-box(url("/assets/vaultboy.svg"), "super !");
 }
 
 .github-box {
-  @include hint-img-box(url('/assets/github-bg.svg'), 'github');
+  @include hint-img-box(url("/assets/github-bg.svg"), "github");
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -348,7 +370,7 @@ input[type='radio'] {
   position: relative;
   padding-left: 56px;
   &::before {
-    content: url('/assets/vault-icon.svg');
+    content: url("/assets/vault-icon.svg");
     display: block;
     top: 0;
     left: 0;
@@ -356,7 +378,7 @@ input[type='radio'] {
   }
 }
 
-.error-marker{
+.error-marker {
   height: 1.1rem;
   width: 0.8rem;
   background: $pipboy;
@@ -380,7 +402,7 @@ input[type='radio'] {
 
   &:hover {
     &::before {
-      content: '->';
+      content: "->";
       margin-right: 0.5rem;
     }
   }
@@ -390,7 +412,7 @@ input[type='radio'] {
     color: $pipboy;
 
     &::before {
-      content: '->';
+      content: "->";
       margin-right: 0.5rem;
     }
   }
@@ -413,9 +435,9 @@ body {
   }
 }
 
-.link{
-  &:hover{
-    text-decoration: underline;  
+.link {
+  &:hover {
+    text-decoration: underline;
     cursor: pointer;
   }
 }
