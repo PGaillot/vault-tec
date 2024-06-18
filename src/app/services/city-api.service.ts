@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CityPopulationHTTPResponse } from '../models/city/cityPopulation';
+import { CityPopulationHTTPResponse, SingleCityPopulationHTTPResponse } from '../models/city/cityPopulation';
 import {
   CountriesHttpResponse,
   CountryStatesHttpResponse,
@@ -78,4 +78,20 @@ export class CityApiService {
     };
     return this.http.post<CountriesHttpResponse>(url, body);
   }
+
+
+  /**
+   * Get single city and its population data
+   * @param city
+   * @returns
+   */
+  getSingleCityAndItsPopulationData(city:string):Observable<SingleCityPopulationHTTPResponse>{
+    const url:string = `${this.cityApiUrl}/countries/population/cities`;
+    const body = {
+      city: city,
+    };
+    return this.http.post<SingleCityPopulationHTTPResponse>(url, body);
+  }
+
+
 }

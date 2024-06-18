@@ -6,12 +6,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Vault } from '../../models/vault.model';
+import { Vault, VaultDetails } from '../../models/vault.model';
 import { CityApiService } from '../../services/city-api.service';
 import { Country, State } from '../../models/city/country.model';
 import { UpperCasePipe } from '@angular/common';
 import { CounterDisplayPipe } from '../../pipes/counter-display.pipe';
 import { Subscription } from 'rxjs';
+import { SingleCityPopulation, SingleCityPopulationHTTPResponse } from '../../models/city/cityPopulation';
 
 @Component({
   selector: 'app-vault-home-page',
@@ -34,6 +35,7 @@ export class VaultHomePageComponent {
 
   // Vault
   vaults: Vault[] = [];
+  selectedVault: Vault | undefined;
 
   // Form 📝
   addressForm: FormGroup = new FormGroup({
@@ -42,18 +44,16 @@ export class VaultHomePageComponent {
     citySelect: new FormControl(null, [Validators.required]),
   });
 
-  subscriptions:Subscription[] = [];
+  subscriptions: Subscription[] = [];
 
   constructor(private cityApi: CityApiService) {
-
-
     this.subscriptions = [
-
       this.cityApi.getCountriesAndTheirsPositions().subscribe({
         next: (value) => {
           this.countries = value.data;
-          this.addressForm.get('countrySelect')!.setValue(this.countries[0].name)
-  
+          this.addressForm
+            .get('countrySelect')!
+            .setValue(this.countries[0].name);
         },
         error: (err) => {
           console.error(err);
@@ -74,7 +74,9 @@ export class VaultHomePageComponent {
               .subscribe({
                 next: (value) => {
                   this.states = value.data.states;
-                  this.addressForm.get('stateSelect')?.setValue(this.states[0].name)
+                  this.addressForm
+                    .get('stateSelect')
+                    ?.setValue(this.states[0].name);
                 },
                 error: (err) => {
                   console.error(err);
@@ -85,7 +87,7 @@ export class VaultHomePageComponent {
               });
           }
         }),
-  
+
       this.addressForm
         .get('stateSelect')!
         .valueChanges.subscribe((stateSelected) => {
@@ -109,6 +111,7 @@ export class VaultHomePageComponent {
                       city,
                       i
                     );
+                    this.selectedVault = vault;
                     this.vaults = [...this.vaults, vault];
                   });
                 },
@@ -117,16 +120,33 @@ export class VaultHomePageComponent {
                 },
               });
           }
-        })
-    ]
-
+        }),
+    ];
   }
 
-  submit(e: any) {}
+  submit(e: any) {
+    if(this.selectedVault && this.selectedVault.city){
+      this.cityApi.getSingleCityAndItsPopulationData(this.selectedVault.city).subscribe({
+        next:(value:SingleCityPopulationHTTPResponse) => {
+          const cityPopulation:SingleCityPopulation = value.data
+          if(this.selectedVault){
+            const vaultDetails: VaultDetails = new VaultDetails(this.selectedVault, cityPopulation);
+            console.log(vaultDetails.counterDisplay());
+            
+          }
+            
+        },
+        error:(err) => {
+          console.error(err)
+        },
+      })
+    }
+
+  }
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this.subscriptions.forEach((sub) => sub.unsubscribe())
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

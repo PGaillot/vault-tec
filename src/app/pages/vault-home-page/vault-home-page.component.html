@@ -29,7 +29,12 @@
   <div class="vault-element">
     <span>{{ vault.name }}</span>
     <span>{{ vault.shortName }}</span>
-    <span>{{ $index | counterDisplay }}</span>
+    <span>{{ vault.counterDisplay() }}</span>
+
+    <div class="position">
+      <span>{{vault.country.lat}}/{{vault.country.long}}</span>
+    </div>
+
     <button>Reserver ma place</button>
   </div>
   }

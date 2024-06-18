@@ -1,6 +1,6 @@
+import { CounterDisplayPipe } from '../pipes/counter-display.pipe';
+import { SingleCityPopulation } from './city/cityPopulation';
 import { Country, State } from './city/country.model';
-
-export interface VaultElement {}
 
 export class Vault {
   city: string;
@@ -8,14 +8,16 @@ export class Vault {
   state: State;
   name: string;
   shortName: string;
-  id:string;
+  id: number;
   vaultLocationCode: string;
+  private counterDisplayPipe: CounterDisplayPipe;
 
   constructor(country: Country, state: State, city: string, id: number) {
-    (this.country = country),
+    (this.counterDisplayPipe = new CounterDisplayPipe()),
+      (this.country = country),
       (this.city = city),
       (this.state = state),
-      this.id = id.toString(),
+      (this.id = id),
       (this.vaultLocationCode = country.iso2 + state.state_code + id);
     this.name = this.vaultLocationCode + '-' + city.toUpperCase();
     this.shortName =
@@ -25,9 +27,18 @@ export class Vault {
       city.toUpperCase().slice(city.length - 1, city.length);
   }
 
+  counterDisplay(): string {
+    return this.counterDisplayPipe.transform(this.id);
+  }
+}
 
-
-  counterDisplay(){
-
+export class VaultDetails extends Vault {
+  singleCityPopulation: SingleCityPopulation;
+  constructor(
+    vault:Vault,
+    singleCityPopulation: SingleCityPopulation
+  ) {
+    super(vault.country, vault.state, vault.city, vault.id);
+    this.singleCityPopulation = singleCityPopulation;
   }
 }

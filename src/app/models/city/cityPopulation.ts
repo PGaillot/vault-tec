@@ -16,3 +16,22 @@ export interface PopulationCount {
     sex:        string;
     reliabilty: string;
 }
+
+
+export interface SingleCityPopulationHTTPResponse {
+    error: boolean;
+    msg:   string;
+    data:  SingleCityPopulation;
+}
+
+export interface SingleCityPopulation {
+    country:          string;
+    code:             string;
+    iso3:             string;
+    populationCounts: cityPopulationCount[];
+}
+
+export interface cityPopulationCount {
+    year:  number;
+    value: number;
+}
